@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D col;
     [SerializeField] private CapsuleCollider2D capsule;
     [SerializeField] private Transform playerTransform;
+    
+    private Vector2 _movement;
 
     private bool _isSwimming;
 
@@ -18,9 +20,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (_isSwimming)
+        {
+            Swim();
+        }
+        else
+        {
+            Walk();
+        }
     }
 
     /// <summary>
@@ -29,34 +38,27 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="value"> value from controller </param>
     public void OnMove(InputValue value)
     {
-        var v = value.Get<Vector2>();
-        if (_isSwimming)
+        _movement = value.Get<Vector2>();
+    }
+
+    private void Swim()
+    {
+        rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * speed; //normalized to avoid greater speed in diagonal
+        if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
-            Swim(v);
-        }
-        else
-        {
-            Walk(v);
+            float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+            playerTransform.rotation = Quaternion.Euler(0, 0, angle); 
         }
     }
 
-    private void Swim(Vector2 inputDirection)
+    private void Walk()
     {
-        rb.linearVelocity = new Vector2(inputDirection.x, inputDirection.y).normalized * speed;
-        float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
-
-        // Apply rotation to the head
-        playerTransform.rotation = Quaternion.Euler(0, 0, angle);
-    }
-
-    private void Walk(Vector2 inputDirection)
-    {
-        rb.linearVelocity = new Vector2(inputDirection.x, rb.linearVelocity.y).normalized * speed;
+        rb.linearVelocity = new Vector2(_movement.x, rb.linearVelocity.y).normalized * speed;
     }
 
     public void StartSwimming()
     {
-        Debug.Log("StartSwimming");
+        rb.linearVelocity = new Vector2(0, 0);
         _isSwimming = true;
         col.enabled = false;
         capsule.enabled = true;
