@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
     
     private Vector2 _movement;
 
-    private bool _isSwimming;
+    public bool _isSwimming;
     public bool canJump;
     public bool isJumping;
+    public bool atWaterSurface;
     public float groundCheckDistance = 0.5f;
     public LayerMask groundLayer;
     public Transform groundCheck;
@@ -47,30 +48,32 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
-        if (_movement.x > 0 && !_facingRight)
-        {
-            Flip();
-        }
-        else if (_movement.x < 0 && _facingRight)
-        {
-            Flip();
-        }
     }
-
     public void OnJump(InputValue value)
     {
         if (canJump)
         {
             isJumping = true;
-            Vector2 move = new Vector2(-10.0f, 10.0f);
+            Vector2 move = new Vector2(-8.0f, 8.0f);
             rb.AddForce(move, ForceMode2D.Impulse);
             canJump = false;
         }
     }
+    public void OnInteract(InputValue value)
+    {
+        Debug.Log("Interact");
+    }
 
     private void Swim()
     {
-        rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * speed; //normalized to avoid greater speed in diagonal
+        if (atWaterSurface)
+        {
+            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * speed;
+        }
         if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
             float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
@@ -81,6 +84,13 @@ public class PlayerMovement : MonoBehaviour
     private void Walk()
     {
         if (isJumping) return;
+        switch (_movement.x)
+        {
+            case > 0 when !_facingRight:
+            case < 0 when _facingRight:
+                Flip();
+                break;
+        }
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
             rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
@@ -112,7 +122,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        Debug.Log("Flipping!");
         // Toggle the facing direction
         _facingRight = !_facingRight;
 
