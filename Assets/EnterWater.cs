@@ -7,6 +7,15 @@ public class EnterWater : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         
         PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
-        playerMovement.StartSwimming();
+        playerMovement.canJump = true;
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        
+        PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+        playerMovement.canJump = false;
+    }
+    
 }

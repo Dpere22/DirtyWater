@@ -11,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
 
     private bool _isSwimming;
+    public bool canJump;
+    public bool isJumping;
+    public float groundCheckDistance = 0.5f;
+    public LayerMask groundLayer;
+    public Transform groundCheck;
+
+    private bool _facingRight = true;
+    private Vector2 _rayDirection = new(0.5f, -0.5f);
 
     public int speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +47,25 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
+        if (_movement.x > 0 && !_facingRight)
+        {
+            Flip();
+        }
+        else if (_movement.x < 0 && _facingRight)
+        {
+            Flip();
+        }
+    }
+
+    public void OnJump(InputValue value)
+    {
+        if (canJump)
+        {
+            isJumping = true;
+            Vector2 move = new Vector2(-10.0f, 10.0f);
+            rb.AddForce(move, ForceMode2D.Impulse);
+            canJump = false;
+        }
     }
 
     private void Swim()
@@ -53,7 +80,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
-        rb.linearVelocity = new Vector2(_movement.x, rb.linearVelocity.y).normalized * speed;
+        if (isJumping) return;
+        bool isGrounded = CheckGroundAhead();
+        if(isGrounded)
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
+        else
+        {
+            rb.linearVelocity = new Vector2(0, 0);
+        }
     }
 
     public void StartSwimming()
@@ -63,5 +97,29 @@ public class PlayerMovement : MonoBehaviour
         col.enabled = false;
         capsule.enabled = true;
         rb.gravityScale = 0f;
+    }
+    private bool CheckGroundAhead()
+    {
+        // Cast a ray downward from the groundCheck position
+        Vector2 rayOrigin = groundCheck.position;
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, _rayDirection, groundCheckDistance, groundLayer);
+        
+        // Debugging: Visualize the raycast in the Scene view
+        Debug.DrawRay(rayOrigin, _rayDirection * groundCheckDistance, Color.red);
+
+        return hit.collider; // True if ground is detected
+    }
+
+    private void Flip()
+    {
+        Debug.Log("Flipping!");
+        // Toggle the facing direction
+        _facingRight = !_facingRight;
+
+        // Flip the player's scale on the X-axis
+        float newYRotation = _facingRight ? 0f : 180f;
+        transform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
+        
+        _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
     }
 }
