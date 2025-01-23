@@ -27,6 +27,7 @@ UserSettings/
 # IDE Cache
 .vs/
 *.vscode
+*.vsconfig
 *.idea
 
 # Gradle cache directory
