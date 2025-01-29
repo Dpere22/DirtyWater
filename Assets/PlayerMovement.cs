@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         if (atWaterSurface)
         {
             rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
