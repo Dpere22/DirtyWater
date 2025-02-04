@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D col;
     [SerializeField] private CapsuleCollider2D capsule;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Sprite swim;
+    [SerializeField] private Sprite normal;
     
     private Vector2 _movement;
 
@@ -103,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartSwimming()
     {
+        sr.sprite = swim;
         rb.linearVelocity = new Vector2(0, 0);
         _isSwimming = true;
         col.enabled = false;
