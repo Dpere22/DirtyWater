@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if (!_hasStarted) return;
-        float time = (timer.GetRemainingTime());
+        float time = timer.GetRemainingTime();
         tm.text = $"Time Left: {time:F2}";
     }
 
