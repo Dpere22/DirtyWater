@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RecycleUI : MonoBehaviour
 {
@@ -11,5 +12,10 @@ public class RecycleUI : MonoBehaviour
         int woodCount = PlayerManager.inventory["Wood"];
         int plasticCount = PlayerManager.inventory["Plastic"];
         text.text = $"Metal: {metalCount} \nWood: {woodCount} \nPlastic: {plasticCount}";
+    }
+
+    public void ContinueGame()
+    {
+        SceneManager.LoadScene(0); //Scene 0 should be the main game
     }
 }
