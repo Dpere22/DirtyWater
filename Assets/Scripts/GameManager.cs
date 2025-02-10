@@ -16,6 +16,6 @@ public class GameManager : MonoBehaviour
     
     private void OnDayEnd()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("RecycleScreen");
     }
 }

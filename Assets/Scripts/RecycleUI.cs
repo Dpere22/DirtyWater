@@ -16,6 +16,6 @@ public class RecycleUI : MonoBehaviour
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(0); //Scene 0 should be the main game
+        SceneManager.LoadScene("Main");
     }
 }
