@@ -9,4 +9,6 @@ public static class PlayerManager
         {"Plastic", 1},
         {"Wood", 0}
     };
+
+    public static float MaxTime = 10f;
 }
