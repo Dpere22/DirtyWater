@@ -21,13 +21,20 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    private bool _facingRight = true;
+    public bool _facingRight = false;
     private Vector2 _rayDirection = new(0.5f, -0.5f);
 
     public int speed;
+
+
+    private delegate void FlipOperation();
+    private FlipOperation flip;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        flip = WalkFlip;
         _isSwimming = false;
     }
 
@@ -69,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Swim()
     {
+        CheckFlip();
         if (atWaterSurface)
         {
             rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
@@ -81,26 +89,31 @@ public class PlayerMovement : MonoBehaviour
         if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
             float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
-            playerTransform.rotation = Quaternion.Euler(0, 0, angle); 
+            playerTransform.rotation = Quaternion.Euler(0f, 0f, angle); 
         }
     }
 
     private void Walk()
     {
         if (isJumping) return;
-        switch (_movement.x)
-        {
-            case > 0 when !_facingRight:
-            case < 0 when _facingRight:
-                Flip();
-                break;
-        }
+        CheckFlip();
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
             rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
         else
         {
             rb.linearVelocity = new Vector2(0, 0);
+        }
+    }
+
+    private void CheckFlip()
+    {
+        switch (_movement.x)
+        {
+            case > 0 when !_facingRight:
+            case < 0 when _facingRight:
+                flip();
+                break;
         }
     }
 
@@ -112,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         col.enabled = false;
         capsule.enabled = true;
         rb.gravityScale = 0f;
+        flip = WaterFlip;
     }
     private bool CheckGroundAhead()
     {
@@ -125,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         return hit.collider; // True if ground is detected
     }
 
-    private void Flip()
+    private void WalkFlip()
     {
         // Toggle the facing direction
         _facingRight = !_facingRight;
@@ -135,5 +149,12 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         
         _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
+    }
+
+    private void WaterFlip()
+    {
+        _facingRight = !_facingRight;
+        // Flip the player's scale on the X-axis
+        sr.flipY = !_facingRight;
     }
 }
