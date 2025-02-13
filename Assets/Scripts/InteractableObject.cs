@@ -4,51 +4,63 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
 
-    public static Dictionary<string, List<string>> setTrashData = new()
+    public static Dictionary<string, List<string>> TrashData = new()
     {
         {
             "TrashBag", 
             new List<string>
-        {"Trash", "Generic", "3", "Sam_Sprite"}
+        {"Trash", "Wood", "3", "Sam_Sprite"}
         },
         {
             "Cup",
             new List<string>
-        {"Trash", "Generic", "2", "Sam_Sprite"}
+        {"Trash", "Plastic", "2", "Sam_Sprite"}
         },
         {
             "Metal Scrap",
             new List<string>
-        {"Trash", "Generic", "1", "Sam_Sprite"}
+        {"Trash", "Metal", "1", "Sam_Sprite"}
         },
 
 
     };
 
-    
-    public List<string> keys = new(setTrashData.Keys);
+
+
+
+    public List<string> keys = new(TrashData.Keys);
 
     public string Name = "";
     public string Type = "";
     public string Material = "";
     public int ValueOfMaterial = 1;
+    public Sprite currentSprite = null;
 
     public bool canCollect = false;
-    public bool randomObject = true;
+
+
+    //Trash = true, Quest = false
+    public bool QuestOrTrash = true;
 
 
     public void Start()
     {
         
-
-        if (randomObject)
+        if (currentSprite != null)
         {
-            randommaterial();
+            GetComponent<SpriteRenderer>
         }
+
+
+        if (QuestOrTrash)
+        {
+            RandomTrash();
+        }
+        
     }
 
 
-    private void randommaterial()
+    private void RandomTrash()
     {
         int choice = Random.Range(0, keys.Count);
 
@@ -56,21 +68,48 @@ public class Interactable : MonoBehaviour
 
         Name = chosenkey;
 
-        Type = setTrashData[chosenkey][0];
+        Type = TrashData[chosenkey][0];
 
-        Material = setTrashData[chosenkey][1];
+        Material = TrashData[chosenkey][1];
 
-        ValueOfMaterial = int.Parse(setTrashData[chosenkey][2]);
+        ValueOfMaterial = int.Parse(TrashData[chosenkey][2]);
 
         //Sprite chosenSprite = Resources.Load(setTrashData[chosenkey][3], typeof(Sprite)) as Sprite;
 
     }
 
+    private void SpecificSpawn(string specificKey)
+    {
+
+        Name = specificKey;
+
+        Type = TrashData[specificKey][0];
+
+        Material = TrashData[specificKey][1];
+
+        ValueOfMaterial = int.Parse(TrashData[specificKey][2]);
+
+        //Sprite chosenSprite = Resources.Load(setTrashData[specificKey][3], typeof(Sprite)) as Sprite;
+
+    }
+
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log(Name + Type + Material);
+        if (QuestOrTrash)
+        {
+            PlayerManager.currentDayTrash.Add(Name, ValueOfMaterial);
+        }
+        else
+        {
+            PlayerManager.Questitems.Add(Name);
+        }
+        
+
+
         Destroy(gameObject);
     }
 }

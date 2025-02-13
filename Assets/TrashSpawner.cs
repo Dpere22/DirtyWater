@@ -52,6 +52,8 @@ public class TrashSpawner : MonoBehaviour
         GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
 
         temp.transform.parent = this.transform;
+
+
         
     }
 
