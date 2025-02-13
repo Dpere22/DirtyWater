@@ -4,14 +4,29 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
 
-    public Dictionary<string, List<string>> setTrashData = new()
+    public static Dictionary<string, List<string>> setTrashData = new()
     {
-        {"TrashBag", new List<string>
-        { "TrashBag", "Trash", "Generic", "3", "Sam_Sprite"}}
-
+        {
+            "TrashBag", 
+            new List<string>
+        {"Trash", "Generic", "3", "Sam_Sprite"}
+        },
+        {
+            "Cup",
+            new List<string>
+        {"Trash", "Generic", "2", "Sam_Sprite"}
+        },
+        {
+            "Metal Scrap",
+            new List<string>
+        {"Trash", "Generic", "1", "Sam_Sprite"}
+        },
 
 
     };
+
+    
+    public List<string> keys = new(setTrashData.Keys);
 
     public string Name = "";
     public string Type = "";
@@ -35,9 +50,19 @@ public class Interactable : MonoBehaviour
 
     private void randommaterial()
     {
+        int choice = Random.Range(0, keys.Count);
 
-        ValueOfMaterial = int.Parse(setTrashData["TrashBag"][3]);
+        string chosenkey = keys[choice];
 
+        Name = chosenkey;
+
+        Type = setTrashData[chosenkey][0];
+
+        Material = setTrashData[chosenkey][1];
+
+        ValueOfMaterial = int.Parse(setTrashData[chosenkey][2]);
+
+        //Sprite chosenSprite = Resources.Load(setTrashData[chosenkey][3], typeof(Sprite)) as Sprite;
 
     }
 
@@ -45,7 +70,7 @@ public class Interactable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log(ValueOfMaterial);
+        Debug.Log(Name + Type + Material);
         Destroy(gameObject);
     }
 }
