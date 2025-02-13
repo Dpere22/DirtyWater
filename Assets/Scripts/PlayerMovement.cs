@@ -36,6 +36,12 @@ public class PlayerMovement : MonoBehaviour
     {
         flip = WalkFlip;
         _isSwimming = false;
+        PauseManager.PauseGameAction += OnPause;
+    }
+
+    void OnDestroy()
+    {
+        PauseManager.PauseGameAction -= OnPause;
     }
 
     // Update is called once per frame
@@ -49,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Walk();
         }
+    }
+
+    private void OnPause()
+    {
+        Debug.Log("Pause");
+        //TODO stop player movement
     }
 
     /// <summary>
