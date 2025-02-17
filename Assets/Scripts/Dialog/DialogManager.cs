@@ -11,7 +11,7 @@ public class DialogManager : MonoBehaviour
 
     private Story currentStory;
 
-    private bool dialogIsPlaying;
+    public bool DialogIsPlaying { get; private set; }
     
     private static DialogManager _instance;
     
@@ -38,14 +38,14 @@ public class DialogManager : MonoBehaviour
             Debug.LogWarning("No player input found.");
         }
         playerInput.actions["Submit"].performed += ContinueStoryCallBack;
-        dialogIsPlaying = false;
+        DialogIsPlaying = false;
         dialogPanel.SetActive(false);
     }
 
     public void EnterDialogMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
-        dialogIsPlaying = true;
+        DialogIsPlaying = true;
         dialogPanel.SetActive(true);
         ContinueStory();
 
@@ -53,15 +53,14 @@ public class DialogManager : MonoBehaviour
 
     private void ExitDialogMode()
     {
-        dialogIsPlaying = false;
+        DialogIsPlaying = false;
         dialogPanel.SetActive(false);
         dialogText.text = "";
     }
 
     private void ContinueStoryCallBack(InputAction.CallbackContext context)
     {
-        Debug.Log("Continue Story");
-        if (!dialogIsPlaying) return;
+        if (!DialogIsPlaying) return;
         ContinueStory();
     }
     
