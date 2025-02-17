@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private delegate void MoveOperation();
     private MoveOperation move;
     private MoveOperation previousMove;
+
+    public Action InteractAction;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,17 +95,16 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnJump(InputValue value)
     {
-        if (canJump)
-        {
-            isJumping = true;
-            Vector2 move = new Vector2(-8.0f, 8.0f);
-            rb.AddForce(move, ForceMode2D.Impulse);
-            canJump = false;
-        }
+        if (!canJump) return;
+        
+        isJumping = true;
+        Vector2 direction = new Vector2(-8.0f, 8.0f);
+        rb.AddForce(direction, ForceMode2D.Impulse);
+        canJump = false;
     }
     public void OnInteract(InputValue value)
     {
-        Debug.Log("Interact");
+        InteractAction?.Invoke();
     }
 
     //------------------------------------------------------------------------------------------------------
