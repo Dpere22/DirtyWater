@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
 
     private bool _facingRight = false;
-    private Vector2 _rayDirection = new(0.5f, -0.5f);
+    private Vector2 _rayDirection = new(-0.5f, -0.5f);
 
     public int speed;
 
