@@ -48,7 +48,7 @@ public class Interactable : MonoBehaviour
         
         if (currentSprite != null)
         {
-            GetComponent<SpriteRenderer>
+            //GetComponent<SpriteRenderer>
         }
 
 

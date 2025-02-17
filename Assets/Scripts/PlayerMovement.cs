@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite normal;
     
     private Vector2 _movement;
-
-    public bool _isSwimming;
+    
     public bool canJump;
     public bool isJumping;
     public bool atWaterSurface;
@@ -21,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    public bool _facingRight = false;
+    private bool _facingRight = false;
     private Vector2 _rayDirection = new(0.5f, -0.5f);
 
     public int speed;
@@ -31,36 +30,56 @@ public class PlayerMovement : MonoBehaviour
     private FlipOperation flip;
     
     
+    private delegate void MoveOperation();
+    private MoveOperation move;
+    private MoveOperation previousMove;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         flip = WalkFlip;
-        _isSwimming = false;
-        PauseManager.PauseGameAction += OnPause;
+        move = Walk;
+        PauseManager.PauseGameAction += PauseHandler;
+        PauseManager.ResumeGameAction += ResumeHandler;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= OnPause;
+        PauseManager.PauseGameAction -= PauseHandler;
+        PauseManager.ResumeGameAction -= ResumeHandler;
     }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_isSwimming)
-        {
-            Swim();
-        }
+        move();
+    }
+
+    
+    // ------------------------------- CONTROLLER INPUT ----------------------------------------------
+    
+    /// <summary>
+    /// Used by Unity input system
+    /// </summary>
+    private void OnPause()
+    {
+        if(PauseManager.gamePaused)
+            PauseManager.ResumeGame();
         else
         {
-            Walk();
+            PauseManager.PauseGame();
         }
     }
 
-    private void OnPause()
+    private void ResumeHandler()
     {
-        Debug.Log("Pause");
-        //TODO stop player movement
+        move = previousMove;
+    }
+
+    private void PauseHandler()
+    {
+        previousMove = move;
+        move = () => { }; //don't do anything when move
     }
 
     /// <summary>
@@ -86,6 +105,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Interact");
     }
 
+    //------------------------------------------------------------------------------------------------------
+
+    
+    
     private void Swim()
     {
         CheckFlip();
@@ -133,11 +156,11 @@ public class PlayerMovement : MonoBehaviour
     {
         sr.sprite = swim;
         rb.linearVelocity = new Vector2(0, 0);
-        _isSwimming = true;
         col.enabled = false;
         capsule.enabled = true;
         rb.gravityScale = 0f;
         flip = WaterFlip;
+        move = Swim;
     }
     private bool CheckGroundAhead()
     {
