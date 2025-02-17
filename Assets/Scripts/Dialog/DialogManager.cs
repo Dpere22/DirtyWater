@@ -1,0 +1,80 @@
+using Ink.Runtime;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class DialogManager : MonoBehaviour
+{
+    [Header("Dialog UI")]
+    [SerializeField] private GameObject dialogPanel;
+    [SerializeField] private TextMeshProUGUI dialogText;
+
+    private Story currentStory;
+
+    private bool dialogIsPlaying;
+    
+    private static DialogManager _instance;
+    
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Debug.LogWarning("More than one DialogManager in scene.");
+        }
+        _instance = this;
+    }
+    
+    public static DialogManager GetInstance()
+    {
+        return _instance;
+    }
+
+    private void Start()
+    {
+        var playerInput = FindFirstObjectByType<PlayerMovement>().GetComponent<PlayerInput>();
+        if (playerInput == null)
+        {
+            Debug.LogWarning("No player input found.");
+        }
+        playerInput.actions["Submit"].performed += ContinueStoryCallBack;
+        dialogIsPlaying = false;
+        dialogPanel.SetActive(false);
+    }
+
+    public void EnterDialogMode(TextAsset inkJSON)
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogIsPlaying = true;
+        dialogPanel.SetActive(true);
+        ContinueStory();
+
+    }
+
+    private void ExitDialogMode()
+    {
+        dialogIsPlaying = false;
+        dialogPanel.SetActive(false);
+        dialogText.text = "";
+    }
+
+    private void ContinueStoryCallBack(InputAction.CallbackContext context)
+    {
+        Debug.Log("Continue Story");
+        if (!dialogIsPlaying) return;
+        ContinueStory();
+    }
+    
+    
+    private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            dialogText.text = currentStory.Continue();
+        }
+        else
+        {
+            ExitDialogMode();
+        }
+    }
+}

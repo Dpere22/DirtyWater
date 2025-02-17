@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -24,6 +25,8 @@ public class DialogTrigger : MonoBehaviour
     
     private void Start()
     {
+        
+
         player = FindFirstObjectByType<PlayerMovement>();
         player.InteractAction += InteractHandler;
     }
@@ -37,7 +40,8 @@ public class DialogTrigger : MonoBehaviour
 
     private void InteractHandler()
     {
-        Debug.Log("Interact Handler!");
+        if (!playerInRange) return;
+        DialogManager.GetInstance().EnterDialogMode(inkJson);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
