@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 [RequireComponent(typeof(WaterTriggerHandler))]
 public class InteractableWater : MonoBehaviour
 {
-    [Header("Mesh Gen")]
+    [Header("Mesh Generation")]
     [Range(2, 500)] public int NumOfXVertices = 70;
 
     public float Width = 10f;
@@ -156,6 +156,7 @@ public class InteractableWaterEditor : Editor
         Vector3 center = _water.transform.position;
         Vector3 size = new Vector3(_water.Width, _water.Height, 0.1f);
         Handles.DrawWireCube(center, size);
+        
         float handleSize = HandleUtility.GetHandleSize(center) * 0.1f;
         Vector3 snap = Vector3.one * 0.1f;
         
