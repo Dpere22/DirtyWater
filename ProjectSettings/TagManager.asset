@@ -48,5 +48,8 @@ TagManager:
   - name: SortingLayer
     uniqueID: 3679909075
     locked: 0
+  - name: Water
+    uniqueID: 3545295243
+    locked: 0
   m_RenderingLayers:
   - Default
