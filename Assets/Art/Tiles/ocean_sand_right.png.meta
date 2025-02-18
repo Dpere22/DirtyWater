@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bc79ee21c73d17d47ade8e3e5c3572e4
+guid: a6207bfc4c577144caf22961480e2847
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7565374728950343329
-    second: Sam_Sprite_0
+      213: -224570491375572717
+    second: ocean_sand_right_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sam_Sprite_0
+      name: ocean_sand_right_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 0
         y: 0
-        width: 21
-        height: 54
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a66dcf9b3c9df860800000000000000
-      internalID: 7565374728950343329
+      spriteID: 3192682f35a22ecf0800000000000000
+      internalID: -224570491375572717
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sam_Sprite_0: 7565374728950343329
+      ocean_sand_right_0: -224570491375572717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
