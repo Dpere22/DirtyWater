@@ -11,7 +11,7 @@ public static class PlayerManager
         {"Wood", 0}
     };
 
-    public static float MaxTime = 10f;
+    public static float MaxTime = 5f;
 
     //Current player Trash inventory for the day
     public static Dictionary<String, int> currentDayTrash = new()
