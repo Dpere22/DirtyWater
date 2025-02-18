@@ -2330,7 +2330,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1083477936
+--- !u!43 &1164731209
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4037,13 +4037,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2374162430409825468, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: splashParticles
+      value: 
+      objectReference: {fileID: 4752342788565410948, guid: c2909b20fc969cc4ab6e7e0fa661cf7e, type: 3}
+    - target: {fileID: 2374162430409825468, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: _waterMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4640230888857641708, guid: ea896fad74caa154ea178aeba90af738, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1083477936}
+      objectReference: {fileID: 1164731209}
     - target: {fileID: 4893814465775429463, guid: ea896fad74caa154ea178aeba90af738, type: 3}
       propertyPath: m_Name
       value: Water Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893814465775429463, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5327710909748793792, guid: ea896fad74caa154ea178aeba90af738, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4097,6 +4109,22 @@ PrefabInstance:
       propertyPath: _mesh
       value: 
       objectReference: {fileID: 381503513}
+    - target: {fileID: 7289423796214878937, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -10.162531
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289423796214878937, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 6.895917
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289423796214878937, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 10.162531
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289423796214878937, guid: ea896fad74caa154ea178aeba90af738, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 6.895917
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
