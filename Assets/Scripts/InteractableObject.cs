@@ -4,31 +4,12 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
 
-    public static Dictionary<string, List<string>> TrashData = new()
+
+
+    public List<Sprite> SpriteList = new()
     {
-        {
-            "TrashBag", 
-            new List<string>
-        {"Trash", "Wood", "3", "Sam_Sprite"}
-        },
-        {
-            "Cup",
-            new List<string>
-        {"Trash", "Plastic", "2", "Sam_Sprite"}
-        },
-        {
-            "Metal Scrap",
-            new List<string>
-        {"Trash", "Metal", "1", "Sam_Sprite"}
-        },
-
-
     };
 
-
-
-
-    public List<string> keys = new(TrashData.Keys);
 
     public string Name = "";
     public string Type = "";
@@ -45,11 +26,6 @@ public class Interactable : MonoBehaviour
 
     public void Start()
     {
-        
-        if (currentSprite != null)
-        {
-            //GetComponent<SpriteRenderer>
-        }
 
 
         if (QuestOrTrash)
@@ -62,19 +38,19 @@ public class Interactable : MonoBehaviour
 
     private void RandomTrash()
     {
-        int choice = Random.Range(0, keys.Count);
+        int choice = Random.Range(0, PlayerManager.keys.Count);
 
-        string chosenkey = keys[choice];
+        string chosenkey = PlayerManager.keys[choice];
 
         Name = chosenkey;
 
-        Type = TrashData[chosenkey][0];
+        Type = PlayerManager.TrashData[chosenkey][0];
 
-        Material = TrashData[chosenkey][1];
+        Material = PlayerManager.TrashData[chosenkey][1];
 
-        ValueOfMaterial = int.Parse(TrashData[chosenkey][2]);
+        ValueOfMaterial = int.Parse(PlayerManager.TrashData[chosenkey][2]);
 
-        //Sprite chosenSprite = Resources.Load(setTrashData[chosenkey][3], typeof(Sprite)) as Sprite;
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[chosenkey][3])];
 
     }
 
@@ -83,13 +59,13 @@ public class Interactable : MonoBehaviour
 
         Name = specificKey;
 
-        Type = TrashData[specificKey][0];
+        Type = PlayerManager.TrashData[specificKey][0];
 
-        Material = TrashData[specificKey][1];
+        Material = PlayerManager.TrashData[specificKey][1];
 
-        ValueOfMaterial = int.Parse(TrashData[specificKey][2]);
+        ValueOfMaterial = int.Parse(PlayerManager.TrashData[specificKey][2]);
 
-        //Sprite chosenSprite = Resources.Load(setTrashData[specificKey][3], typeof(Sprite)) as Sprite;
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[specificKey][3])];
 
     }
 
@@ -101,7 +77,10 @@ public class Interactable : MonoBehaviour
 
         if (QuestOrTrash)
         {
-            PlayerManager.currentDayTrash.Add(Name, ValueOfMaterial);
+            int newValue = PlayerManager.currentDayTrash[Material] + ValueOfMaterial;
+
+            PlayerManager.currentDayTrash[Material] = newValue;
+
         }
         else
         {

@@ -10,6 +10,13 @@ public class RecycleUI : MonoBehaviour
     [SerializeField] private GameObject recycleButton;
     void Start()
     {
+        UpdateInventory();
+    }
+
+
+
+    void UpdateInventory()
+    {
         int metalCount = PlayerManager.inventory["Metal"];
         int woodCount = PlayerManager.inventory["Wood"];
         int plasticCount = PlayerManager.inventory["Plastic"];
@@ -29,9 +36,18 @@ public class RecycleUI : MonoBehaviour
     /// </summary>
     public void Recycle()
     {
+
+        PlayerManager.inventory["Metal"] = PlayerManager.inventory["Metal"] + PlayerManager.currentDayTrash["Metal"];
+        PlayerManager.inventory["Wood"] = PlayerManager.inventory["Wood"] + PlayerManager.currentDayTrash["Wood"];
+        PlayerManager.inventory["Plastic"] = PlayerManager.inventory["Plastic"] + PlayerManager.currentDayTrash["Plastic"];
+        UpdateInventory();
+
+
         Debug.Log("Recycled");
         continueButton.SetActive(true);
         recycleButton.SetActive(false);
-        //TODO put recycle logic here
+
+        
+
     }
 }

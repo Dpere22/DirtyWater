@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35cdccd5ffff9a4d98233ad61dfb199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpUI: {fileID: 0}
 --- !u!68 &149180285
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -991,7 +992,7 @@ Transform:
   m_GameObject: {fileID: 521042298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.65, y: -6.89, z: -10}
+  m_LocalPosition: {x: 2.91, y: 8.36, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1467,6 +1468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm: {fileID: 90045627}
   timer: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &824568717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,6 +1665,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7393598250e1d14289a3f297db85e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteConstant: 1.4
+  _damping: 1.1
+  _spread: 6.5
+  _wavePropogationIterations: 8
+  _speedMult: 5.5
+  ForceMultiplier: 0.2
+  MaxForce: 5
+  _playerCollisionRadiusMult: 4.15
   NumOfXVertices: 70
   Width: 20.325062
   Height: 13.791834
@@ -1681,6 +1691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783d3df60cb8f1b41a6092b1232a9f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waterMask:
+    serializedVersion: 2
+    m_Bits: 0
+  splashParticles: {fileID: 0}
 --- !u!68 &1210931482
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1986,11 +2000,6 @@ Transform:
 --- !u!4 &1537036473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8377941335239265280, guid: c6a89f9277d81974fa516b006a212838, type: 3}
-  m_PrefabInstance: {fileID: 2135241159340159978}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1537036479 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6444821811683835660, guid: c6a89f9277d81974fa516b006a212838, type: 3}
   m_PrefabInstance: {fileID: 2135241159340159978}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1593013253
@@ -2538,7 +2547,7 @@ PrefabInstance:
     - target: {fileID: 4856181226609162919, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: sr
       value: 
-      objectReference: {fileID: 1537036479}
+      objectReference: {fileID: 0}
     - target: {fileID: 4856181226609162919, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: swim
       value: 

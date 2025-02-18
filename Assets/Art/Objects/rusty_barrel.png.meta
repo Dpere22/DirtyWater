@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rusty_barrel_0: 3916215769421807192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
