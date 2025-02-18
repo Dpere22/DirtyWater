@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 public static class PlayerManager
 {
-
-
-
-
-
-
     //TrashData
     public static Dictionary<string, List<string>> TrashData = new()
     {
@@ -42,13 +36,7 @@ public static class PlayerManager
             new List<string>
         {"Trash", "Wood", "1", "5"}
         }
-
-
     };
-
-
-
-
     public static List<string> keys = new(TrashData.Keys);
 
 
@@ -60,7 +48,7 @@ public static class PlayerManager
         {"Wood", 0}
     };
 
-    public static float MaxTime = 5f;
+    public static float MaxTime = 30f;
 
     //Current player Trash inventory for the day
     public static Dictionary<String, int> currentDayTrash = new()
