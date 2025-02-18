@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (atWaterSurface)
         {
             rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip the player's scale on the X-axis
         float newYRotation = _facingRight ? 0f : 180f;
-        transform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
+        playerTransform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         
         _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
     }

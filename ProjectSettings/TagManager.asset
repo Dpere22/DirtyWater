@@ -13,7 +13,7 @@ TagManager:
   - Water
   - UI
   - UIHigher
-  - WaterInteract
+  - 
   - 
   - 
   - 
@@ -42,14 +42,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 3873416493
-    locked: 0
   - name: SortingLayer
     uniqueID: 3679909075
     locked: 0
   - name: Water
     uniqueID: 3545295243
+    locked: 0
+  - name: UI
+    uniqueID: 3873416493
     locked: 0
   m_RenderingLayers:
   - Default

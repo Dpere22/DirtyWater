@@ -8,7 +8,7 @@ public class EnterWater : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         
         jumpUI.SetActive(true);
-        PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
         playerMovement.canJump = true;
         
     }
@@ -18,7 +18,7 @@ public class EnterWater : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         
         jumpUI.SetActive(false);
-        PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
         playerMovement.canJump = false;
     }
     

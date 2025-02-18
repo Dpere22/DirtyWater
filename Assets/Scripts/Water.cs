@@ -11,7 +11,7 @@ public class Water : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         
         PlayerEnteredWater?.Invoke();
-        PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
         playerMovement.StartSwimming();
         playerMovement.isJumping = false;
         gameManager.StartDayTimer();
