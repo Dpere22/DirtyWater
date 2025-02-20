@@ -24,11 +24,24 @@ public class Timer : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PauseManager.PauseGameAction += PauseTimer;
+        PauseManager.ResumeGameAction += ResumeTimer;
+    }
+
+    private void OnDestroy()
+    {
+        PauseManager.PauseGameAction -= PauseTimer;
+        PauseManager.ResumeGameAction -= ResumeTimer;
+    }
+
     /// <summary>
     /// Starts the timer for a given duration
     /// </summary>
     public void StartTimer(float duration)
     {
+        Debug.Log("StartTimer");
         OnTimerStart?.Invoke();
         TimerDuration = duration;
         _elapsedTime = 0f;

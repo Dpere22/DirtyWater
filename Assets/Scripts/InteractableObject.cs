@@ -4,48 +4,91 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
 
-    public Dictionary<string, List<string>> setTrashData = new()
+
+
+    public List<Sprite> SpriteList = new()
     {
-        {"TrashBag", new List<string>
-        { "TrashBag", "Trash", "Generic", "3", "Sam_Sprite"}}
-
-
-
     };
+
 
     public string Name = "";
     public string Type = "";
     public string Material = "";
     public int ValueOfMaterial = 1;
+    public Sprite currentSprite = null;
 
     public bool canCollect = false;
-    public bool randomObject = true;
+
+
+    //Trash = true, Quest = false
+    public bool QuestOrTrash = true;
 
 
     public void Start()
     {
-        
 
-        if (randomObject)
+
+        if (QuestOrTrash)
         {
-            randommaterial();
+            RandomTrash();
         }
+        
     }
 
 
-    private void randommaterial()
+    private void RandomTrash()
+    {
+        int choice = Random.Range(0, PlayerManager.keys.Count);
+
+        string chosenkey = PlayerManager.keys[choice];
+
+        Name = chosenkey;
+
+        Type = PlayerManager.TrashData[chosenkey][0];
+
+        Material = PlayerManager.TrashData[chosenkey][1];
+
+        ValueOfMaterial = int.Parse(PlayerManager.TrashData[chosenkey][2]);
+
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[chosenkey][3])];
+
+    }
+
+    private void SpecificSpawn(string specificKey)
     {
 
-        ValueOfMaterial = int.Parse(setTrashData["TrashBag"][3]);
+        Name = specificKey;
 
+        Type = PlayerManager.TrashData[specificKey][0];
+
+        Material = PlayerManager.TrashData[specificKey][1];
+
+        ValueOfMaterial = int.Parse(PlayerManager.TrashData[specificKey][2]);
+
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[specificKey][3])];
 
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log(ValueOfMaterial);
+        if (QuestOrTrash)
+        {
+            int newValue = PlayerManager.currentDayTrash[Material] + ValueOfMaterial;
+
+            PlayerManager.currentDayTrash[Material] = newValue;
+
+        }
+        else
+        {
+            PlayerManager.Questitems.Add(Name);
+        }
+        
+
+
         Destroy(gameObject);
     }
 }

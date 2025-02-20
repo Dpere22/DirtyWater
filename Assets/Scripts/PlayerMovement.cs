@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite normal;
     
     private Vector2 _movement;
-
-    public bool _isSwimming;
+    
     public bool canJump;
     public bool isJumping;
     public bool atWaterSurface;
@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    public bool _facingRight = false;
-    private Vector2 _rayDirection = new(0.5f, -0.5f);
+    private bool _facingRight = false;
+    private Vector2 _rayDirection = new(-0.5f, -0.5f);
 
     public int speed;
 
@@ -31,24 +31,59 @@ public class PlayerMovement : MonoBehaviour
     private FlipOperation flip;
     
     
+    private delegate void MoveOperation();
+    private MoveOperation move;
+    private MoveOperation previousMove;
+
+    public Action InteractAction;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         flip = WalkFlip;
-        _isSwimming = false;
+        move = Walk;
+        PauseManager.PauseGameAction += PauseHandler;
+        PauseManager.ResumeGameAction += ResumeHandler;
     }
 
+    private void OnDestroy()
+    {
+        PauseManager.PauseGameAction -= PauseHandler;
+        PauseManager.ResumeGameAction -= ResumeHandler;
+    }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_isSwimming)
-        {
-            Swim();
-        }
+        if (DialogManager.GetInstance().DialogIsPlaying) return;
+        move();
+    }
+
+    
+    // ------------------------------- CONTROLLER INPUT ----------------------------------------------
+    
+    /// <summary>
+    /// Used by Unity input system
+    /// </summary>
+    private void OnPause()
+    {
+        if(PauseManager.gamePaused)
+            PauseManager.ResumeGame();
         else
         {
-            Walk();
+            PauseManager.PauseGame();
         }
+    }
+
+    private void ResumeHandler()
+    {
+        move = previousMove;
+    }
+
+    private void PauseHandler()
+    {
+        previousMove = move;
+        move = () => { }; //don't do anything when move
     }
 
     /// <summary>
@@ -61,26 +96,29 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnJump(InputValue value)
     {
-        if (canJump)
-        {
-            isJumping = true;
-            Vector2 move = new Vector2(-8.0f, 8.0f);
-            rb.AddForce(move, ForceMode2D.Impulse);
-            canJump = false;
-        }
+        if (!canJump) return;
+        
+        isJumping = true;
+        Vector2 direction = new Vector2(-8.0f, 8.0f);
+        rb.AddForce(direction, ForceMode2D.Impulse);
+        canJump = false;
     }
     public void OnInteract(InputValue value)
     {
-        Debug.Log("Interact");
+        InteractAction?.Invoke();
     }
 
+    //------------------------------------------------------------------------------------------------------
+
+    
+    
     private void Swim()
     {
         CheckFlip();
         if (atWaterSurface)
         {
             rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
@@ -121,11 +159,11 @@ public class PlayerMovement : MonoBehaviour
     {
         sr.sprite = swim;
         rb.linearVelocity = new Vector2(0, 0);
-        _isSwimming = true;
         col.enabled = false;
         capsule.enabled = true;
         rb.gravityScale = 0f;
         flip = WaterFlip;
+        move = Swim;
     }
     private bool CheckGroundAhead()
     {
@@ -146,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip the player's scale on the X-axis
         float newYRotation = _facingRight ? 0f : 180f;
-        transform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
+        playerTransform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         
         _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
     }
