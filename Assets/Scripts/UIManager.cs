@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -72,6 +73,12 @@ public class UIManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         PauseManager.ResumeGame();
+    }
+
+    public void MainMenuButton()
+    {
+        PlayerManager.ResetGame();
+        SceneManager.LoadScene("MainMenu");
     }
     
 }

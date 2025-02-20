@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (DialogManager.GetInstance().DialogIsPlaying) return;
-        move();
+        move?.Invoke();
     }
 
     
