@@ -9,6 +9,8 @@ Shelly: Can I play in the water pleeeeeeeease?!?
 Jay: No, Shelly, not today. I've got a meeting to get to, and your grandpa is busy at work.
 Shelly: Awwwwwwwww
 Jay: Say, if you really want to help this place, bring this ocean back to life by cleaning it up a bit
+Jay: There's a net down there where you can drop off your collected garbage
+Jay: Behind us is a shop that will sell you upgrades for recycled materials!
 Jay: Anyway, We really must be going, but it was nice meeting you. See you around!
 Shelly: Bye Bye!
 You stand there, thinking about the little girl wanting to swim
