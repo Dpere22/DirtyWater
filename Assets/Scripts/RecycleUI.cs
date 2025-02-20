@@ -11,6 +11,7 @@ public class RecycleUI : MonoBehaviour
     void Start()
     {
         UpdateInventory();
+        PlayerManager.currentWeight = 0; //THIS IS BAD CODE YO FIX LATER ME!
     }
 
 

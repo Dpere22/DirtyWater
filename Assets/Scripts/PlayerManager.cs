@@ -52,6 +52,10 @@ public static class PlayerManager
     public static int MaxWeight = 100;
 
     public static int currentWeight = 0;
+    public static int speed = 5;
+
+    public static int speedCost = 20;
+    
 
     //Current player Trash inventory for the day
     public static Dictionary<String, int> currentDayTrash = new()
