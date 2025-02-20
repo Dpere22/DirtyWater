@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.tomduchene.unity-git-locks": "https://github.com/TomDuchene/unity-git-locks.git",
     "com.unity.cinemachine": "3.1.2",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.2d": "2.0.1",

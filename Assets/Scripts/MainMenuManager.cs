@@ -7,4 +7,10 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+
+    public void EndGame()
+    {
+        Debug.Log("Game Over");
+        Application.Quit();
+    }
 }

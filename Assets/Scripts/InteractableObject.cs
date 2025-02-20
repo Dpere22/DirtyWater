@@ -16,6 +16,7 @@ public class Interactable : MonoBehaviour
     public string Material = "";
     public int ValueOfMaterial = 1;
     public Sprite currentSprite = null;
+    public int weight;
 
     public bool canCollect = false;
 
@@ -51,6 +52,8 @@ public class Interactable : MonoBehaviour
         ValueOfMaterial = int.Parse(PlayerManager.TrashData[chosenkey][2]);
 
         GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[chosenkey][3])];
+        
+        weight = int.Parse(PlayerManager.TrashData[chosenkey][4]);
 
     }
 
@@ -75,11 +78,15 @@ public class Interactable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        if (!CanHoldWeight()) return;
+
         if (QuestOrTrash)
         {
             int newValue = PlayerManager.currentDayTrash[Material] + ValueOfMaterial;
 
             PlayerManager.currentDayTrash[Material] = newValue;
+
+            PlayerManager.currentWeight += weight;
 
         }
         else
@@ -90,6 +97,11 @@ public class Interactable : MonoBehaviour
 
 
         Destroy(gameObject);
+    }
+
+    private bool CanHoldWeight()
+    {
+        return weight + PlayerManager.currentWeight < PlayerManager.MaxWeight;
     }
 }
 

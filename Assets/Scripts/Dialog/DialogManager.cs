@@ -44,6 +44,7 @@ public class DialogManager : MonoBehaviour
 
     public void EnterDialogMode(TextAsset inkJSON)
     {
+        FindFirstObjectByType<PlayerMovement>().RestrictMovement();
         currentStory = new Story(inkJSON.text);
         DialogIsPlaying = true;
         dialogPanel.SetActive(true);
@@ -53,6 +54,7 @@ public class DialogManager : MonoBehaviour
 
     private void ExitDialogMode()
     {
+        FindFirstObjectByType<PlayerMovement>().EnableMovement();
         DialogIsPlaying = false;
         dialogPanel.SetActive(false);
         dialogText.text = "";

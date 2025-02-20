@@ -22,9 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
 
     private bool _facingRight = false;
-    private Vector2 _rayDirection = new(-0.5f, -0.5f);
-
-    public int speed;
+    private Vector2 _rayDirection = new(-0.15f, -0.25f);
+    
 
 
     private delegate void FlipOperation();
@@ -56,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (DialogManager.GetInstance().DialogIsPlaying) return;
-        move();
+        move?.Invoke();
     }
 
     
@@ -77,13 +76,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResumeHandler()
     {
-        move = previousMove;
+        EnableMovement();
     }
 
     private void PauseHandler()
     {
+        RestrictMovement();
+    }
+
+    public void RestrictMovement()
+    {
         previousMove = move;
         move = () => { }; //don't do anything when move
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    public void EnableMovement()
+    {
+        move = previousMove;
     }
 
     /// <summary>
@@ -97,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputValue value)
     {
         if (!canJump) return;
-        
+        rb.linearVelocity = Vector2.zero;
         isJumping = true;
         Vector2 direction = new Vector2(-8.0f, 8.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
@@ -117,12 +127,12 @@ public class PlayerMovement : MonoBehaviour
         CheckFlip();
         if (atWaterSurface)
         {
-            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
+            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * PlayerManager.speed : new Vector2(_movement.x, 0).normalized * PlayerManager.speed ;
             playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
-            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * speed;
+            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * PlayerManager.speed;
         }
         if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
@@ -137,9 +147,10 @@ public class PlayerMovement : MonoBehaviour
         CheckFlip();
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
-            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * PlayerManager.speed;
         else
         {
+            //Debug.Log("I can't move");  //For when player movement seems broken
             rb.linearVelocity = new Vector2(0, 0);
         }
     }
