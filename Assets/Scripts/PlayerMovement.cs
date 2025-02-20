@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
 
     private bool _facingRight = false;
-    private Vector2 _rayDirection = new(-0.5f, -0.5f);
+    private Vector2 _rayDirection = new(-0.15f, -0.25f);
 
     public int speed;
 
@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
         else
         {
+            //Debug.Log("I can't move");  //For when player movement seems broken
             rb.linearVelocity = new Vector2(0, 0);
         }
     }
