@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     {
         previousMove = move;
         move = () => { }; //don't do anything when move
+        rb.linearVelocity = Vector2.zero;
     }
 
     /// <summary>
