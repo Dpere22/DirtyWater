@@ -87,7 +87,11 @@ public static class PlayerManager
         inventory["Metal"] = 0;
         inventory["Plastic"] = 0;
         inventory["Wood"] = 0;
+        currentDayTrash["Metal"] = 0;
+        currentDayTrash["Plastic"] = 0;
+        currentDayTrash["Wood"] = 0;
         currentWeight = 0;
+        PauseManager.gamePaused = false;
     }
 
 }

@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputValue value)
     {
         if (!canJump) return;
-        
+        rb.linearVelocity = Vector2.zero;
         isJumping = true;
         Vector2 direction = new Vector2(-8.0f, 8.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);

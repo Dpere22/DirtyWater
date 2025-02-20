@@ -9,7 +9,7 @@ public class ShopController : MonoBehaviour
     void Start()
     {
         speed.text = PlayerManager.speed.ToString();
-        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()}";
+        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public class ShopController : MonoBehaviour
         PlayerManager.inventory["Plastic"] -= PlayerManager.speedCost;
         PlayerManager.speedCost += 20;
         speed.text = PlayerManager.speed.ToString();
-        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()}";
+        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
 
     }
 }
