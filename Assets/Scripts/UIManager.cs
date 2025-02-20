@@ -4,6 +4,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tm;
+    [SerializeField] private TextMeshProUGUI weightText;
 
     [SerializeField] private Timer timer;
     
@@ -11,14 +12,21 @@ public class UIManager : MonoBehaviour
     
 
     private bool _hasStarted;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    // Update is called once per frame
     private void Update()
     {
-        if (!_hasStarted) return;
-        float time = timer.GetRemainingTime();
-        tm.text = $"Time Left: {time:F2}";
+        if (_hasStarted) UpdateTimeText();
+        UpdateWeightText();
+    }
+
+    private void UpdateTimeText()
+    {
+        tm.text = $"Time Left: {timer.GetRemainingTime():F2}";
+    }
+
+    private void UpdateWeightText()
+    {
+        weightText.text = $"Weight: {PlayerManager.currentWeight}/{PlayerManager.MaxWeight}";
     }
 
     private void Start()

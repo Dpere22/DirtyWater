@@ -41,7 +41,6 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void StartTimer(float duration)
     {
-        Debug.Log("StartTimer");
         OnTimerStart?.Invoke();
         TimerDuration = duration;
         _elapsedTime = 0f;

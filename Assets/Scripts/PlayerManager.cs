@@ -9,32 +9,32 @@ public static class PlayerManager
         {
             "PlasticTrash",
             new List<string>
-        {"Trash", "Plastic", "3", "0"}
+        {"Trash", "Plastic", "3", "0", "5"}
         },
         {
             "RustyBarrel",
             new List<string>
-        {"Trash", "Metal", "2", "1"}
+        {"Trash", "Metal", "2", "1", "20"}
         },
         {
             "RustyCan",
             new List<string>
-        {"Trash", "Metal", "1", "2"}
+        {"Trash", "Metal", "1", "2", "5"}
         },
         {
             "WaterBottle",
             new List<string>
-        {"Trash", "Plastic", "1", "3"}
+        {"Trash", "Plastic", "1", "3", "2"}
         },
         {
             "WoodenCrate",
             new List<string>
-        {"Trash", "Wood", "3", "4"}
+        {"Trash", "Wood", "3", "4", "15"}
         },
         {
             "WoodenPlank",
             new List<string>
-        {"Trash", "Wood", "1", "5"}
+        {"Trash", "Wood", "1", "5", "5"}
         }
     };
     public static List<string> keys = new(TrashData.Keys);
@@ -49,6 +49,9 @@ public static class PlayerManager
     };
 
     public static float MaxTime = 30f;
+    public static int MaxWeight = 100;
+
+    public static int currentWeight = 0;
 
     //Current player Trash inventory for the day
     public static Dictionary<String, int> currentDayTrash = new()
