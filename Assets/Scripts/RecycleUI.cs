@@ -37,13 +37,12 @@ public class RecycleUI : MonoBehaviour
     public void Recycle()
     {
 
-        PlayerManager.inventory["Metal"] = PlayerManager.inventory["Metal"] + PlayerManager.currentDayTrash["Metal"];
-        PlayerManager.inventory["Wood"] = PlayerManager.inventory["Wood"] + PlayerManager.currentDayTrash["Wood"];
-        PlayerManager.inventory["Plastic"] = PlayerManager.inventory["Plastic"] + PlayerManager.currentDayTrash["Plastic"];
+        PlayerManager.inventory["Metal"] += PlayerManager.currentDayTrash["Metal"];
+        PlayerManager.inventory["Wood"] += PlayerManager.currentDayTrash["Wood"];
+        PlayerManager.inventory["Plastic"] += PlayerManager.currentDayTrash["Plastic"];
         UpdateInventory();
 
-
-        Debug.Log("Recycled");
+        
         continueButton.SetActive(true);
         recycleButton.SetActive(false);
 
