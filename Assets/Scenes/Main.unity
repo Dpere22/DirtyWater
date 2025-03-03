@@ -29416,20 +29416,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7393598250e1d14289a3f297db85e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteConstant: 1.4
-  _damping: 1.1
-  _spread: 6.5
-  _wavePropogationIterations: 8
-  _speedMult: 5.5
-  ForceMultiplier: 0.2
-  MaxForce: 5
-  _playerCollisionRadiusMult: 4.15
-  NumOfXVertices: 70
-  Width: 98.75934
-  Height: 26.549446
-  WaterMaterial: {fileID: 2100000, guid: 402573f642138d349b1e8f38b21d085f, type: 2}
-  GizmoColor: {r: 1, g: 1, b: 1, a: 1}
-  _mesh: {fileID: 1670994982}
+  spriteConstant: 1.4
+  damping: 1.1
+  spread: 6.5
+  wavePropogationIterations: 8
+  speedMult: 5.5
+  forceMultiplier: 0.2
+  maxForce: 5
+  playerCollisionRadiusMult: 4.15
+  mat: {fileID: 2100000, guid: 402573f642138d349b1e8f38b21d085f, type: 2}
+  dirtyBodyColor: {r: 0.4433962, g: 0.2720288, b: 0, a: 0.8235294}
+  dirtyCausticsColor: {r: 1, g: 0.9160186, b: 0, a: 1}
+  healthyBodyColor: {r: 0, g: 0.10185645, b: 0.7735849, a: 0.6509804}
+  healthyCausticsColor: {r: 0, g: 0.6226415, b: 0.5272363, a: 0.7372549}
+  numOfXVertices: 70
+  width: 98.75934
+  height: 26.549446
+  waterMaterial: {fileID: 2100000, guid: 402573f642138d349b1e8f38b21d085f, type: 2}
+  gizmoColor: {r: 1, g: 1, b: 1, a: 1}
+  mesh: {fileID: 1670994982}
 --- !u!114 &906724901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30140,7 +30145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1270078730
 RectTransform:
   m_ObjectHideFlags: 0

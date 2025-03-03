@@ -1,6 +1,8 @@
 //using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 //using UnityEditor;
 //using UnityEngine.UIElements;
 //using UnityEditor.UIElements;
@@ -8,46 +10,55 @@ using UnityEngine;
 [RequireComponent(typeof(WaterTriggerHandler))]
 public class InteractableWater : MonoBehaviour
 {
-    [Header("Springs")] [SerializeField] private float _spriteConstant = 1.4f;
-    [SerializeField] private float _damping = 1.1f;
-    [SerializeField] private float _spread = 6.5f;
-    [SerializeField, Range(1, 10)] private int _wavePropogationIterations = 8;
-    [SerializeField, Range(0f, 20f)] private float _speedMult = 5.5f;
+    private static readonly int LineColor = Shader.PropertyToID("_LineColor");
+    private static readonly int BodyColor = Shader.PropertyToID("_BodyColor");
+    private static readonly int CausticColor = Shader.PropertyToID("_CausticColor");
+    [FormerlySerializedAs("_spriteConstant")] [Header("Springs")] [SerializeField] private float spriteConstant = 1.4f;
+    [FormerlySerializedAs("_damping")] [SerializeField] private float damping = 1.1f;
+    [FormerlySerializedAs("_spread")] [SerializeField] private float spread = 6.5f;
+    [FormerlySerializedAs("_wavePropogationIterations")] [SerializeField, Range(1, 10)] private int wavePropogationIterations = 8;
+    [FormerlySerializedAs("_speedMult")] [SerializeField, Range(0f, 20f)] private float speedMult = 5.5f;
 
-    [Header("Force")] 
-    public float ForceMultiplier = 0.2f;
-    [Range(1f, 50f)] public float MaxForce = 5f;
+    [FormerlySerializedAs("ForceMultiplier")] [Header("Force")] 
+    public float forceMultiplier = 0.2f;
+    [FormerlySerializedAs("MaxForce")] [Range(1f, 50f)] public float maxForce = 5f;
 
-    [Header("Collision")] [SerializeField, Range(1f, 10f)]
-    private float _playerCollisionRadiusMult = 4.15f;
+    [FormerlySerializedAs("_playerCollisionRadiusMult")] [Header("Collision")] [SerializeField, Range(1f, 10f)]
+    private float playerCollisionRadiusMult = 4.15f;
+
+    [SerializeField] private Material mat;
+    [SerializeField] private Color dirtyBodyColor;
+    [SerializeField] private Color dirtyCausticsColor;
+    [SerializeField] private Color healthyBodyColor;
+    [SerializeField] private Color healthyCausticsColor;
     
     
-    
-    
+    [FormerlySerializedAs("NumOfXVertices")]
     [Header("Mesh Generation")]
-    [Range(2, 500)] public int NumOfXVertices = 70;
+    [Range(2, 500)] public int numOfXVertices = 70;
 
-    public float Width = 10f;
-    public float Height = 4f;
-    public Material WaterMaterial;
-    private const int NUM_OF_Y_VERTICES = 2;
+    [FormerlySerializedAs("Width")] public float width = 10f;
+    [FormerlySerializedAs("Height")] public float height = 4f;
+    [FormerlySerializedAs("WaterMaterial")] public Material waterMaterial;
+    private const int NumOfYVertices = 2;
     
-    [Header("Gizmo")]
-    public Color GizmoColor = Color.white;
+    [FormerlySerializedAs("GizmoColor")] [Header("Gizmo")]
+    public Color gizmoColor = Color.white;
 
-    public Mesh _mesh;
+    [FormerlySerializedAs("_mesh")] public Mesh mesh;
     private MeshRenderer _meshRenderer;
     private MeshFilter _meshFilter;
     private Vector3[] _vertices;
     private int[] _topVerticesIndex;
 
     private EdgeCollider2D _coll;
+    
 
     private class WaterPoint
     {
-        public float velocity, pos, targetHeight;
+        public float Velocity, Pos, TargetHeight;
     }
-    private List<WaterPoint> _waterPoints = new();
+    private readonly List<WaterPoint> _waterPoints = new();
     
     
     
@@ -69,30 +80,48 @@ public class InteractableWater : MonoBehaviour
         {
             WaterPoint point = _waterPoints[i];
 
-            float x = point.pos - point.targetHeight;
-            float acceleration = -_spriteConstant * x - _damping * point.velocity;
-            point.pos += point.velocity * _speedMult * Time.fixedDeltaTime;
-            _vertices[_topVerticesIndex[i]].y = point.pos;
-            point.velocity += acceleration * _speedMult * Time.fixedDeltaTime;
+            float x = point.Pos - point.TargetHeight;
+            float acceleration = -spriteConstant * x - damping * point.Velocity;
+            point.Pos += point.Velocity * speedMult * Time.fixedDeltaTime;
+            _vertices[_topVerticesIndex[i]].y = point.Pos;
+            point.Velocity += acceleration * speedMult * Time.fixedDeltaTime;
         }
 
-        for (int j = 0; j < _wavePropogationIterations; j++)
+        for (int j = 0; j < wavePropogationIterations; j++)
         {
             for (int i = 1; i < _waterPoints.Count - 1; i++)
             {
-                float leftDelta = _spread * (_waterPoints[i].pos - _waterPoints[i - 1].pos) * _speedMult * Time.fixedDeltaTime;
-                _waterPoints[i + 1].velocity += leftDelta;
+                float leftDelta = spread * (_waterPoints[i].Pos - _waterPoints[i - 1].Pos) * speedMult * Time.fixedDeltaTime;
+                _waterPoints[i + 1].Velocity += leftDelta;
                 
-                float rightDelta = _spread * (_waterPoints[i].pos - _waterPoints[i+1].pos) * _speedMult * Time.fixedDeltaTime;
-                _waterPoints[i + 1].velocity += rightDelta;
+                float rightDelta = spread * (_waterPoints[i].Pos - _waterPoints[i+1].Pos) * speedMult * Time.fixedDeltaTime;
+                _waterPoints[i + 1].Velocity += rightDelta;
             }
         }
-        _mesh.vertices = _vertices;
+        mesh.vertices = _vertices;
+    }
+
+    private void Update()
+    {
+        //Inefficient, should eventually change!
+        if (OceanHealth.GetHealthRatio() < 0.75f)
+        {
+            mat.SetColor(LineColor, dirtyBodyColor);
+            mat.SetColor(BodyColor, dirtyBodyColor);
+            mat.SetColor(CausticColor, dirtyCausticsColor);
+        }
+        else
+        {
+            mat.SetColor(LineColor, healthyBodyColor);
+            mat.SetColor(BodyColor, healthyBodyColor);
+            mat.SetColor(CausticColor, healthyCausticsColor);
+        }
+        
     }
 
     public void Splash(Collider2D collision, float force)
     {
-        float radius = collision.bounds.extents.x * _playerCollisionRadiusMult;
+        float radius = collision.bounds.extents.x * playerCollisionRadiusMult;
         Vector2 center = collision.transform.position;
 
         for (int i = 0; i < _waterPoints.Count; i++)
@@ -100,7 +129,7 @@ public class InteractableWater : MonoBehaviour
             Vector2 vertexWorldPos = transform.TransformPoint(_vertices[_topVerticesIndex[i]]);
             if (IsPointInsideCircle(vertexWorldPos, center, radius))
             {
-                _waterPoints[i].velocity = force;
+                _waterPoints[i].Velocity = force;
             }
         }
     }
@@ -124,35 +153,36 @@ public class InteractableWater : MonoBehaviour
         _coll.offset = Vector2.zero;
         _coll.points = newPoints;
     }
-    public void GenerateMesh()
-    {
-        _mesh = new Mesh();
-        
-        _vertices = new Vector3[NumOfXVertices * NUM_OF_Y_VERTICES];
-        _topVerticesIndex = new int[NumOfXVertices];
-        for (int y = 0; y < NUM_OF_Y_VERTICES; y++)
-        {
-            for (int x = 0; x < NumOfXVertices; x++)
-            {
-                float xPos = (x/(float)(NumOfXVertices-1))*Width-Width/2;
-                float yPos = (y/(float)(NUM_OF_Y_VERTICES-1))*Height-Height/2;
-                _vertices[y * NumOfXVertices + x] = new Vector3(xPos, yPos, 0f);
 
-                if (y == NUM_OF_Y_VERTICES - 1)
-                    _topVerticesIndex[x] = y * NumOfXVertices + x;
+    private void GenerateMesh()
+    {
+        mesh = new Mesh();
+        
+        _vertices = new Vector3[numOfXVertices * NumOfYVertices];
+        _topVerticesIndex = new int[numOfXVertices];
+        for (int y = 0; y < NumOfYVertices; y++)
+        {
+            for (int x = 0; x < numOfXVertices; x++)
+            {
+                float xPos = (x/(float)(numOfXVertices-1))*width-width/2;
+                float yPos = (y/(float)(NumOfYVertices-1))*height-height/2;
+                _vertices[y * numOfXVertices + x] = new Vector3(xPos, yPos, 0f);
+
+                if (y == NumOfYVertices - 1)
+                    _topVerticesIndex[x] = y * numOfXVertices + x;
             }
         }
         
-        int[] triangles = new int[(NumOfXVertices - 1) * (NUM_OF_Y_VERTICES - 1) * 6];
+        int[] triangles = new int[(numOfXVertices - 1) * (NumOfYVertices - 1) * 6];
         int index = 0;
 
-        for (int y = 0; y < NUM_OF_Y_VERTICES - 1; y++)
+        for (int y = 0; y < NumOfYVertices - 1; y++)
         {
-            for (int x = 0; x < NumOfXVertices - 1; x++)
+            for (int x = 0; x < numOfXVertices - 1; x++)
             {
-                int bottomLeft = y * NumOfXVertices + x;
+                int bottomLeft = y * numOfXVertices + x;
                 int bottomRight = bottomLeft + 1;
-                int topLeft = bottomLeft + NumOfXVertices;
+                int topLeft = bottomLeft + numOfXVertices;
                 int topRight = topLeft + 1;
 
                 triangles[index++] = bottomLeft;
@@ -169,22 +199,22 @@ public class InteractableWater : MonoBehaviour
         Vector2[] uvs = new Vector2[_vertices.Length];
         for (int i = 0; i < _vertices.Length; i++)
         {
-            uvs[i] = new Vector2((_vertices[i].x + Width / 2) / Width, (_vertices[i].y + Height / 2) / Height);
+            uvs[i] = new Vector2((_vertices[i].x + width / 2) / width, (_vertices[i].y + height / 2) / height);
         }
         if(!_meshRenderer)
             _meshRenderer = GetComponent<MeshRenderer>();
         if(!_meshFilter)
             _meshFilter = GetComponent<MeshFilter>();
-        _meshRenderer.material = WaterMaterial;
+        _meshRenderer.material = waterMaterial;
 
-        _mesh.vertices = _vertices;
-        _mesh.triangles = triangles;
-        _mesh.uv = uvs;
+        mesh.vertices = _vertices;
+        mesh.triangles = triangles;
+        mesh.uv = uvs;
         
-        _mesh.RecalculateNormals();
-        _mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
         
-        _meshFilter.mesh = _mesh;
+        _meshFilter.mesh = mesh;
 
     }
 
@@ -192,16 +222,17 @@ public class InteractableWater : MonoBehaviour
     {
         _waterPoints.Clear();
 
-        for (int i = 0; i < _topVerticesIndex.Length; i++)
+        foreach (var t in _topVerticesIndex)
         {
             _waterPoints.Add(new WaterPoint{
-                pos = _vertices[_topVerticesIndex[i]].y,
-                targetHeight = _vertices[_topVerticesIndex[i]].y
+                Pos = _vertices[t].y,
+                TargetHeight = _vertices[t].y
             });
         }
     }
 }
 
+// --------------------------------------------------- CODE FOR ADJUSTING WATER DO NOT SHIP - BUILD WILL CRASH -----------------------------------------------------
 
 // [CustomEditor(typeof(InteractableWater))]
 // public class InteractableWaterEditor : Editor
