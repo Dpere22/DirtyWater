@@ -37,7 +37,7 @@ public class DialogManager : MonoBehaviour
         {
             Debug.LogWarning("No player input found.");
         }
-        playerInput.actions["Submit"].performed += ContinueStoryCallBack;
+        playerInput.actions["Jump"].performed += ContinueStoryCallBack;
         DialogIsPlaying = false;
         dialogPanel.SetActive(false);
     }

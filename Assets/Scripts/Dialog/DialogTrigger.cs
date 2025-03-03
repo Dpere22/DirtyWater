@@ -40,7 +40,7 @@ public class DialogTrigger : MonoBehaviour
 
     private void InteractHandler()
     {
-        if (!playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+        if (!playerInRange || DialogManager.GetInstance().DialogIsPlaying){}
         DialogManager.GetInstance().EnterDialogMode(inkJson);
     }
     private void OnTriggerEnter2D(Collider2D other)
