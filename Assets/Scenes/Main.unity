@@ -31836,7 +31836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {fileID: 603628001}
-  cost: {fileID: 833315710}
+  speedCost: {fileID: 833315710}
+  speedButton: {fileID: 637872357}
 --- !u!114 &1779563852
 MonoBehaviour:
   m_ObjectHideFlags: 0

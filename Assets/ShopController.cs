@@ -1,15 +1,32 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private TextMeshProUGUI speed;
-    [SerializeField] private TextMeshProUGUI cost;
+    [SerializeField] private TextMeshProUGUI speedCost;
+    [SerializeField] private Button speedButton;
     void Start()
     {
+        InitSpeed();
+    }
+
+    private void InitSpeed()
+    {
+        if (CheckAfford(PlayerManager.inventory["Plastic"], PlayerManager.speedCost))
+        {
+            speedButton.interactable = true;
+            speedCost.color = Color.green;
+        }
+        else
+        {
+            speedButton.interactable = false;
+            speedCost.color = Color.red;
+        }
         speed.text = PlayerManager.speed.ToString();
-        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
+        speedCost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
     }
 
     /// <summary>
@@ -21,8 +38,12 @@ public class ShopController : MonoBehaviour
         PlayerManager.speed += 1;
         PlayerManager.inventory["Plastic"] -= PlayerManager.speedCost;
         PlayerManager.speedCost += 20;
-        speed.text = PlayerManager.speed.ToString();
-        cost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
+        InitSpeed();
 
+    }
+
+    private bool CheckAfford(int curr, int cost)
+    {
+        return cost < curr;
     }
 }
