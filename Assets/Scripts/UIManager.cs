@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tm;
-    [SerializeField] private TextMeshProUGUI weightText;
 
     [SerializeField] private Timer timer;
     
@@ -17,18 +16,13 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if (_hasStarted) UpdateTimeText();
-        UpdateWeightText();
     }
 
     private void UpdateTimeText()
     {
         tm.text = $"Time Left: {timer.GetRemainingTime():F2}";
     }
-
-    private void UpdateWeightText()
-    {
-        weightText.text = $"Weight: {PlayerManager.currentWeight}/{PlayerManager.MaxWeight}";
-    }
+    
 
     private void Start()
     {
