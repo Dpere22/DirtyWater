@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         CheckFlip();
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
-            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * PlayerManager.speed;
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * PlayerManager.walkingSpeed;
         else
         {
             //Debug.Log("I can't move");  //For when player movement seems broken

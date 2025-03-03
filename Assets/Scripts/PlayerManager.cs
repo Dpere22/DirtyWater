@@ -58,6 +58,7 @@ public static class PlayerManager
     public static int MaxWeight = MaxWeightDefault;
 
     public static int currentWeight = 0;
+    public static int walkingSpeed = 5;
     public static int speed = SpeedDefault;
 
     public static int speedCost = SpeedCostDefault;
