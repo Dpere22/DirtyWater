@@ -3,41 +3,7 @@ using System.Collections.Generic;
 
 public static class PlayerManager
 {
-    //TrashData
-    public static Dictionary<string, List<string>> TrashData = new()
-    {
-        {
-            "PlasticTrash",
-            new List<string>
-        {"Trash", "Plastic", "3", "0", "5"}
-        },
-        {
-            "RustyBarrel",
-            new List<string>
-        {"Trash", "Metal", "2", "1", "20"}
-        },
-        {
-            "RustyCan",
-            new List<string>
-        {"Trash", "Metal", "1", "2", "5"}
-        },
-        {
-            "WaterBottle",
-            new List<string>
-        {"Trash", "Plastic", "1", "3", "2"}
-        },
-        {
-            "WoodenCrate",
-            new List<string>
-        {"Trash", "Wood", "3", "4", "15"}
-        },
-        {
-            "WoodenPlank",
-            new List<string>
-        {"Trash", "Wood", "1", "5", "5"}
-        }
-    };
-    public static List<string> keys = new(TrashData.Keys);
+    
 
 
     //Total trash collected overall

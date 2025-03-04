@@ -12,13 +12,35 @@ public class TrashSpawner : MonoBehaviour
     public float maxTrash = 1;
     public string Name = "";
 
+
+    public bool spawnsPlastic = false;
+    public bool spawnsWood = false;
+    public bool spawnsMetal = false;
+
+
+    public List<string> spawnKeys = new();
+
+
     public static List<List<string>> currentTrashList = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
-        currentTrashList = TrashManager.TrashSpawnerData[Name];
+        getSpawns();
+
+
+        if(TrashManager.TrashSpawnerData.ContainsKey(Name))
+        {
+            //Gets list from dictionary if key exists
+            currentTrashList = TrashManager.TrashSpawnerData[Name];  
+        }
+        else
+        {
+            //Makes a list if no key exists
+            TrashManager.TrashSpawnerData[Name] = currentTrashList;
+        }
+        
 
 
         respawnTrash(currentTrashList);
@@ -29,11 +51,36 @@ public class TrashSpawner : MonoBehaviour
             spawnRandomTrash();
         }
 
-        
+    }
+
+
+    private void getSpawns()
+    {
+        if (spawnsPlastic)
+        {
+            spawnKeys.Add(TrashManager.keys[0]);
+            spawnKeys.Add(TrashManager.keys[1]);
+        }
+
+        if (spawnsWood)
+        {
+            spawnKeys.Add(TrashManager.keys[4]);
+            spawnKeys.Add(TrashManager.keys[5]);
+        }
+
+        if (spawnsMetal)
+        {
+            spawnKeys.Add(TrashManager.keys[2]);
+            spawnKeys.Add(TrashManager.keys[3]);
+        }
 
 
 
     }
+
+
+
+
 
     private void respawnTrash(List<List<string>> currentTrashList)
     {
@@ -61,6 +108,7 @@ public class TrashSpawner : MonoBehaviour
         GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
 
         temp.transform.parent = this.transform;
+
         
     }
 
@@ -76,11 +124,16 @@ public class TrashSpawner : MonoBehaviour
 
         currentTrashList.Add(temp);
 
-
-
-
-        
     }
+
+
+    public List<string> setSpawns()
+    {
+        return spawnKeys;
+    }
+
+
+
 
 
 }

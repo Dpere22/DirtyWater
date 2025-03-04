@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
 
     public bool canCollect = false;
 
+    public List<string> spawnKeys = new();
 
     //Trash = true, Quest = false
     public bool QuestOrTrash = true;
@@ -27,6 +28,11 @@ public class Interactable : MonoBehaviour
 
     public void Start()
     {
+        if (transform.parent is not null)
+        {
+            Debug.Log("got keys");
+            spawnKeys = transform.parent.gameObject.GetComponent<TrashSpawner>().setSpawns();
+        }
 
 
         if (QuestOrTrash)
@@ -35,31 +41,33 @@ public class Interactable : MonoBehaviour
         }
 
 
+
         string X = this.transform.position.x.ToString();
         string Y = this.transform.position.y.ToString();
 
         transform.parent.gameObject.GetComponent<TrashSpawner>().getInfo(Name, X, Y);
-
+        
     }
 
+    
 
     private void RandomTrash()
     {
-        int choice = Random.Range(0, PlayerManager.keys.Count);
+        int choice = Random.Range(0, spawnKeys.Count);
 
-        string chosenkey = PlayerManager.keys[choice];
+        string chosenkey = spawnKeys[choice];
 
         Name = chosenkey;
 
-        Type = PlayerManager.TrashData[chosenkey][0];
+        Type = TrashManager.TrashData[chosenkey][0];
 
-        Material = PlayerManager.TrashData[chosenkey][1];
+        Material = TrashManager.TrashData[chosenkey][1];
 
-        ValueOfMaterial = int.Parse(PlayerManager.TrashData[chosenkey][2]);
+        ValueOfMaterial = int.Parse(TrashManager.TrashData[chosenkey][2]);
 
-        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[chosenkey][3])];
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(TrashManager.TrashData[chosenkey][3])];
         
-        weight = int.Parse(PlayerManager.TrashData[chosenkey][4]);
+        weight = int.Parse(TrashManager.TrashData[chosenkey][4]);
 
         
 
@@ -70,13 +78,13 @@ public class Interactable : MonoBehaviour
 
         Name = specificKey;
 
-        Type = PlayerManager.TrashData[specificKey][0];
+        Type = TrashManager.TrashData[specificKey][0];
 
-        Material = PlayerManager.TrashData[specificKey][1];
+        Material = TrashManager.TrashData[specificKey][1];
 
-        ValueOfMaterial = int.Parse(PlayerManager.TrashData[specificKey][2]);
+        ValueOfMaterial = int.Parse(TrashManager.TrashData[specificKey][2]);
 
-        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[specificKey][3])];
+        GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(TrashManager.TrashData[specificKey][3])];
 
     }
 
