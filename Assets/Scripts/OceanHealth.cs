@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public static class OceanHealth
 {
     private const float MaxHealth = 100;
@@ -13,6 +11,15 @@ public static class OceanHealth
     public static void AddHealth(int amount)
     {
         _currentHealth += amount;
-        Debug.Log(GetHealthRatio());
+    }
+
+    public static float GetMaxHealth()
+    {
+        return MaxHealth;
+    }
+
+    public static float GetCurrentHealth()
+    {
+        return _currentHealth;
     }
 }

@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canJump) return;
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
-        Vector2 direction = new Vector2(-8.0f, 8.0f);
+        Vector2 direction = new Vector2(-4.0f, 4.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
         canJump = false;
     }

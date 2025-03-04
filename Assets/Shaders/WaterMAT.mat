@@ -63,11 +63,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Body_Transparency: 0.204
+    - _Body_Transparency: 0.485
     - _CausticOffsetSpeed: 1
     - _CausticPower: 9.5
     - _CausticScale: 10
-    - _CausticStrength: 1.73
+    - _CausticStrength: 0.68
     - _DistortionOffsetSpeed: 1
     - _DistortionScale: 30
     - _DistortionStrength: 0.0025
