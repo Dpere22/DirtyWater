@@ -57,6 +57,69 @@ public class TrashSpawner : MonoBehaviour
     }
 
 
+
+    private void Update()
+    {
+        //update list in storage
+        TrashManager.TrashSpawnerData[Name] = currentTrashList;
+
+    }
+
+    public void spawnRandomTrash()
+    {
+        Vector2 randomPosition = Random.insideUnitCircle * circleRadius;
+
+        Vector2 spawnPoint = new Vector2(transform.position.x, transform.position.y) + randomPosition;
+
+        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
+
+        temp.transform.parent = this.transform;
+        
+    }
+
+    public void spawnSpecifcTrash(string Name, float X, float Y)
+    {
+
+        Vector2 spawnPoint = new Vector2(X, Y);
+
+        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
+
+        temp.transform.parent = this.transform;
+
+        temp.GetComponent<Interactable>().SpecificSpawn(Name);
+
+    }
+
+    public void getInfo(string Name, string X, string Y)
+    {
+        List<string> temp = new()
+        {
+            Name,
+            X,
+            Y
+        };
+
+        currentTrashList.Add(temp);
+
+    }
+
+    public List<string> setSpawns()
+    {
+        return spawnKeys;
+    }
+
+    public void removeTrashFromList(string target)
+    {
+        for(int I = 0; I < currentTrashList.Count; I++)
+        {
+            if (currentTrashList[I][0] == target)
+            {
+                currentTrashList.RemoveAt(I);
+                return;
+            }
+        }
+    }
+
     private void getSpawns()
     {
         if (spawnsPlastic)
@@ -81,83 +144,11 @@ public class TrashSpawner : MonoBehaviour
 
     }
 
-
-
-
-
     private void respawnTrash(List<List<string>> currentTrashList)
     {
-        foreach(List<string> list in currentTrashList)
+        foreach (List<string> list in currentTrashList)
         {
             spawnSpecifcTrash(list[0], float.Parse(list[1]), float.Parse(list[2]));
-        }
-    }
-
-    private void Update()
-    {
-        //update list in storage
-        TrashManager.TrashSpawnerData[Name] = currentTrashList;
-
-    }
-
-    public void spawnRandomTrash()
-    {
-        Vector2 randomPosition = Random.insideUnitCircle * circleRadius;
-
-        Vector2 spawnPoint = new Vector2(transform.position.x, transform.position.y) + randomPosition;
-
-        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
-
-        temp.transform.parent = this.transform;
-        
-    }
-
-
-
-    public void spawnSpecifcTrash(string Name, float X, float Y)
-    {
-
-        Vector2 spawnPoint = new Vector2(X, Y);
-
-        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
-
-        temp.transform.parent = this.transform;
-
-        temp.GetComponent<Interactable>().SpecificSpawn(Name);
-
-    }
-
-
-
-    public void getInfo(string Name, string X, string Y)
-    {
-        List<string> temp = new()
-        {
-            Name,
-            X,
-            Y
-        };
-
-        currentTrashList.Add(temp);
-
-    }
-
-
-    public List<string> setSpawns()
-    {
-        return spawnKeys;
-    }
-
-
-    public void removeTrashFromList(string target)
-    {
-        for(int I = 0; I < currentTrashList.Count; I++)
-        {
-            if (currentTrashList[I][0] == target)
-            {
-                currentTrashList.RemoveAt(I);
-                return;
-            }
         }
     }
 
