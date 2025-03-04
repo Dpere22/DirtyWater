@@ -42,8 +42,11 @@ public class TrashSpawner : MonoBehaviour
         }
         
 
-
-        respawnTrash(currentTrashList);
+        if(currentTrashList.Count > 0)
+        {
+            respawnTrash(currentTrashList);
+        }
+        
 
 
         for(int I = 0; I<replenishRate; I++)
@@ -86,7 +89,7 @@ public class TrashSpawner : MonoBehaviour
     {
         foreach(List<string> list in currentTrashList)
         {
-
+            spawnSpecifcTrash(list[0], float.Parse(list[1]), float.Parse(list[2]));
         }
     }
 
@@ -99,8 +102,6 @@ public class TrashSpawner : MonoBehaviour
 
     public void spawnRandomTrash()
     {
-        
-
         Vector2 randomPosition = Random.insideUnitCircle * circleRadius;
 
         Vector2 spawnPoint = new Vector2(transform.position.x, transform.position.y) + randomPosition;
@@ -108,9 +109,24 @@ public class TrashSpawner : MonoBehaviour
         GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
 
         temp.transform.parent = this.transform;
-
         
     }
+
+
+
+    public void spawnSpecifcTrash(string Name, float X, float Y)
+    {
+
+        Vector2 spawnPoint = new Vector2(X, Y);
+
+        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
+
+        temp.transform.parent = this.transform;
+
+        temp.GetComponent<Interactable>().SpecificSpawn(Name);
+
+    }
+
 
 
     public void getInfo(string Name, string X, string Y)
@@ -133,7 +149,17 @@ public class TrashSpawner : MonoBehaviour
     }
 
 
-
+    public void removeTrashFromList(string target)
+    {
+        for(int I = 0; I < currentTrashList.Count; I++)
+        {
+            if (currentTrashList[I][0] == target)
+            {
+                currentTrashList.RemoveAt(I);
+                return;
+            }
+        }
+    }
 
 
 }

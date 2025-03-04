@@ -73,7 +73,7 @@ public class Interactable : MonoBehaviour
 
     }
 
-    private void SpecificSpawn(string specificKey)
+    public void SpecificSpawn(string specificKey)
     {
 
         Name = specificKey;
@@ -111,9 +111,9 @@ public class Interactable : MonoBehaviour
         {
             PlayerManager.Questitems.Add(Name);
         }
-        
-        
 
+
+        transform.parent.gameObject.GetComponent<TrashSpawner>().removeTrashFromList(Name);
 
         Destroy(gameObject);
     }
