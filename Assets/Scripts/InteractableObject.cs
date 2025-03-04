@@ -33,7 +33,13 @@ public class Interactable : MonoBehaviour
         {
             RandomTrash();
         }
-        
+
+
+        string X = this.transform.position.x.ToString();
+        string Y = this.transform.position.y.ToString();
+
+        transform.parent.gameObject.GetComponent<TrashSpawner>().getInfo(Name, X, Y);
+
     }
 
 
@@ -54,6 +60,8 @@ public class Interactable : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = SpriteList[int.Parse(PlayerManager.TrashData[chosenkey][3])];
         
         weight = int.Parse(PlayerManager.TrashData[chosenkey][4]);
+
+        
 
     }
 

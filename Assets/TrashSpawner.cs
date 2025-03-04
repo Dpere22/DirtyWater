@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 
 
 public class TrashSpawner : MonoBehaviour
@@ -8,40 +8,49 @@ public class TrashSpawner : MonoBehaviour
     public GameObject objectToSpawn;
 
     public float circleRadius = 1;
+    public float replenishRate = 3;
     public float maxTrash = 1;
+    public string Name = "";
 
+    public static List<List<string>> currentTrashList = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnTrash();
-        spawnTrash();
-        spawnTrash();
 
-    
+        currentTrashList = TrashManager.TrashSpawnerData[Name];
 
+
+        respawnTrash(currentTrashList);
+
+
+        for(int I = 0; I<replenishRate; I++)
+        {
+            spawnRandomTrash();
+        }
+
+        
+
+
+
+    }
+
+    private void respawnTrash(List<List<string>> currentTrashList)
+    {
+        foreach(List<string> list in currentTrashList)
+        {
+
+        }
     }
 
     private void Update()
     {
-        float currentTrash = transform.childCount;
+        //update list in storage
+        TrashManager.TrashSpawnerData[Name] = currentTrashList;
 
-        if (currentTrash >= maxTrash)
-        {
-            return;
-        }
-        else
-        {
-            if (Random.Range(1, 100) == 1)
-            {
-                spawnTrash();
-            }
-        }
-
-        
     }
 
-    public void spawnTrash()
+    public void spawnRandomTrash()
     {
         
 
@@ -52,6 +61,22 @@ public class TrashSpawner : MonoBehaviour
         GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
 
         temp.transform.parent = this.transform;
+        
+    }
+
+
+    public void getInfo(string Name, string X, string Y)
+    {
+        List<string> temp = new()
+        {
+            Name,
+            X,
+            Y
+        };
+
+        currentTrashList.Add(temp);
+
+
 
 
         
