@@ -52,6 +52,7 @@ public static class PlayerManager
     private const int MaxWeightDefault = 100;
     private const int SpeedDefault = 5;
     private const int SpeedCostDefault = 20;
+    private const int WeightCostDefault = 20;
 
 
     public static float MaxTime = MaxTimeDefault;
@@ -62,6 +63,7 @@ public static class PlayerManager
     public static int speed = SpeedDefault;
 
     public static int speedCost = SpeedCostDefault;
+    public static int weightCost = WeightCostDefault;
     
 
     //Current player Trash inventory for the day
@@ -85,6 +87,7 @@ public static class PlayerManager
         MaxWeight = MaxWeightDefault;
         speed = SpeedDefault;
         speedCost = SpeedCostDefault;
+        weightCost = WeightCostDefault;
         inventory["Metal"] = 0;
         inventory["Plastic"] = 0;
         inventory["Wood"] = 0;
