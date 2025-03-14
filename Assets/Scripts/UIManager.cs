@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Timer timer;
     
     [SerializeField] private GameObject pauseMenu;
-    
+
+    [SerializeField] private GameObject currentDayInventory;
+
 
     private bool _hasStarted;
 
@@ -38,13 +41,20 @@ public class UIManager : MonoBehaviour
         PauseManager.ResumeGameAction -= ResumeHandler;
     }
 
+
+    private void FixedUpdate()
+    {
+    }
+
+
+    
+
+
     private void EnableTimerText()
     {
         _hasStarted = true;
     }
-
-    
-    
+ 
     private void OnPause()
     {
         pauseMenu.SetActive(true);

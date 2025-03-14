@@ -1,10 +1,27 @@
 using UnityEngine;
+using System;
 
 public class CurrentDayInventory : MonoBehaviour
 {
 
+    public static Action OpenInventory;
+    public static Action CloseInventory;
 
 
+
+    public static bool InventoryOpen;
+
+    public static void showInventory()
+    {
+        InventoryOpen = true;
+        OpenInventory?.Invoke();
+    }
+
+    public static void hideInventory()
+    {
+        InventoryOpen = false;
+        CloseInventory?.Invoke();
+    }
 
 
 

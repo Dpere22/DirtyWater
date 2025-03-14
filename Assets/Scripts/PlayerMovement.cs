@@ -118,6 +118,11 @@ public class PlayerMovement : MonoBehaviour
         InteractAction?.Invoke();
     }
 
+    public void OnOpenInventory(InputValue value)
+    {
+        Debug.Log("Input Recieved");
+    }
+
     //------------------------------------------------------------------------------------------------------
 
     

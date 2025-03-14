@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/RecycleScreen.unity
     guid: b8bf6e38b827a1b49863fcca3a8cfc16
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: f6a1b291f4b904248aaee735422c6461, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
