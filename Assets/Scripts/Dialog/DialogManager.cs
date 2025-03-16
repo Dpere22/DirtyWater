@@ -9,7 +9,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private GameObject dialogPanel;
     [SerializeField] private TextMeshProUGUI dialogText;
 
-    private Story currentStory;
+    private Story _currentStory;
 
     public bool DialogIsPlaying { get; private set; }
     
@@ -45,7 +45,7 @@ public class DialogManager : MonoBehaviour
     public void EnterDialogMode(TextAsset inkJSON)
     {
         FindFirstObjectByType<PlayerMovement>().RestrictMovement();
-        currentStory = new Story(inkJSON.text);
+        _currentStory = new Story(inkJSON.text);
         DialogIsPlaying = true;
         dialogPanel.SetActive(true);
         ContinueStory();
@@ -69,9 +69,9 @@ public class DialogManager : MonoBehaviour
     
     private void ContinueStory()
     {
-        if (currentStory.canContinue)
+        if (_currentStory.canContinue)
         {
-            dialogText.text = currentStory.Continue();
+            dialogText.text = _currentStory.Continue();
         }
         else
         {

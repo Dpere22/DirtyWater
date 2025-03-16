@@ -64,15 +64,15 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Used by Unity input system
     /// </summary>
-    private void OnPause()
-    {
-        if(PauseManager.gamePaused)
-            PauseManager.ResumeGame();
-        else
-        {
-            PauseManager.PauseGame();
-        }
-    }
+    // private void OnPause()
+    // {
+    //     if(PauseManager.gamePaused)
+    //         PauseManager.ResumeGame();
+    //     else
+    //     {
+    //         PauseManager.PauseGame();
+    //     }
+    // }
 
     private void ResumeHandler()
     {
