@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,14 +42,15 @@ public class PlayerMovement : MonoBehaviour
     {
         flip = WalkFlip;
         move = Walk;
-        PauseManager.PauseGameAction += PauseHandler;
-        PauseManager.ResumeGameAction += ResumeHandler;
+        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseHandler;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
+        GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
     }
 
     private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= PauseHandler;
-        PauseManager.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseHandler;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
     }
     
     // Update is called once per frame
@@ -61,18 +63,6 @@ public class PlayerMovement : MonoBehaviour
     
     // ------------------------------- CONTROLLER INPUT ----------------------------------------------
     
-    /// <summary>
-    /// Used by Unity input system
-    /// </summary>
-    // private void OnPause()
-    // {
-    //     if(PauseManager.gamePaused)
-    //         PauseManager.ResumeGame();
-    //     else
-    //     {
-    //         PauseManager.PauseGame();
-    //     }
-    // }
 
     private void ResumeHandler()
     {
@@ -95,14 +85,10 @@ public class PlayerMovement : MonoBehaviour
     {
         move = previousMove;
     }
-
-    /// <summary>
-    /// Works by using Unity's PlayerInput calls
-    /// </summary>
-    /// <param name="value"> value from controller </param>
-    public void OnMove(InputValue value)
+    
+    public void OnMove(Vector2 dir)
     {
-        _movement = value.Get<Vector2>();
+        _movement = dir;
     }
     public void OnJump(InputValue value)
     {

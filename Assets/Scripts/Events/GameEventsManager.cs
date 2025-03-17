@@ -8,7 +8,6 @@ namespace Events
 
         public DialogueEvents DialogueEvents;
         public InputEvents InputEvents;
-
         public QuestEvents QuestEvents;
 
         public void Awake()
@@ -20,19 +19,7 @@ namespace Events
             Instance = this;
             //DialogueEvents = new DialogueEvents();
             InputEvents = new InputEvents();
-
             //QuestEvents = new QuestEvents();
-        }
-
-        public void Start()
-        {
-            InputEvents.Pause += Test;
-        }
-        
-
-        private void Test()
-        {
-            Debug.Log("test");
         }
     }
 }

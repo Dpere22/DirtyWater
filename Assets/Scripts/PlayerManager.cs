@@ -61,7 +61,7 @@ public static class PlayerManager
         currentDayTrash["Plastic"] = 0;
         currentDayTrash["Wood"] = 0;
         currentWeight = 0;
-        PauseManager.gamePaused = false;
+        PauseManager.GamePaused = false;
     }
 
 }

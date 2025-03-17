@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Events;
 
 public class Timer : MonoBehaviour
 {
@@ -26,14 +27,14 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        PauseManager.PauseGameAction += PauseTimer;
-        PauseManager.ResumeGameAction += ResumeTimer;
+        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseTimer;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeTimer;
     }
 
     private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= PauseTimer;
-        PauseManager.ResumeGameAction -= ResumeTimer;
+        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseTimer;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeTimer;
     }
 
     /// <summary>
