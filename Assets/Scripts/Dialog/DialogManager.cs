@@ -32,7 +32,7 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        var playerInput = FindFirstObjectByType<PlayerMovement>().GetComponent<PlayerInput>();
+        var playerInput = FindFirstObjectByType<InputManager>().GetComponent<PlayerInput>();
         if (playerInput == null)
         {
             Debug.LogWarning("No player input found.");

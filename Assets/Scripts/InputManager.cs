@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System;
 using Events;
 
-public class Input : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     private void OnPause()
     {
