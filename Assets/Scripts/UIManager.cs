@@ -1,4 +1,3 @@
-using System;
 using Events;
 using TMPro;
 using UnityEngine;
@@ -41,16 +40,6 @@ public class UIManager : MonoBehaviour
         GameEventsManager.Instance.InputEvents.PauseGameAction -= OnPause;
         GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
     }
-
-
-    private void FixedUpdate()
-    {
-    }
-
-
-    
-
-
     private void EnableTimerText()
     {
         _hasStarted = true;

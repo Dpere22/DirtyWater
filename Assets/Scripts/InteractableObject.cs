@@ -30,7 +30,7 @@ public class Interactable : MonoBehaviour
     {
         if (transform.parent is not null)
         {
-            Debug.Log("got keys");
+            //Debug.Log("got keys");
             spawnKeys = transform.parent.gameObject.GetComponent<TrashSpawner>().setSpawns();
         }
 

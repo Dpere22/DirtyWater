@@ -9,6 +9,9 @@ namespace Events
         public event Action ResumeGameAction;
 
         public event Action<Vector2> MoveAction;
+        public event Action JumpAction;
+        
+        public event Action InteractAction;
 
         public void PausePressed()
         {
@@ -27,6 +30,16 @@ namespace Events
         public void MovePressed(Vector2 dir)
         {
             MoveAction?.Invoke(dir);
+        }
+
+        public void JumpPressed()
+        {
+            JumpAction?.Invoke();
+        }
+
+        public void InteractPressed()
+        {
+            InteractAction?.Invoke();
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 public static class PauseManager
 {
     public static bool GamePaused;
