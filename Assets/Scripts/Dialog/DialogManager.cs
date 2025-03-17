@@ -92,7 +92,7 @@ namespace Dialog
             // inform other parts of our system that we've started dialogue
             
             
-            //GameEventsManager.Instance.DialogueEvents.DialogueStarted();
+            GameEventsManager.Instance.DialogueEvents.DialogueStarted();
             
             // freeze player movement
             GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
@@ -122,7 +122,7 @@ namespace Dialog
             if (_story.canContinue)
             {
                 string dialogueLine = _story.Continue();
-                Debug.Log(dialogueLine);
+                GameEventsManager.Instance.DialogueEvents.DisplayDialogue(dialogueLine);
             }
             else
             {
@@ -165,11 +165,10 @@ namespace Dialog
 
         private void ExitDialogue()
         {
-            Debug.Log("Exiting Dialogue");
             _dialoguePlaying = false;
 
-            // // inform other parts of our system that we've finished dialogue
-            // GameEventsManager.Instance.DialogueEvents.DialogueFinished();
+            // inform other parts of our system that we've finished dialogue
+            GameEventsManager.Instance.DialogueEvents.DialogueFinished();
             //
             // let player move again
             GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();

@@ -33,12 +33,14 @@ namespace Events
             }
         }
 
-        public event Action<string, List<Choice>> OnDisplayDialogue;
-        public void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices) 
+        //public event Action<string, List<Choice>> OnDisplayDialogue;
+        public event Action<string> OnDisplayDialogue;
+        public void DisplayDialogue(string dialogueLine /*,List<Choice> dialogueChoices */) 
         {
             if (OnDisplayDialogue != null) 
             {
-                OnDisplayDialogue(dialogueLine, dialogueChoices);
+                //OnDisplayDialogue(dialogueLine, dialogueChoices);
+                OnDisplayDialogue(dialogueLine);
             }
         }
 
