@@ -1,36 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using Events;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
 
-public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
+namespace UI
 {
-    [Header("Components")]
-    [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI choiceText;
-
-    private int choiceIndex = -1;
-
-    public void SetChoiceText(string choiceTextString)
+    public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
     {
-        choiceText.text = choiceTextString;
-    }
+        [Header("Components")]
+        [SerializeField] private Button button;
+        [SerializeField] private TextMeshProUGUI choiceText;
 
-    public void SetChoiceIndex(int choiceIndex)
-    {
-        this.choiceIndex = choiceIndex;
-    }
+        private int _choiceIndex = -1;
 
-    public void SelectButton()
-    {
-        button.Select();
-    }
+        public void SetChoiceText(string choiceTextString)
+        {
+            choiceText.text = choiceTextString;
+        }
 
-    public void OnSelect(BaseEventData eventData)
-    {
-        GameEventsManager.Instance.DialogueEvents.UpdateChoiceIndex(choiceIndex);
+        public void SetChoiceIndex(int choiceIndex)
+        {
+            this._choiceIndex = choiceIndex;
+        }
+
+        public void SelectButton()
+        {
+            button.Select();
+        }
+
+        public void OnSelect(BaseEventData eventData)
+        {
+            GameEventsManager.Instance.DialogueEvents.UpdateChoiceIndex(_choiceIndex);
+        }
     }
 }

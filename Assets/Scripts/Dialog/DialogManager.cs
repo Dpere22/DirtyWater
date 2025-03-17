@@ -119,48 +119,39 @@ namespace Dialog
 
         private void ContinueOrExitStory() 
         {
+            // make a choice, if applicable
+            if (_story.currentChoices.Count > 0 && _currentChoiceIndex != -1)
+            {
+                _story.ChooseChoiceIndex(_currentChoiceIndex);
+                // reset choice index for next time
+                _currentChoiceIndex = -1;
+            }
+            
             if (_story.canContinue)
             {
                 string dialogueLine = _story.Continue();
-                GameEventsManager.Instance.DialogueEvents.DisplayDialogue(dialogueLine);
+            
+                // handle the case where there's an empty line of dialogue
+                // by continuing until we get a line with content
+                while (IsLineBlank(dialogueLine) && _story.canContinue) 
+                {
+                    dialogueLine = _story.Continue();
+                }
+                // handle the case where the last line of dialogue is blank
+                // (empty choice, external function, etc...)
+                if (IsLineBlank(dialogueLine) && !_story.canContinue) 
+                {
+                    ExitDialogue();
+                }
+                else 
+                {
+                    GameEventsManager.Instance.DialogueEvents.DisplayDialogue(dialogueLine, _story.currentChoices);
+                }
             }
-            else
+            else if (_story.currentChoices.Count == 0)
             {
                 ExitDialogue();
             }
-            // // make a choice, if applicable
-            // if (_story.currentChoices.Count > 0 && _currentChoiceIndex != -1)
-            // {
-            //     _story.ChooseChoiceIndex(_currentChoiceIndex);
-            //     // reset choice index for next time
-            //     _currentChoiceIndex = -1;
-            // }
-            //
-            // if (_story.canContinue)
-            // {
-            //     string dialogueLine = _story.Continue();
-            //
-            //     // handle the case where there's an empty line of dialogue
-            //     // by continuing until we get a line with content
-            //     while (IsLineBlank(dialogueLine) && _story.canContinue) 
-            //     {
-            //         dialogueLine = _story.Continue();
-            //     }
-            //     // handle the case where the last line of dialogue is blank
-            //     // (empty choice, external function, etc...)
-            //     if (IsLineBlank(dialogueLine) && !_story.canContinue) 
-            //     {
-            //         ExitDialogue();
-            //     }
-            //     else 
-            //     {
-            //         GameEventsManager.Instance.DialogueEvents.DisplayDialogue(dialogueLine, _story.currentChoices);
-            //     }
-            // }
-            // else if (_story.currentChoices.Count == 0)
-            // {
-            //     ExitDialogue();
-            // }
         }
 
         private void ExitDialogue()
