@@ -9,6 +9,7 @@ namespace Events
         public DialogueEvents DialogueEvents;
         public InputEvents InputEvents;
         public QuestEvents QuestEvents;
+        public PlayerEvents PlayerEvents;
 
         private void Awake()
         {
@@ -20,6 +21,7 @@ namespace Events
             DialogueEvents = new DialogueEvents();
             InputEvents = new InputEvents();
             QuestEvents = new QuestEvents();
+            PlayerEvents = new PlayerEvents();
         }
     }
 }

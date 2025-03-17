@@ -95,7 +95,7 @@ namespace Dialog
             //GameEventsManager.Instance.DialogueEvents.DialogueStarted();
             
             // freeze player movement
-            //GameEventsManager.Instance.playerEvents.DisablePlayerMovement();
+            GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
             
             // input event context
             GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Dialogue);
@@ -171,8 +171,8 @@ namespace Dialog
             // // inform other parts of our system that we've finished dialogue
             // GameEventsManager.Instance.DialogueEvents.DialogueFinished();
             //
-            // // let player move again
-            // //GameEventsManager.Instance.playerEvents.EnablePlayerMovement();
+            // let player move again
+            GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
             //
             //Input event context
             GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);

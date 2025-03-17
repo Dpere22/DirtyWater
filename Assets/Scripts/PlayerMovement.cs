@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
         GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
+        GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement += RestrictMovement;
+        GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement += EnableMovement;
     }
 
     private void OnDestroy()
@@ -53,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction -= OnMove;
         GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
+        GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement -= RestrictMovement;
+        GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement -= EnableMovement;
     }
     
     // Update is called once per frame
