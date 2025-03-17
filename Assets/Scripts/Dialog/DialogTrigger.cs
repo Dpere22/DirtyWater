@@ -34,8 +34,8 @@ namespace Dialog
 
         private void InteractHandler()
         {
-            if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
-            DialogManager.GetInstance().EnterDialogMode(inkJson);
+            // if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+            // DialogManager.GetInstance().EnterDialogMode(inkJson);
         }
         private void OnTriggerEnter2D(Collider2D other)
         {

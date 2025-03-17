@@ -1,3 +1,4 @@
+using Dialog;
 using Events;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class Shop : MonoBehaviour
 
     private void InteractHandler()
     {
-        if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+        //if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         

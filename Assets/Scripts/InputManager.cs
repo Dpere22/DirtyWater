@@ -22,4 +22,9 @@ public class InputManager : MonoBehaviour
     {
         GameEventsManager.Instance.InputEvents.InteractPressed();
     }
+
+    public void OnSubmit(InputValue value)
+    {
+        GameEventsManager.Instance.InputEvents.SubmitPressed();
+    }
 }

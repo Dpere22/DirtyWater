@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Events;
+using Input;
 using UnityEngine;
 
 
@@ -31,19 +32,20 @@ public class QuestPoint : MonoBehaviour
 
     private void OnEnable()
     {
+        if(GameEventsManager.Instance == null) Debug.LogError("Game Events Manager is null!");
         GameEventsManager.Instance.QuestEvents.onQuestStateChange += QuestStateChange;
-        //GameEventsManager.Instance.InputEvents.SubmitEvent += SubmitPressed;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed += SubmitPressed;
     }
 
     private void OnDisable()
     {
         GameEventsManager.Instance.QuestEvents.onQuestStateChange -= QuestStateChange;
-        //GameEventsManager.instance.inputEvents.onSubmitPressed -= SubmitPressed;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed -= SubmitPressed;
     }
 
-    private void SubmitPressed()
+    private void SubmitPressed(InputEventContext inputEventContext)
     {
-        if (!playerIsNear)
+        if (!playerIsNear || inputEventContext.Equals(InputEventContext.Default))
         {
             return;
         }

@@ -1,3 +1,4 @@
+using Dialog;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Events;
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (DialogManager.GetInstance().DialogIsPlaying) return;
+        //if (DialogueManager.GetInstance().DialogIsPlaying) return;
         _move?.Invoke();
     }
 
