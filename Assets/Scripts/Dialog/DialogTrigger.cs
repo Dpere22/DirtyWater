@@ -1,61 +1,56 @@
-using System;
-using Unity.VisualScripting;
+using Events;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class DialogTrigger : MonoBehaviour
+namespace Dialog
 {
-    [Header("Visual Cue")] [SerializeField]
-    private GameObject visualCue;
-
-    [FormerlySerializedAs("inkJSON")]
-    [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJson;
-
-
-    private PlayerMovement player;
-    
-    private bool playerInRange;
-    private void Awake()
+    public class DialogTrigger : MonoBehaviour
     {
-        playerInRange = false;
-        visualCue.SetActive(false);
-    }
-    
-    private void Start()
-    {
+        [Header("Visual Cue")] [SerializeField]
+        private GameObject visualCue;
+
+        [FormerlySerializedAs("inkJSON")]
+        [Header("Ink JSON")]
+        [SerializeField] private TextAsset inkJson;
+        private bool _playerInRange;
         
-
-        player = FindFirstObjectByType<PlayerMovement>();
-        player.InteractAction += InteractHandler;
-    }
-
-    private void Update()
-    {
-        visualCue.SetActive(playerInRange);
-    }
-    
-    
-
-    private void InteractHandler()
-    {
-        if (!playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
-        DialogManager.GetInstance().EnterDialogMode(inkJson);
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void Awake()
         {
-            playerInRange = true;
+            _playerInRange = false;
+            visualCue.SetActive(false);
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+    
+        private void Start()
         {
-            playerInRange = false;
+            GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
+        }
+
+        private void Update()
+        {
+            visualCue.SetActive(_playerInRange);
+        }
+    
+    
+
+        private void InteractHandler()
+        {
+            if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+            DialogManager.GetInstance().EnterDialogMode(inkJson);
+        }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _playerInRange = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _playerInRange = false;
+            }
         }
     }
 }

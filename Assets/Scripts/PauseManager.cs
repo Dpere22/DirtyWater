@@ -1,21 +1,14 @@
-using System;
-
 public static class PauseManager
 {
-    public static Action PauseGameAction;
-    public static Action ResumeGameAction;
-    
-    public static bool gamePaused;
+    public static bool GamePaused;
 
     public static void PauseGame()
     {
-        gamePaused = true;
-        PauseGameAction?.Invoke();
+        GamePaused = true;
     }
 
     public static void ResumeGame()
     {
-        gamePaused = false;
-        ResumeGameAction?.Invoke();
+        GamePaused = false;
     }
 }

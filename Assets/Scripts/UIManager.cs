@@ -1,4 +1,4 @@
-using System;
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,26 +30,16 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         timer.OnTimerStart += EnableTimerText;
-        PauseManager.PauseGameAction += OnPause;
-        PauseManager.ResumeGameAction += ResumeHandler;
+        GameEventsManager.Instance.InputEvents.PauseGameAction += OnPause;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
     }
 
     private void OnDestroy()
     {
         timer.OnTimerStart -= EnableTimerText;
-        PauseManager.PauseGameAction -= OnPause;
-        PauseManager.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.InputEvents.PauseGameAction -= OnPause;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
     }
-
-
-    private void FixedUpdate()
-    {
-    }
-
-
-    
-
-
     private void EnableTimerText()
     {
         _hasStarted = true;

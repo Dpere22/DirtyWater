@@ -1,27 +1,27 @@
+using Events;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
 
-    private bool playerInRange;
+    private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject player;
     private bool _inShop;
 
     private void Start()
     {
-        player.GetComponent<PlayerMovement>().InteractAction += InteractHandler;
+        GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
     }
 
     private void OnDestroy()
     {
-        if(player)
-            player.GetComponent<PlayerMovement>().InteractAction -= InteractHandler;
+        if(player) GameEventsManager.Instance.InputEvents.InteractAction -= InteractHandler;
     }
 
     private void InteractHandler()
     {
-        if (!playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+        if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         
@@ -38,7 +38,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            _playerInRange = true;
         }
     }
 
@@ -46,7 +46,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
+            _playerInRange = false;
         }
     }
 }

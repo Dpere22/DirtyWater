@@ -1,12 +1,13 @@
 using UnityEngine;
 using System;
+using Events;
 
 public class Timer : MonoBehaviour
 {
-    public float TimerDuration { get; private set; } // Duration for the timer
-    private float _elapsedTime = 0f;
-    private bool _isRunning = false;
-    private bool _isPaused = false;
+    private float TimerDuration { get; set; } // Duration for the timer
+    private float _elapsedTime;
+    private bool _isRunning;
+    private bool _isPaused;
 
     public Action OnTimerComplete; // Event that fires when the timer completes
     public Action OnTimerStart;
@@ -26,14 +27,14 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        PauseManager.PauseGameAction += PauseTimer;
-        PauseManager.ResumeGameAction += ResumeTimer;
+        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseTimer;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeTimer;
     }
 
     private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= PauseTimer;
-        PauseManager.ResumeGameAction -= ResumeTimer;
+        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseTimer;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeTimer;
     }
 
     /// <summary>
@@ -51,7 +52,7 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Pauses the timer
     /// </summary>
-    public void PauseTimer()
+    private void PauseTimer()
     {
         if (_isRunning) _isPaused = true;
     }
@@ -59,7 +60,7 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Resumes the timer if paused
     /// </summary>
-    public void ResumeTimer()
+    private void ResumeTimer()
     {
         if (_isRunning) _isPaused = false;
     }
@@ -67,7 +68,7 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Stops and resets the timer
     /// </summary>
-    public void StopTimer()
+    private void StopTimer()
     {
         _isRunning = false;
         _isPaused = false;

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
+using Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,58 +21,49 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    private bool _facingRight = false;
+    private bool _facingRight;
     private Vector2 _rayDirection = new(-0.15f, -0.25f);
     
 
 
     private delegate void FlipOperation();
-    private FlipOperation flip;
+    private FlipOperation _flip;
     
     
     private delegate void MoveOperation();
-    private MoveOperation move;
-    private MoveOperation previousMove;
-
-    public Action InteractAction;
+    private MoveOperation _move;
+    private MoveOperation _previousMove;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        flip = WalkFlip;
-        move = Walk;
-        PauseManager.PauseGameAction += PauseHandler;
-        PauseManager.ResumeGameAction += ResumeHandler;
+        _flip = WalkFlip;
+        _move = Walk;
+        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseHandler;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
+        GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
+        GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
     }
 
     private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= PauseHandler;
-        PauseManager.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseHandler;
+        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.InputEvents.MoveAction -= OnMove;
+        GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
         if (DialogManager.GetInstance().DialogIsPlaying) return;
-        move?.Invoke();
+        _move?.Invoke();
     }
 
     
     // ------------------------------- CONTROLLER INPUT ----------------------------------------------
     
-    /// <summary>
-    /// Used by Unity input system
-    /// </summary>
-    private void OnPause()
-    {
-        if(PauseManager.gamePaused)
-            PauseManager.ResumeGame();
-        else
-        {
-            PauseManager.PauseGame();
-        }
-    }
 
     private void ResumeHandler()
     {
@@ -86,25 +77,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestrictMovement()
     {
-        previousMove = move;
-        move = () => { }; //don't do anything when move
+        _previousMove = _move;
+        _move = () => { }; //don't do anything when move
         rb.linearVelocity = Vector2.zero;
     }
 
     public void EnableMovement()
     {
-        move = previousMove;
+        _move = _previousMove;
     }
-
-    /// <summary>
-    /// Works by using Unity's PlayerInput calls
-    /// </summary>
-    /// <param name="value"> value from controller </param>
-    public void OnMove(InputValue value)
+    
+    public void OnMove(Vector2 dir)
     {
-        _movement = value.Get<Vector2>();
+        _movement = dir;
     }
-    public void OnJump(InputValue value)
+    public void OnJump()
     {
         if (!canJump) return;
         rb.linearVelocity = Vector2.zero;
@@ -112,10 +99,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = new Vector2(-4.0f, 4.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
         canJump = false;
-    }
-    public void OnInteract(InputValue value)
-    {
-        InteractAction?.Invoke();
     }
 
     public void OnOpenInventory(InputValue value)
@@ -166,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         {
             case > 0 when !_facingRight:
             case < 0 when _facingRight:
-                flip();
+                _flip();
                 break;
         }
     }
@@ -178,8 +161,8 @@ public class PlayerMovement : MonoBehaviour
         col.enabled = false;
         capsule.enabled = true;
         rb.gravityScale = 0f;
-        flip = WaterFlip;
-        move = Swim;
+        _flip = WaterFlip;
+        _move = Swim;
     }
     private bool CheckGroundAhead()
     {
