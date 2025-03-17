@@ -79,11 +79,11 @@ Material:
     - _WaveSize: 0.263
     - _WaveSpeed: 4
     m_Colors:
-    - _BodyColor: {r: 0.13498276, g: 0.13804665, b: 0.24528301, a: 0.8235294}
-    - _CausticColor: {r: 0.8805031, g: 0.8805031, b: 0.8805031, a: 1}
+    - _BodyColor: {r: 0.4433962, g: 0.2720288, b: 0, a: 0.8235294}
+    - _CausticColor: {r: 1, g: 0.9160186, b: 0, a: 1}
     - _CausticScrollDir: {r: 0.045, g: 0, b: 0, a: 0}
     - _CausticTiling: {r: 15.76, g: 11.27, b: 0, a: 0}
     - _DistortionDir: {r: 0.05, g: 0, b: 0, a: 0}
-    - _LineColor: {r: 0.13498276, g: 0.13804665, b: 0.24528301, a: 0.8235294}
+    - _LineColor: {r: 0.4433962, g: 0.2720288, b: 0, a: 0.8235294}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

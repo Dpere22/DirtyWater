@@ -45,7 +45,8 @@ public class QuestPoint : MonoBehaviour
 
     private void SubmitPressed(InputEventContext inputEventContext)
     {
-        if (!playerIsNear || inputEventContext.Equals(InputEventContext.Default))
+        //|| inputEventContext.Equals(InputEventContext.Default     
+        if (!playerIsNear)
         {
             return;
         }
