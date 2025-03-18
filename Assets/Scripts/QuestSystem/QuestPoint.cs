@@ -23,6 +23,15 @@ namespace QuestSystem
 
         private QuestIcon _questIcon;
 
+
+        private void Reset()
+        {
+            CircleCollider2D col = GetComponent<CircleCollider2D>();
+            if (col != null)
+            {
+                col.isTrigger = true;
+            }
+        }
         private void Awake() 
         {
             _questId = questInfoForPoint.ID;
@@ -32,13 +41,13 @@ namespace QuestSystem
         private void OnEnable()
         {
             if(GameEventsManager.Instance == null) Debug.LogError("Game Events Manager is null!");
-            GameEventsManager.Instance.QuestEvents.onQuestStateChange += QuestStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStateChange += QuestStateChange;
             GameEventsManager.Instance.InputEvents.OnSubmitPressed += SubmitPressed;
         }
 
         private void OnDisable()
         {
-            GameEventsManager.Instance.QuestEvents.onQuestStateChange -= QuestStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStateChange -= QuestStateChange;
             GameEventsManager.Instance.InputEvents.OnSubmitPressed -= SubmitPressed;
         }
 
@@ -75,6 +84,7 @@ namespace QuestSystem
             if (quest.Info.ID.Equals(_questId))
             {
                 _currentQuestState = quest.State;
+                Debug.Log("Quest with id: " + _questId + "updated to state: " + _currentQuestState);
                 _questIcon.SetState(_currentQuestState, startPoint, finishPoint);
             }
         }

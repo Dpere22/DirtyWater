@@ -38,7 +38,7 @@ namespace Dialog
             GameEventsManager.Instance.InputEvents.OnSubmitPressed += SubmitPressed;
             GameEventsManager.Instance.DialogueEvents.OnUpdateChoiceIndex += UpdateChoiceIndex;
             GameEventsManager.Instance.DialogueEvents.OnUpdateInkDialogueVariable += UpdateInkDialogueVariable;
-            GameEventsManager.Instance.QuestEvents.onQuestStateChange += QuestStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStateChange += QuestStateChange;
         }
 
         private void OnDisable() 
@@ -47,7 +47,7 @@ namespace Dialog
             GameEventsManager.Instance.InputEvents.OnSubmitPressed -= SubmitPressed;
             GameEventsManager.Instance.DialogueEvents.OnUpdateChoiceIndex -= UpdateChoiceIndex;
             GameEventsManager.Instance.DialogueEvents.OnUpdateInkDialogueVariable -= UpdateInkDialogueVariable;
-            GameEventsManager.Instance.QuestEvents.onQuestStateChange -= QuestStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStateChange -= QuestStateChange;
         }
 
         private void QuestStateChange(Quest quest) 

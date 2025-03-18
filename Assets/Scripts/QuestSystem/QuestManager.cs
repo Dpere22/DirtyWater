@@ -21,22 +21,22 @@ namespace QuestSystem
 
         private void OnEnable()
         {
-            GameEventsManager.Instance.QuestEvents.onStartQuest += StartQuest;
-            GameEventsManager.Instance.QuestEvents.onAdvanceQuest += AdvanceQuest;
-            GameEventsManager.Instance.QuestEvents.onFinishQuest += FinishQuest;
+            GameEventsManager.Instance.QuestEvents.OnStartQuest += StartQuest;
+            GameEventsManager.Instance.QuestEvents.OnAdvanceQuest += AdvanceQuest;
+            GameEventsManager.Instance.QuestEvents.OnFinishQuest += FinishQuest;
 
-            GameEventsManager.Instance.QuestEvents.onQuestStepStateChange += QuestStepStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStepStateChange += QuestStepStateChange;
 
             //GameEventsManager.instance.playerEvents.onPlayerLevelChange += PlayerLevelChange;
         }
 
         private void OnDisable()
         {
-            GameEventsManager.Instance.QuestEvents.onStartQuest -= StartQuest;
-            GameEventsManager.Instance.QuestEvents.onAdvanceQuest -= AdvanceQuest;
-            GameEventsManager.Instance.QuestEvents.onFinishQuest -= FinishQuest;
+            GameEventsManager.Instance.QuestEvents.OnStartQuest -= StartQuest;
+            GameEventsManager.Instance.QuestEvents.OnAdvanceQuest -= AdvanceQuest;
+            GameEventsManager.Instance.QuestEvents.OnFinishQuest -= FinishQuest;
 
-            GameEventsManager.Instance.QuestEvents.onQuestStepStateChange -= QuestStepStateChange;
+            GameEventsManager.Instance.QuestEvents.OnQuestStepStateChange -= QuestStepStateChange;
 
             //GameEventsManager.instance.playerEvents.onPlayerLevelChange -= PlayerLevelChange;
         }

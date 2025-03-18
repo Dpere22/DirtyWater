@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Collect the plastic!
   levelRequirement: 0
   questPrerequisites: []
-  questStepPrefabs: []
+  questStepPrefabs:
+  - {fileID: 2803187322449176872, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
   goldReward: 50
   experienceReward: 250
