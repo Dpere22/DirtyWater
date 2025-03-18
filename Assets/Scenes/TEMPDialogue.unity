@@ -27186,6 +27186,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063010c6c879fe5478e5dc7dcd25db54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &258253884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258253886}
+  - component: {fileID: 258253885}
+  m_Layer: 0
+  m_Name: TrashSpawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &258253885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258253884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb97f9aa0b976ea4c8e1eba96fc9eab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 3505890644713217795, guid: 00b7e370ada835147aac3d66e1ea6378, type: 3}
+  circleRadius: 2
+  replenishRate: 5
+  maxTrash: 10
+  Name: Test
+  spawnsPlastic: 1
+  spawnsWood: 1
+  spawnsMetal: 1
+  spawnKeys: []
+--- !u!4 &258253886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258253884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.63, y: -14.04, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &273359389
 GameObject:
   m_ObjectHideFlags: 0
@@ -32922,6 +32975,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601370231}
   m_CullTransparentMesh: 1
+--- !u!1001 &1605759236
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2803187322449176872, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_Name
+      value: CollectPlasticStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433647792288300073, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
 --- !u!43 &1670994982
 Mesh:
   m_ObjectHideFlags: 0
@@ -33426,6 +33536,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
+--- !u!1 &2023558374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2023558376}
+  - component: {fileID: 2023558375}
+  m_Layer: 0
+  m_Name: TrashSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2023558375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023558374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb97f9aa0b976ea4c8e1eba96fc9eab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 3505890644713217795, guid: 00b7e370ada835147aac3d66e1ea6378, type: 3}
+  circleRadius: 2
+  replenishRate: 5
+  maxTrash: 10
+  Name: Test
+  spawnsPlastic: 1
+  spawnsWood: 1
+  spawnsMetal: 1
+  spawnKeys: []
+--- !u!4 &2023558376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023558374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.63, y: -6.69, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2036457938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33738,7 +33901,10 @@ SceneRoots:
   - {fileID: 2040015650}
   - {fileID: 906724905}
   - {fileID: 184806711}
+  - {fileID: 2023558376}
+  - {fileID: 258253886}
   - {fileID: 844400044}
   - {fileID: 232776366}
   - {fileID: 383808079}
   - {fileID: 3524080020616766066}
+  - {fileID: 1605759236}

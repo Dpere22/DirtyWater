@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fbc1416cb31f74d8ba9e45685e9682, type: 3}
   m_Name: CollectPlasticQuest
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectPlasticQuest
+  <ID>k__BackingField: CollectPlasticQuest
   displayName: Collect the plastic!
   levelRequirement: 0
   questPrerequisites: []

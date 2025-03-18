@@ -29,7 +29,7 @@ public class RecycleUI : MonoBehaviour
     /// </summary>
     public void ContinueGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(1);
     }
 
     /// <summary>

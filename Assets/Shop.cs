@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
 
-    private bool _playerInRange;
+    //private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject player;
     private bool _inShop;
@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerInRange = true;
+            //_playerInRange = true;
         }
     }
 
@@ -47,7 +47,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerInRange = false;
+            //_playerInRange = false;
         }
     }
 }

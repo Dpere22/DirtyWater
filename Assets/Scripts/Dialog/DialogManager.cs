@@ -1,6 +1,7 @@
 using Events;
 using Ink.Runtime;
 using Input;
+using QuestSystem;
 using UnityEngine;
 
 namespace Dialog
@@ -52,8 +53,8 @@ namespace Dialog
         private void QuestStateChange(Quest quest) 
         {
             GameEventsManager.Instance.DialogueEvents.UpdateInkDialogueVariable(
-                quest.info.id + "State",
-                new StringValue(quest.state.ToString())
+                quest.Info.ID + "State",
+                new StringValue(quest.State.ToString())
             );
         }
 
