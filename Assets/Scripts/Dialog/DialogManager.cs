@@ -110,8 +110,8 @@ namespace Dialog
                 Debug.LogWarning("Knot name was the empty string when entering dialogue.");
             }
             
-            // // start listening for variables
-            // _inkDialogueVariables.SyncVariablesAndStartListening(_story);
+            // start listening for variables
+            _inkDialogueVariables.SyncVariablesAndStartListening(_story);
             
             // kick off the story
             ContinueOrExitStory();
@@ -167,8 +167,8 @@ namespace Dialog
             //Input event context
             GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
             //
-            // // stop listening for dialogue variables
-            // _inkDialogueVariables.StopListening(_story);
+            // stop listening for dialogue variables
+            _inkDialogueVariables.StopListening(_story);
 
             // reset story state
             _story.ResetState();
