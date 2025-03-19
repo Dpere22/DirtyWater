@@ -124,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerSwimming()
     {
+        isJumping = false;
         sr.sprite = swim;
         rb.linearVelocity = new Vector2(0, 0);
         col.enabled = false;

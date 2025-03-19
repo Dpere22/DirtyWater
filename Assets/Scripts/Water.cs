@@ -20,20 +20,16 @@ public class Water : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entering Water!");
         if (!other.CompareTag("Player")) return;
         
         PlayerEnteredWater?.Invoke();
-        PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
-        playerMovement.StartSwimming();
-        playerMovement.isJumping = false;
+        GameEventsManager.Instance.PlayerEvents.SetPlayerSwimming();
         gameManager.StartDayTimer();
         waterCollider.enabled = false;
     }
 
     private void EnableTrigger()
     {
-        Debug.Log("EnablingTrigger!");
         waterCollider.enabled = true;
     }
 }
