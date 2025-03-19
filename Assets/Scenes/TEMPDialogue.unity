@@ -30374,8 +30374,8 @@ MonoBehaviour:
   maxForce: 5
   playerCollisionRadiusMult: 4.15
   mat: {fileID: 2100000, guid: 402573f642138d349b1e8f38b21d085f, type: 2}
-  dirtyBodyColor: {r: 0.4433962, g: 0.2720288, b: 0, a: 0.8235294}
-  dirtyCausticsColor: {r: 1, g: 0.9160186, b: 0, a: 1}
+  dirtyBodyColor: {r: 0.07865586, g: 0.09498701, b: 0.2578616, a: 0.8235294}
+  dirtyCausticsColor: {r: 0.72955966, g: 0.72955966, b: 0.72955966, a: 1}
   healthyBodyColor: {r: 0.5071645, g: 0.54836607, b: 0.8207547, a: 0.5372549}
   healthyCausticsColor: {r: 0, g: 0.6226415, b: 0.5272363, a: 0.7372549}
   numOfXVertices: 70
