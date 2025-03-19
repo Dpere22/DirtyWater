@@ -1,4 +1,3 @@
-using Dialog;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Events;
@@ -38,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
     private MoveOperation _move;
     private MoveOperation _previousMove;
     
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _flip = WalkFlip;
@@ -70,13 +67,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //if (DialogueManager.GetInstance().DialogIsPlaying) return;
         _move?.Invoke();
     }
-
-    
-    // ------------------------------- CONTROLLER INPUT ----------------------------------------------
-    
 
     private void ResumeHandler()
     {
@@ -118,9 +110,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Input Recieved");
     }
-    
-
-    //------------------------------------------------------------------------------------------------------
 
     private void SetPlayerSwimming()
     {
