@@ -27033,6 +27033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopUI: {fileID: 1687346111}
   player: {fileID: 953698568}
+  shopAvailable: 0
 --- !u!212 &232776365
 SpriteRenderer:
   m_ObjectHideFlags: 0

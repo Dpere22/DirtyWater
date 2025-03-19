@@ -11,6 +11,7 @@ namespace Events
         public QuestEvents QuestEvents;
         public PlayerEvents PlayerEvents;
         public DayEvents DayEvents;
+        public ShopEvents ShopEvents;
 
         private void Awake()
         {
@@ -24,6 +25,7 @@ namespace Events
             QuestEvents = new QuestEvents();
             PlayerEvents = new PlayerEvents();
             DayEvents = new DayEvents();
+            ShopEvents = new ShopEvents();
         }
     }
 }

@@ -1,5 +1,5 @@
+using Events;
 using QuestSystem;
-using UnityEngine;
 
 namespace Resources.Quests.CollectPlasticQuest
 {
@@ -12,6 +12,7 @@ namespace Resources.Quests.CollectPlasticQuest
             _plasticCollected = PlayerManager.inventory["Plastic"];
             if (_plasticCollected >= 1)
             {
+                GameEventsManager.Instance.ShopEvents.EnableShop();
                 FinishQuestStep();
             }
         }

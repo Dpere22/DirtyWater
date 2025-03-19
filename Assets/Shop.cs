@@ -1,15 +1,25 @@
-using Dialog;
 using Events;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
 
-    //private bool _playerInRange;
+    private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject player;
     private bool _inShop;
+    public bool shopAvailable;
 
+
+    private void OnEnable()
+    {
+        GameEventsManager.Instance.ShopEvents.OnEnableShopEvent += EnableShop;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.Instance.ShopEvents.OnEnableShopEvent -= EnableShop;
+    }
     private void Start()
     {
         GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
@@ -22,7 +32,12 @@ public class Shop : MonoBehaviour
 
     private void InteractHandler()
     {
-        //if (!_playerInRange || DialogManager.GetInstance().DialogIsPlaying) return;
+        if (!_playerInRange) return;
+        if (!shopAvailable)
+        {
+            GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
+            return;
+        }
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         
@@ -39,7 +54,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //_playerInRange = true;
+            _playerInRange = true;
         }
     }
 
@@ -47,7 +62,12 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //_playerInRange = false;
+            _playerInRange = false;
         }
+    }
+
+    private void EnableShop()
+    {
+        shopAvailable = true;
     }
 }
