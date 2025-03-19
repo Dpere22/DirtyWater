@@ -33125,6 +33125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1220310778}
+  waterCollider: {fileID: 1593013255}
 --- !u!1 &1601370231
 GameObject:
   m_ObjectHideFlags: 0
