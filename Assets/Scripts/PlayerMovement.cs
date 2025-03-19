@@ -10,9 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CapsuleCollider2D capsule;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Sprite walkSprite;
     [SerializeField] private Sprite swim;
     [SerializeField] private Sprite normal;
     
+    
+    private Quaternion _playerWalkRotation;
     private Vector2 _movement;
     
     public bool canJump;
@@ -41,12 +44,15 @@ public class PlayerMovement : MonoBehaviour
     {
         _flip = WalkFlip;
         _move = Walk;
+        _playerWalkRotation = transform.rotation;
         GameEventsManager.Instance.InputEvents.PauseGameAction += PauseHandler;
         GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
         GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement += RestrictMovement;
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement += EnableMovement;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim += SetPlayerSwimming;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk += SetPlayerWalking;
     }
 
     private void OnDestroy()
@@ -57,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement -= RestrictMovement;
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement -= EnableMovement;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk -= SetPlayerWalking;
     }
     
     // Update is called once per frame
@@ -110,10 +118,33 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Input Recieved");
     }
+    
 
     //------------------------------------------------------------------------------------------------------
 
-    
+    private void SetPlayerSwimming()
+    {
+        sr.sprite = swim;
+        rb.linearVelocity = new Vector2(0, 0);
+        col.enabled = false;
+        capsule.enabled = true;
+        rb.gravityScale = 0f;
+        _flip = WaterFlip;
+        _move = Swim;
+    }
+
+    private void SetPlayerWalking()
+    {
+        sr.sprite = walkSprite;
+        sr.flipY = false;
+        transform.rotation = _playerWalkRotation;
+        rb.linearVelocity = new Vector2(0, 0);
+        col.enabled = true;
+        capsule.enabled = false;
+        rb.gravityScale = 1.0f;
+        _flip = WalkFlip;
+        _move = Walk;
+    }
     
     private void Swim()
     {

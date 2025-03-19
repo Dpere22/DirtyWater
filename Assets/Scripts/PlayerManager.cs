@@ -14,7 +14,7 @@ public static class PlayerManager
         {"Wood", 0}
     };
 
-    private const float MaxTimeDefault = 30f;
+    private const float MaxTimeDefault = 5f;
     private const int MaxWeightDefault = 100;
     private const int SpeedDefault = 5;
     private const int SpeedCostDefault = 20;

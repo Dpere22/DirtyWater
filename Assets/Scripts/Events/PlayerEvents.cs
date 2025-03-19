@@ -17,5 +17,19 @@ namespace Events
         {
             OnEnablePlayerMovement?.Invoke();
         }
+
+        public event Action OnPlayerSetWalk;
+
+        public void SetPlayerWalking()
+        {
+            OnPlayerSetWalk?.Invoke();
+        }
+
+        public event Action OnPlayerSetSwim;
+
+        public void SetPlayerSwimming()
+        {
+            OnPlayerSetSwim?.Invoke();
+        }
     }
 }
