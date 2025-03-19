@@ -6,9 +6,6 @@ namespace QuestSystem
 {
     public class QuestManager : MonoBehaviour
     {
-        [Header("Config")]
-        [SerializeField] private bool loadQuestState = true;
-
         private Dictionary<string, Quest> _questMap;
 
         // quest start requirements
@@ -24,10 +21,6 @@ namespace QuestSystem
             GameEventsManager.Instance.QuestEvents.OnStartQuest += StartQuest;
             GameEventsManager.Instance.QuestEvents.OnAdvanceQuest += AdvanceQuest;
             GameEventsManager.Instance.QuestEvents.OnFinishQuest += FinishQuest;
-
-            GameEventsManager.Instance.QuestEvents.OnQuestStepStateChange += QuestStepStateChange;
-
-            //GameEventsManager.instance.playerEvents.onPlayerLevelChange += PlayerLevelChange;
         }
 
         private void OnDisable()
@@ -35,10 +28,6 @@ namespace QuestSystem
             GameEventsManager.Instance.QuestEvents.OnStartQuest -= StartQuest;
             GameEventsManager.Instance.QuestEvents.OnAdvanceQuest -= AdvanceQuest;
             GameEventsManager.Instance.QuestEvents.OnFinishQuest -= FinishQuest;
-
-            GameEventsManager.Instance.QuestEvents.OnQuestStepStateChange -= QuestStepStateChange;
-
-            //GameEventsManager.instance.playerEvents.onPlayerLevelChange -= PlayerLevelChange;
         }
 
         private void Start()
@@ -62,11 +51,7 @@ namespace QuestSystem
             quest.State = state;
             GameEventsManager.Instance.QuestEvents.QuestStateChange(quest);
         }
-
-        private void PlayerLevelChange(int level)
-        {
-            _currentPlayerLevel = level;
-        }
+        
 
         private bool CheckRequirementsMet(Quest quest)
         {
@@ -136,15 +121,6 @@ namespace QuestSystem
         private void ClaimRewards(Quest quest)
         {
             Debug.Log("Claiming Rewards!");
-            //GameEventsManager.instance.goldEvents.GoldGained(quest.info.goldReward);
-            //GameEventsManager.instance.playerEvents.ExperienceGained(quest.info.experienceReward);
-        }
-
-        private void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
-        {
-            Quest quest = GetQuestById(id);
-            quest.StoreQuestStepState(questStepState, stepIndex);
-            ChangeQuestState(id, quest.State);
         }
 
         private Dictionary<string, Quest> CreateQuestMap()
@@ -173,50 +149,12 @@ namespace QuestSystem
             }
             return quest;
         }
-
-        private void OnApplicationQuit()
-        {
-            // foreach (Quest quest in _questMap.Values)
-            // {
-            //     SaveQuest(quest);
-            // }
-        }
-
-        private void SaveQuest(Quest quest)
-        {
-            try 
-            {
-                QuestData questData = quest.GetQuestData();
-                // serialize using JsonUtility, but use whatever you want here (like JSON.NET)
-                string serializedData = JsonUtility.ToJson(questData);
-                // saving to PlayerPrefs is just a quick example for this tutorial video,
-                // you probably don't want to save this info there long-term.
-                // instead, use an actual Save & Load system and write to a file, the cloud, etc..
-                PlayerPrefs.SetString(quest.Info.ID, serializedData);
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Failed to save quest with id " + quest.Info.ID + ": " + e);
-            }
-        }
-
         private Quest LoadQuest(QuestInfoSO questInfo)
         {
             Quest quest = null;
             try 
             {
-                // load quest from saved data
-                if (PlayerPrefs.HasKey(questInfo.ID) && loadQuestState)
-                {
-                    string serializedData = PlayerPrefs.GetString(questInfo.ID);
-                    QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
-                    quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
-                }
-                // otherwise, initialize a new quest
-                else 
-                {
-                    quest = new Quest(questInfo);
-                }
+                quest = new Quest(questInfo);
             }
             catch (System.Exception e)
             {
