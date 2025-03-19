@@ -67,11 +67,11 @@ namespace QuestSystem
             else 
             {
                 // start or finish a quest
-                if (_currentQuestState.Equals(QuestState.CanStart) && startPoint)
+                if (_currentQuestState.Equals(QuestState.CAN_START) && startPoint)
                 {
                     GameEventsManager.Instance.QuestEvents.StartQuest(_questId);
                 }
-                else if (_currentQuestState.Equals(QuestState.CanFinish) && finishPoint)
+                else if (_currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
                 {
                     GameEventsManager.Instance.QuestEvents.FinishQuest(_questId);
                 }

@@ -21,19 +21,19 @@ namespace QuestSystem
             // set the appropriate one to active based on the new state
             switch (newState)
             {
-                case QuestState.RequirementsNotMet:
+                case QuestState.REQUIREMENTS_NOT_MET:
                     if (startPoint) { requirementsNotMetToStartIcon.SetActive(true); }
                     break;
-                case QuestState.CanStart:
+                case QuestState.CAN_START:
                     if (startPoint) { canStartIcon.SetActive(true); }
                     break;
-                case QuestState.InProgress:
+                case QuestState.IN_PROGRESS:
                     if (finishPoint) { requirementsNotMetToFinishIcon.SetActive(true); }
                     break;
-                case QuestState.CanFinish:
+                case QuestState.CAN_FINISH:
                     if (finishPoint) { canFinishIcon.SetActive(true); }
                     break;
-                case QuestState.Finished:
+                case QuestState.FINISHED:
                     break;
                 default:
                     Debug.LogWarning("Quest State not recognized by switch statement for quest icon: " + newState);

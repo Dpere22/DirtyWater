@@ -15,7 +15,7 @@ namespace QuestSystem
         public Quest(QuestInfoSO questInfo)
         {
             this.Info = questInfo;
-            this.State = QuestState.RequirementsNotMet;
+            this.State = QuestState.REQUIREMENTS_NOT_MET;
             this._currentQuestStepIndex = 0;
             this._questStepStates = new QuestStepState[Info.questStepPrefabs.Length];
             for (int i = 0; i < _questStepStates.Length; i++)
@@ -101,11 +101,11 @@ namespace QuestSystem
         {
             string fullStatus = "";
 
-            if (State == QuestState.RequirementsNotMet)
+            if (State == QuestState.REQUIREMENTS_NOT_MET)
             {
                 fullStatus = "Requirements are not yet met to start this quest.";
             }
-            else if (State == QuestState.CanStart)
+            else if (State == QuestState.CAN_START)
             {
                 fullStatus = "This quest can be started!";
             }
@@ -122,11 +122,11 @@ namespace QuestSystem
                     fullStatus += _questStepStates[_currentQuestStepIndex].status;
                 }
                 // when the quest is completed or turned in
-                if (State == QuestState.CanFinish)
+                if (State == QuestState.CAN_FINISH)
                 {
                     fullStatus += "The quest is ready to be turned in.";
                 }
-                else if (State == QuestState.Finished)
+                else if (State == QuestState.FINISHED)
                 {
                     fullStatus += "The quest has been completed!";
                 }

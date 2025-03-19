@@ -47,7 +47,7 @@ namespace QuestSystem
             foreach (Quest quest in _questMap.Values)
             {
                 // initialize any loaded quest steps
-                if (quest.State == QuestState.InProgress)
+                if (quest.State == QuestState.IN_PROGRESS)
                 {
                     quest.InstantiateCurrentQuestStep(this.transform);
                 }
@@ -82,7 +82,7 @@ namespace QuestSystem
             // check quest prerequisites for completion
             foreach (QuestInfoSO prerequisiteQuestInfo in quest.Info.questPrerequisites)
             {
-                if (GetQuestById(prerequisiteQuestInfo.ID).State != QuestState.Finished)
+                if (GetQuestById(prerequisiteQuestInfo.ID).State != QuestState.FINISHED)
                 {
                     meetsRequirements = false;
                 }
@@ -97,9 +97,9 @@ namespace QuestSystem
             foreach (Quest quest in _questMap.Values)
             {
                 // if we're now meeting the requirements, switch over to the CAN_START state
-                if (quest.State == QuestState.RequirementsNotMet && CheckRequirementsMet(quest))
+                if (quest.State == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest))
                 {
-                    ChangeQuestState(quest.Info.ID, QuestState.CanStart);
+                    ChangeQuestState(quest.Info.ID, QuestState.CAN_START);
                 }
             }
         }
@@ -108,7 +108,7 @@ namespace QuestSystem
         {
             Quest quest = GetQuestById(id);
             quest.InstantiateCurrentQuestStep(this.transform);
-            ChangeQuestState(quest.Info.ID, QuestState.InProgress);
+            ChangeQuestState(quest.Info.ID, QuestState.IN_PROGRESS);
         }
 
         private void AdvanceQuest(string id)
@@ -126,7 +126,7 @@ namespace QuestSystem
             // if there are no more steps, then we've finished all of them for this quest
             else
             {
-                ChangeQuestState(quest.Info.ID, QuestState.CanFinish);
+                ChangeQuestState(quest.Info.ID, QuestState.CAN_FINISH);
             }
         }
 
@@ -134,7 +134,7 @@ namespace QuestSystem
         {
             Quest quest = GetQuestById(id);
             ClaimRewards(quest);
-            ChangeQuestState(quest.Info.ID, QuestState.Finished);
+            ChangeQuestState(quest.Info.ID, QuestState.FINISHED);
         }
 
         private void ClaimRewards(Quest quest)

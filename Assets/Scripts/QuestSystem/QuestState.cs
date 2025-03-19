@@ -1,11 +1,12 @@
 namespace QuestSystem
 {
+    //Do not rename these, they must match the ink file
     public enum QuestState
     {
-        RequirementsNotMet,
-        CanStart,
-        InProgress,
-        CanFinish,
-        Finished
+        REQUIREMENTS_NOT_MET,
+        CAN_START,
+        IN_PROGRESS,
+        CAN_FINISH,
+        FINISHED
     }
 }
