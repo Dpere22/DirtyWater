@@ -30200,6 +30200,10 @@ PrefabInstance:
       propertyPath: finishPoint
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
+      propertyPath: dialogueKnotName
+      value: collectPlasticFinish
+      objectReference: {fileID: 0}
     - target: {fileID: 6392569842888977425, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
       propertyPath: m_Name
       value: QuestPoint
@@ -32882,7 +32886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aed46edf410e6148bb6121944507885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadQuestState: 1
+  loadQuestState: 0
 --- !u!1 &1593013253
 GameObject:
   m_ObjectHideFlags: 0
@@ -33374,6 +33378,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7587870149931358214, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
   m_PrefabInstance: {fileID: 2813129762854790385}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1770765686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770765688}
+  - component: {fileID: 1770765687}
+  m_Layer: 0
+  m_Name: TrashSpawner (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1770765687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770765686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb97f9aa0b976ea4c8e1eba96fc9eab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 3505890644713217795, guid: 00b7e370ada835147aac3d66e1ea6378, type: 3}
+  circleRadius: 2
+  replenishRate: 5
+  maxTrash: 10
+  Name: Test
+  spawnsPlastic: 1
+  spawnsWood: 1
+  spawnsMetal: 1
+  spawnKeys: []
+--- !u!4 &1770765688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770765686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.67, y: -0.48, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1779563852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33899,6 +33956,7 @@ SceneRoots:
   - {fileID: 2040015650}
   - {fileID: 906724905}
   - {fileID: 184806711}
+  - {fileID: 1770765688}
   - {fileID: 2023558376}
   - {fileID: 258253886}
   - {fileID: 844400044}

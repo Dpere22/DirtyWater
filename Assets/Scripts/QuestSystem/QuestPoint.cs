@@ -84,7 +84,7 @@ namespace QuestSystem
             if (quest.Info.ID.Equals(_questId))
             {
                 _currentQuestState = quest.State;
-                Debug.Log("Quest with id: " + _questId + "updated to state: " + _currentQuestState);
+                //Debug.Log("Quest with id: " + _questId + "updated to state: " + _currentQuestState);
                 _questIcon.SetState(_currentQuestState, startPoint, finishPoint);
             }
         }

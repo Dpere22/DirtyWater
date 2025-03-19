@@ -71,13 +71,9 @@ namespace QuestSystem
         private bool CheckRequirementsMet(Quest quest)
         {
             // start true and prove to be false
-            bool meetsRequirements = true;
+            bool meetsRequirements = !(_currentPlayerLevel < quest.Info.levelRequirement);
 
             // check player level requirements
-            if (_currentPlayerLevel < quest.Info.levelRequirement)
-            {
-                meetsRequirements = false;
-            }
 
             // check quest prerequisites for completion
             foreach (QuestInfoSO prerequisiteQuestInfo in quest.Info.questPrerequisites)
@@ -107,7 +103,7 @@ namespace QuestSystem
         private void StartQuest(string id) 
         {
             Quest quest = GetQuestById(id);
-            quest.InstantiateCurrentQuestStep(this.transform);
+            quest.InstantiateCurrentQuestStep(transform); //where the quest step code gets started
             ChangeQuestState(quest.Info.ID, QuestState.IN_PROGRESS);
         }
 
@@ -139,6 +135,7 @@ namespace QuestSystem
 
         private void ClaimRewards(Quest quest)
         {
+            Debug.Log("Claiming Rewards!");
             //GameEventsManager.instance.goldEvents.GoldGained(quest.info.goldReward);
             //GameEventsManager.instance.playerEvents.ExperienceGained(quest.info.experienceReward);
         }
@@ -179,10 +176,10 @@ namespace QuestSystem
 
         private void OnApplicationQuit()
         {
-            foreach (Quest quest in _questMap.Values)
-            {
-                SaveQuest(quest);
-            }
+            // foreach (Quest quest in _questMap.Values)
+            // {
+            //     SaveQuest(quest);
+            // }
         }
 
         private void SaveQuest(Quest quest)

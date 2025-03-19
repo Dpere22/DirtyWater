@@ -11,9 +11,9 @@ namespace QuestSystem
 
         public void InitializeQuestStep(string questId, int stepIndex, string questStepState)
         {
-            this._questId = questId;
-            this._stepIndex = stepIndex;
-            if (questStepState != null && questStepState != "")
+            _questId = questId;
+            _stepIndex = stepIndex;
+            if (!string.IsNullOrEmpty(questStepState))
             {
                 SetQuestStepState(questStepState);
             }
@@ -26,16 +26,16 @@ namespace QuestSystem
                 _isFinished = true;
                 GameEventsManager.Instance.QuestEvents.AdvanceQuest(_questId);
                 Debug.Log("Quest Finished!");
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
 
-        protected void ChangeState(string newState, string newStatus)
+        protected void ChangeState(string newState/*, string newStatus*/)
         {
             GameEventsManager.Instance.QuestEvents.QuestStepStateChange(
                 _questId, 
                 _stepIndex, 
-                new QuestStepState(newState, newStatus)
+                new QuestStepState(newState/*, newStatus*/)
             );
         }
 

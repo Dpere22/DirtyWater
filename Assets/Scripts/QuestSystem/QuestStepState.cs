@@ -6,16 +6,16 @@ namespace QuestSystem
         public string state;
         public string status;
 
-        public QuestStepState(string state, string status)
+        public QuestStepState(string state /*,string status*/)
         {
             this.state = state;
-            this.status = status;
+            //this.status = status;
         }
 
         public QuestStepState()
         {
             this.state = "";
-            this.status = "";
+            //this.status = "";
         }
     }
 }
