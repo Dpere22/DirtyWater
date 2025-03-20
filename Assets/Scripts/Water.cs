@@ -11,12 +11,14 @@ public class Water : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.Instance.DayEvents.OnDayEnd += EnableTrigger;
+        GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTrigger;
+        GameEventsManager.Instance.DayEvents.OnDayStart += EnableTrigger;
     }
 
     private void OnDisable()
     {
-        GameEventsManager.Instance.DayEvents.OnDayEnd -= EnableTrigger;
+        GameEventsManager.Instance.DayEvents.OnDayEnd -= DisableTrigger;
+        GameEventsManager.Instance.DayEvents.OnDayStart -= EnableTrigger;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -31,5 +33,10 @@ public class Water : MonoBehaviour
     private void EnableTrigger()
     {
         waterCollider.enabled = true;
+    }
+
+    private void DisableTrigger()
+    {
+        waterCollider.enabled = false;
     }
 }
