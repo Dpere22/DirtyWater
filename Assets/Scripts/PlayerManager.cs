@@ -33,18 +33,58 @@ public static class PlayerManager
     
 
     //Current player Trash inventory for the day
-    public static Dictionary<String, int> currentDayTrash = new()
+    public static List<string> currentDayTrash = new()
     {
-        { "Metal", 0 },
-        { "Plastic", 0 },
-        { "Wood", 0 }
     };
 
+
+    public static List<string> currentDayDroppedOff = new()
+    {
+    };
 
     public static List<String> Questitems = new()
     {
 
     };
+
+    //Recycle Trash
+    public static void RecycleTrash()
+    {
+        foreach(string item in currentDayTrash)
+        {
+            string value = TrashManager.TrashData[item][2];
+
+            inventory[TrashManager.TrashData[item][1]] += int.Parse(value);
+
+
+        }
+
+        foreach (string item in currentDayDroppedOff)
+        {
+            string value = TrashManager.TrashData[item][2];
+
+            inventory[TrashManager.TrashData[item][1]] += int.Parse(value);
+
+
+        }
+
+        currentDayTrash = new();
+        currentDayDroppedOff = new();
+    }
+
+
+    public static void UnloadCurrentInventory()
+    {
+        foreach (string item in currentDayTrash)
+        {
+            currentDayDroppedOff.Add(item);
+        }
+
+        currentDayTrash = new();
+
+
+    }
+
 
 
     public static void ResetGame()
@@ -57,9 +97,7 @@ public static class PlayerManager
         inventory["Metal"] = 0;
         inventory["Plastic"] = 0;
         inventory["Wood"] = 0;
-        currentDayTrash["Metal"] = 0;
-        currentDayTrash["Plastic"] = 0;
-        currentDayTrash["Wood"] = 0;
+        currentDayTrash = new();
         currentWeight = 0;
         PauseManager.GamePaused = false;
     }

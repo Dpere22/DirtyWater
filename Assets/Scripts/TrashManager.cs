@@ -5,7 +5,7 @@ public static class TrashManager
 {
 
 
-    //TrashData
+    //TrashData (Type, Material, Value, Sprite, Weight)
     public static Dictionary<string, List<string>> TrashData = new()
     {
         {
