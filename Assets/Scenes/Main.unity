@@ -28313,7 +28313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdd8fc379236a34895e1b32e630cc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  water: {fileID: 1593013257}
   waterSurfaceCollider: {fileID: 592371686}
 --- !u!1 &603627999
 GameObject:

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class WaterSurface : MonoBehaviour
 {
-    [SerializeField] private Water water;
     [SerializeField] private BoxCollider2D waterSurfaceCollider;
 
     private void OnEnable()
@@ -18,7 +17,7 @@ public class WaterSurface : MonoBehaviour
 
     private void Start()
     {
-        water.PlayerEnteredWater += PlayerEnteredWater;
+        GameEventsManager.Instance.DayEvents.OnEnterWater += PlayerEnteredWater;
     }
 
     private void PlayerEnteredWater()

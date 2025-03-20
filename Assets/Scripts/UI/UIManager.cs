@@ -25,24 +25,31 @@ public class UIManager : MonoBehaviour
     {
         tm.text = $"Time Left: {timer.GetRemainingTime():F2}";
     }
-    
 
-    private void Start()
+    private void OnEnable()
     {
         timer.OnTimerStart += EnableTimerText;
+        GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
         GameEventsManager.Instance.InputEvents.PauseGameAction += OnPause;
         GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         timer.OnTimerStart -= EnableTimerText;
+        GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
         GameEventsManager.Instance.InputEvents.PauseGameAction -= OnPause;
         GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
     }
     private void EnableTimerText()
     {
         _hasStarted = true;
+    }
+
+    private void DisableTimerText()
+    {
+        tm.text = "";
+        _hasStarted = false;
     }
  
     private void OnPause()

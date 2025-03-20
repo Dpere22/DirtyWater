@@ -14,4 +14,11 @@ public class DayEvents
     {
         OnDayStart?.Invoke();
     }
+
+    public event Action OnEnterWater;
+
+    public void EnterWater()
+    {
+        OnEnterWater?.Invoke();
+    }
 }
