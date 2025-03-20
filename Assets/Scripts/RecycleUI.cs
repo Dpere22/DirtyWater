@@ -38,9 +38,7 @@ public class RecycleUI : MonoBehaviour
     public void Recycle()
     {
 
-        PlayerManager.inventory["Metal"] += PlayerManager.currentDayTrash["Metal"];
-        PlayerManager.inventory["Wood"] += PlayerManager.currentDayTrash["Wood"];
-        PlayerManager.inventory["Plastic"] += PlayerManager.currentDayTrash["Plastic"];
+        PlayerManager.RecycleTrash();
         UpdateInventory();
 
         

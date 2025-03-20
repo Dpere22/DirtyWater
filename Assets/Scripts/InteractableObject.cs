@@ -96,13 +96,7 @@ public class Interactable : MonoBehaviour
 
         if (QuestOrTrash)
         {
-            int newValue = PlayerManager.currentDayTrash[Material] + ValueOfMaterial;
-
-            PlayerManager.currentDayTrash[Material] = newValue;
-
-            PlayerManager.currentWeight += weight;
-            
-            OceanHealth.AddHealth(1);
+            PlayerManager.currentDayTrash.Add(Name);
 
         }
         else
