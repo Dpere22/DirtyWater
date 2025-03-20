@@ -32,12 +32,15 @@ public class Shop : MonoBehaviour
 
     private void InteractHandler()
     {
+        Debug.Log("Attemtping to enter shop");
         if (!_playerInRange) return;
         if (!shopAvailable)
         {
+            Debug.Log("Shop isn't avaiable attempting to display dialog");
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
             return;
         }
+        Debug.Log("Entering SHop!");
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         
@@ -54,6 +57,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("In range!");
             _playerInRange = true;
         }
     }

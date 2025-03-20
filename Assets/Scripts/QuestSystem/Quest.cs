@@ -13,9 +13,9 @@ namespace QuestSystem
 
         public Quest(QuestInfoSO questInfo)
         {
-            this.Info = questInfo;
-            this.State = QuestState.REQUIREMENTS_NOT_MET;
-            this._currentQuestStepIndex = 0;
+            Info = questInfo;
+            State = QuestState.REQUIREMENTS_NOT_MET;
+            _currentQuestStepIndex = 0;
         }
 
         public void MoveToNextStep()
@@ -53,44 +53,11 @@ namespace QuestSystem
             }
             return questStepPrefab;
         }
-        
 
-        // public string GetFullStatusText()
-        // {
-        //     string fullStatus = "";
-        //
-        //     if (State == QuestState.REQUIREMENTS_NOT_MET)
-        //     {
-        //         fullStatus = "Requirements are not yet met to start this quest.";
-        //     }
-        //     else if (State == QuestState.CAN_START)
-        //     {
-        //         fullStatus = "This quest can be started!";
-        //     }
-        //     else 
-        //     {
-        //         // display all previous quests with strikethroughs
-        //         for (int i = 0; i < _currentQuestStepIndex; i++)
-        //         {
-        //             fullStatus += "<s>" + _questStepStates[i].status + "</s>\n";
-        //         }
-        //         // display the current step, if it exists
-        //         if (CurrentStepExists())
-        //         {
-        //             fullStatus += _questStepStates[_currentQuestStepIndex].status;
-        //         }
-        //         // when the quest is completed or turned in
-        //         if (State == QuestState.CAN_FINISH)
-        //         {
-        //             fullStatus += "The quest is ready to be turned in.";
-        //         }
-        //         else if (State == QuestState.FINISHED)
-        //         {
-        //             fullStatus += "The quest has been completed!";
-        //         }
-        //     }
-        //
-        //     return fullStatus;
-        // }
+        public void FinishQuest()
+        {
+            GameObject finishQuestPrefab = Info.rewardPrefab;
+            Object.Instantiate(finishQuestPrefab);
+        }
     }
 }

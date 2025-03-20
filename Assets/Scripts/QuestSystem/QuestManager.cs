@@ -8,9 +8,6 @@ namespace QuestSystem
     {
         private Dictionary<string, Quest> _questMap;
 
-        // quest start requirements
-        private int _currentPlayerLevel;
-
         private void Awake()
         {
             _questMap = CreateQuestMap();
@@ -56,9 +53,8 @@ namespace QuestSystem
         private bool CheckRequirementsMet(Quest quest)
         {
             // start true and prove to be false
-            bool meetsRequirements = !(_currentPlayerLevel < quest.Info.levelRequirement);
-
-            // check player level requirements
+            bool meetsRequirements = true;
+            
 
             // check quest prerequisites for completion
             foreach (QuestInfoSO prerequisiteQuestInfo in quest.Info.questPrerequisites)
@@ -114,15 +110,10 @@ namespace QuestSystem
         private void FinishQuest(string id)
         {
             Quest quest = GetQuestById(id);
-            ClaimRewards(quest);
+            quest.FinishQuest();
             ChangeQuestState(quest.Info.ID, QuestState.FINISHED);
         }
-
-        private void ClaimRewards(Quest quest)
-        {
-            Debug.Log("Claiming Rewards!");
-        }
-
+        
         private Dictionary<string, Quest> CreateQuestMap()
         {
             // loads all QuestInfoSO Scriptable Objects under the Assets/Resources/Quests folder

@@ -12,7 +12,6 @@ namespace Resources.Quests.CollectPlasticQuest
             _plasticCollected = PlayerManager.inventory["Plastic"];
             if (_plasticCollected >= 1)
             {
-                GameEventsManager.Instance.ShopEvents.EnableShop();
                 FinishQuestStep();
             }
         }

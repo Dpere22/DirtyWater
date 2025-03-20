@@ -11,15 +11,12 @@ namespace QuestSystem
         public string displayName;
 
         [Header("Requirements")]
-        public int levelRequirement;
         public QuestInfoSO[] questPrerequisites;
 
         [Header("Steps")]
         public GameObject[] questStepPrefabs;
 
-        [Header("Rewards")]
-        public int goldReward;
-        public int experienceReward;
+        [Header("RewardPrefab")] public GameObject rewardPrefab;
 
         // ensure the id is always the name of the Scriptable Object asset
         private void OnValidate()

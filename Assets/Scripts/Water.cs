@@ -5,7 +5,7 @@ using Events;
 public class Water : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private EdgeCollider2D waterCollider;
+    [SerializeField] private BoxCollider2D waterCollider;
 
     public Action PlayerEnteredWater;
 
