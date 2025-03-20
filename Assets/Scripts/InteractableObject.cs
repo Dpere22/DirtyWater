@@ -96,7 +96,7 @@ public class Interactable : MonoBehaviour
 
         if (QuestOrTrash)
         {
-            PlayerManager.currentDayTrash.Add(Name);
+            TrashManager.CollectTrash(Name);
 
         }
         else

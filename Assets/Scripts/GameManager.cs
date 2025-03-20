@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         screenCover.SetActive(true);
-        Recycle();
+        PlayerManager.RecycleTrash();
         StartCoroutine(WaitForGame());
         player.transform.position = spawnPoint.position;
         GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
@@ -42,17 +42,5 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         screenCover.SetActive(false);
-    }
-
-    private void Recycle()
-    {
-        PlayerManager.inventory["Metal"] += PlayerManager.currentDayTrash["Metal"];
-        PlayerManager.inventory["Wood"] += PlayerManager.currentDayTrash["Wood"];
-        PlayerManager.inventory["Plastic"] += PlayerManager.currentDayTrash["Plastic"];
-        PlayerManager.currentWeight = 0;
-
-        PlayerManager.currentDayTrash["Metal"] = 0;
-        PlayerManager.currentDayTrash["Wood"] = 0;
-        PlayerManager.currentDayTrash["Plastic"] = 0;
     }
 }

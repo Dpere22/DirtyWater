@@ -47,6 +47,12 @@ public static class TrashManager
 
     };
 
+    public static void CollectTrash(string trashName)
+    {
+        PlayerManager.currentDayTrash.Add(trashName);
+        PlayerManager.currentWeight += int.Parse(TrashData[trashName][4]);
+    }
+
 
 
 
