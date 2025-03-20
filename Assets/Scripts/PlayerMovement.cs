@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnJump()
     {
-        Debug.Log("Jumping with " + canJump);
+        //Debug.Log("Jumping with " + canJump);
         if (!canJump) return;
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(_movement.x, 0).normalized * PlayerManager.walkingSpeed;
         else
         {
-            Debug.Log("I can't move");  //For when player movement seems broken
+            //Debug.Log("I can't move");  //For when player movement seems broken
             rb.linearVelocity = new Vector2(0, 0);
         }
     }
