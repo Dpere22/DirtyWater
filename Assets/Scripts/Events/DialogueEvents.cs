@@ -1,24 +1,63 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using Ink.Runtime;
 
-public class DialogueEvents
+namespace Events
 {
-
-    public event Action<string> onEnterDialogue;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class DialogueEvents
     {
-        
-    }
+        public event Action<string> OnEnterDialogue;
+        public void EnterDialogue(string knotName) 
+        {
+            if (OnEnterDialogue != null) 
+            {
+                OnEnterDialogue(knotName);
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public event Action OnDialogueStarted;
+        public void DialogueStarted()
+        {
+            if (OnDialogueStarted != null) 
+            {
+                OnDialogueStarted();
+            }
+        }
 
-    public void EnterDialogue(string knotName)
-    {
-        onEnterDialogue?.Invoke(knotName);
+        public event Action OnDialogueFinished;
+        public void DialogueFinished() 
+        {
+            if (OnDialogueFinished != null) 
+            {
+                OnDialogueFinished();
+            }
+        }
+
+        public event Action<string, List<Choice>> OnDisplayDialogue;
+        public void DisplayDialogue(string dialogueLine ,List<Choice> dialogueChoices ) 
+        {
+            if (OnDisplayDialogue != null) 
+            {
+                OnDisplayDialogue(dialogueLine, dialogueChoices);
+            }
+        }
+
+        public event Action<int> OnUpdateChoiceIndex;
+        public void UpdateChoiceIndex(int choiceIndex) 
+        {
+            if (OnUpdateChoiceIndex != null) 
+            {
+                OnUpdateChoiceIndex(choiceIndex);
+            }
+        }
+
+        public event Action<string, Ink.Runtime.Object> OnUpdateInkDialogueVariable;
+        public void UpdateInkDialogueVariable(string name, Ink.Runtime.Object value) 
+        {
+            if (OnUpdateInkDialogueVariable != null) 
+            {
+                OnUpdateInkDialogueVariable(name, value);
+            }
+        }
     }
 }

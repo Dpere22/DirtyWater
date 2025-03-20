@@ -1,49 +1,44 @@
 using System;
+using QuestSystem;
 
-public class QuestEvents
+namespace Events
 {
-    public event Action<string> onStartQuest;
-    public void StartQuest(string id)
+    public class QuestEvents
     {
-        if (onStartQuest != null)
+        public event Action<string> OnStartQuest;
+        public void StartQuest(string id)
         {
-            onStartQuest(id);
+            if (OnStartQuest != null)
+            {
+                OnStartQuest(id);
+            }
         }
-    }
 
-    public event Action<string> onAdvanceQuest;
-    public void AdvanceQuest(string id)
-    {
-        if (onAdvanceQuest != null)
+        public event Action<string> OnAdvanceQuest;
+        public void AdvanceQuest(string id)
         {
-            onAdvanceQuest(id);
+            if (OnAdvanceQuest != null)
+            {
+                OnAdvanceQuest(id);
+            }
         }
-    }
 
-    public event Action<string> onFinishQuest;
-    public void FinishQuest(string id)
-    {
-        if (onFinishQuest != null)
+        public event Action<string> OnFinishQuest;
+        public void FinishQuest(string id)
         {
-            onFinishQuest(id);
+            if (OnFinishQuest != null)
+            {
+                OnFinishQuest(id);
+            }
         }
-    }
 
-    public event Action<Quest> onQuestStateChange;
-    public void QuestStateChange(Quest quest)
-    {
-        if (onQuestStateChange != null)
+        public event Action<Quest> OnQuestStateChange;
+        public void QuestStateChange(Quest quest)
         {
-            onQuestStateChange(quest);
-        }
-    }
-
-    public event Action<string, int, QuestStepState> onQuestStepStateChange;
-    public void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
-    {
-        if (onQuestStepStateChange != null)
-        {
-            onQuestStepStateChange(id, stepIndex, questStepState);
+            if (OnQuestStateChange != null)
+            {
+                OnQuestStateChange(quest);
+            }
         }
     }
 }

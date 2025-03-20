@@ -9,17 +9,23 @@ namespace Events
         public DialogueEvents DialogueEvents;
         public InputEvents InputEvents;
         public QuestEvents QuestEvents;
+        public PlayerEvents PlayerEvents;
+        public DayEvents DayEvents;
+        public ShopEvents ShopEvents;
 
-        public void Awake()
+        private void Awake()
         {
             if (Instance != null)
             {
                 Debug.LogError("Found more than one Game Events Manager in the scene.");
             }
             Instance = this;
-            //DialogueEvents = new DialogueEvents();
+            DialogueEvents = new DialogueEvents();
             InputEvents = new InputEvents();
-            //QuestEvents = new QuestEvents();
+            QuestEvents = new QuestEvents();
+            PlayerEvents = new PlayerEvents();
+            DayEvents = new DayEvents();
+            ShopEvents = new ShopEvents();
         }
     }
 }

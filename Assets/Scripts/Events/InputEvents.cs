@@ -1,4 +1,5 @@
 using System;
+using Input;
 using UnityEngine;
 
 namespace Events
@@ -12,6 +13,15 @@ namespace Events
         public event Action JumpAction;
         
         public event Action InteractAction;
+
+        public InputEventContext InputEventContext { get; private set; } = InputEventContext.Default;
+
+        public event Action<InputEventContext> OnSubmitPressed;
+
+        public void ChangeInputEventContext(InputEventContext newContext)
+        {
+            InputEventContext = newContext;
+        }
 
         public void PausePressed()
         {
@@ -40,6 +50,11 @@ namespace Events
         public void InteractPressed()
         {
             InteractAction?.Invoke();
+        }
+
+        public void SubmitPressed()
+        {
+            OnSubmitPressed?.Invoke(InputEventContext);
         }
     }
 }
