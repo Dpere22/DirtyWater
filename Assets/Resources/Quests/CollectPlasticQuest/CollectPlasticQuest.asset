@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: CollectPlasticQuest
   displayName: Collect the plastic!
-  levelRequirement: 0
   questPrerequisites: []
   questStepPrefabs:
   - {fileID: 2803187322449176872, guid: 73df02afed9a8be4cbd75419e1cdded9, type: 3}
-  goldReward: 50
-  experienceReward: 250
+  rewardPrefab: {fileID: 2082125547827032761, guid: 96425470d558c594abe173437cac73fd, type: 3}
