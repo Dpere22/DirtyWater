@@ -8,4 +8,10 @@ public class DayEvents
     {
         OnDayEnd?.Invoke();
     }
+
+    public event Action OnDayStart;
+    public void DayStart()
+    {
+        OnDayStart?.Invoke();
+    }
 }

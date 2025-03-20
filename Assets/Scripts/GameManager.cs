@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private GameObject player;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameObject screenCover;
     void Start()
     {
         timer.OnTimerComplete += GameEventsManager.Instance.DayEvents.DayEnd;
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour
     private void OnDayEnd()
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
-        screenCover.SetActive(true);
         PlayerManager.RecycleTrash();
         StartCoroutine(WaitForGame());
         player.transform.position = spawnPoint.position;
@@ -41,6 +39,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitForGame()
     {
         yield return new WaitForSeconds(3f);
-        screenCover.SetActive(false);
+        GameEventsManager.Instance.DayEvents.DayStart();
+        Debug.Log("Starting the day!");
     }
 }
