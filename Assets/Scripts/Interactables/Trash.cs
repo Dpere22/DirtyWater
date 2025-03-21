@@ -58,7 +58,7 @@ namespace Interactables
 
         private void OnSubmit(InputEventContext context)
         {
-            if (!_inRange) return;
+            if (!_inRange || !context.Equals(InputEventContext.Default)) return;
             CollectTrash();
         }
 
