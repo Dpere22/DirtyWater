@@ -22,12 +22,12 @@ public class Shop : MonoBehaviour
     }
     private void Start()
     {
-        GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnInteractPressed += InteractHandler;
     }
 
     private void OnDestroy()
     {
-        if(player) GameEventsManager.Instance.InputEvents.InteractAction -= InteractHandler;
+        if(player) GameEventsManager.Instance.InputEvents.OnInteractPressed -= InteractHandler;
     }
 
     private void InteractHandler()

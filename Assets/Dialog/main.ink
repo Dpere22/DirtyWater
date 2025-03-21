@@ -14,3 +14,7 @@ INCLUDE collect_plastic_finish_npc.ink
 Seems this shop is in need of repair
 I should talk to that man about it
 -> END
+
+= cannotCollectTrash
+I don't have what I need to collect this yet!
+-> END

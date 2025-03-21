@@ -22,7 +22,7 @@ namespace Dialog
     
         private void Start()
         {
-            GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
+            GameEventsManager.Instance.InputEvents.OnInteractPressed += InteractHandler;
         }
 
         private void Update()

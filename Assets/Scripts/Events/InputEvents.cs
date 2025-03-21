@@ -12,7 +12,7 @@ namespace Events
         public event Action<Vector2> MoveAction;
         public event Action JumpAction;
         
-        public event Action InteractAction;
+        public event Action OnInteractPressed;
 
         public InputEventContext InputEventContext { get; private set; } = InputEventContext.Default;
 
@@ -49,7 +49,7 @@ namespace Events
 
         public void InteractPressed()
         {
-            InteractAction?.Invoke();
+            OnInteractPressed?.Invoke();
         }
 
         public void SubmitPressed()
