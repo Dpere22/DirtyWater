@@ -10,6 +10,9 @@ public class Interactable : MonoBehaviour
     {
     };
 
+    [Range(0f, 100f)] public float spawnRate;
+    public GameObject prefab;
+
 
     public string Name = "";
     public string Type = "";
@@ -31,7 +34,7 @@ public class Interactable : MonoBehaviour
         if (transform.parent is not null)
         {
             //Debug.Log("got keys");
-            spawnKeys = transform.parent.gameObject.GetComponent<TrashSpawner>().setSpawns();
+            //spawnKeys = transform.parent.gameObject.GetComponent<TrashSpawner>().setSpawns();
         }
 
 
@@ -45,7 +48,7 @@ public class Interactable : MonoBehaviour
         string X = this.transform.position.x.ToString();
         string Y = this.transform.position.y.ToString();
 
-        transform.parent.gameObject.GetComponent<TrashSpawner>().getInfo(Name, X, Y);
+        //transform.parent.gameObject.GetComponent<TrashSpawner>().getInfo(Name, X, Y);
         
     }
 
@@ -105,7 +108,7 @@ public class Interactable : MonoBehaviour
         }
 
 
-        transform.parent.gameObject.GetComponent<TrashSpawner>().removeTrashFromList(Name);
+        //transform.parent.gameObject.GetComponent<TrashSpawner>().removeTrashFromList(Name);
 
         Destroy(gameObject);
     }
