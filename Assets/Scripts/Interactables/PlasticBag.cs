@@ -1,15 +1,17 @@
+using UnityEngine;
+
 namespace Interactables
 {
-    public class PlasticBottle : Trash
+    public class PlasticBag : Trash
     {
         protected override string SetTrashId()
         {
-            return "plasticBottle";
+            return "plasticBag";
         }
 
         protected override bool CheckCanCollect()
         {
-            return true;
+            return false;
         }
     }
 }

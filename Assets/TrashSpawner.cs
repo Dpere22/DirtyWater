@@ -7,6 +7,7 @@ public class TrashSpawner : MonoBehaviour
 {
     //Trash Objects this spawner should spawn
     public List<TrashInfo> objectsToSpawn;
+    private readonly Dictionary<int, List<GameObject>> _currAmount = new(); //keeps track of all the currently spawned game objects
 
     public float spawnRadius = 1f;
 
@@ -22,21 +23,33 @@ public class TrashSpawner : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < objectsToSpawn.Count; i++)
+        {
+            _currAmount[i] = new List<GameObject>();
+        }
         RespawnTrash();
+    }
+
+    void Update()
+    {
+        //Cleans up collected garbage, this is dangerous code but will work for now
+        foreach (var lst in _currAmount.Values)
+        {
+            lst.RemoveAll(item => !item);
+        }
     }
     
     void RespawnTrash()
     {
-        if (objectsToSpawn.Count == 0) return;
-
-        foreach (var entry in objectsToSpawn)
+        for (int i = 0; i < objectsToSpawn.Count; i++)
         {
-            int amountToSpawn = entry.spawnRate;
+            int amountToSpawn = Mathf.Abs(_currAmount[i].Count - objectsToSpawn[i].spawnRate);
 
-            for (int i = 0; i < amountToSpawn; i++)
+            for (int j = 0; j < amountToSpawn; j++)
             {
                 Vector2 spawnPosition = GetRandomPointInCircle();
-                Instantiate(entry.prefab, spawnPosition, Quaternion.identity);
+                GameObject newTrash = Instantiate(objectsToSpawn[i].prefab, spawnPosition, Quaternion.identity);
+                _currAmount[i].Add(newTrash);
             }
         }
     }

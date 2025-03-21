@@ -26325,7 +26325,7 @@ MonoBehaviour:
   objectsToSpawn:
   - prefab: {fileID: 4143419689214467223, guid: d0bdcd45e808cf94896fa97d8606f618, type: 3}
     spawnRate: 5
-  - prefab: {fileID: 5519297648429637272, guid: 6e36299e49024a248b851769e94bcf39, type: 3}
+  - prefab: {fileID: 4655280941963092474, guid: 6122987506305d443a5f865b944e40bd, type: 3}
     spawnRate: 2
   spawnRadius: 4.17
 --- !u!4 &184806711

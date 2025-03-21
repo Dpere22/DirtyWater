@@ -33,7 +33,6 @@ namespace Interactables
 
         private void CollectTrash()
         {
-            Debug.Log("CollectingTrash");
             if (!CheckCanCollect())
             {
                 DisplayCannotCollect();
