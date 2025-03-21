@@ -126,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerWalking()
     {
+        _facingRight = false;
         sr.sprite = walkSprite;
         sr.flipY = false;
         transform.rotation = _playerWalkRotation;
