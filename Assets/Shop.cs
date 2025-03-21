@@ -1,4 +1,5 @@
 using Events;
+using Input;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -23,17 +24,17 @@ public class Shop : MonoBehaviour
     }
     private void Start()
     {
-        GameEventsManager.Instance.InputEvents.OnInteractPressed += InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
     }
 
     private void OnDestroy()
     {
-        if(player) GameEventsManager.Instance.InputEvents.OnInteractPressed -= InteractHandler;
+        if(player) GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
     }
 
-    private void InteractHandler()
+    private void InteractHandler(InputEventContext context)
     {
-        if (!_playerInRange) return;
+        if (!_playerInRange || !context.Equals(InputEventContext.Default)) return;
         interactIcon.SetActive(false);
         if (!shopAvailable)
         {

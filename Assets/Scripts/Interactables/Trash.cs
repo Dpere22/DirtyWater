@@ -1,4 +1,5 @@
 using Events;
+using Input;
 using UnityEngine;
 
 namespace Interactables
@@ -19,12 +20,12 @@ namespace Interactables
         }
         private void OnEnable()
         {
-            GameEventsManager.Instance.InputEvents.OnInteractPressed += OnSubmit;
+            GameEventsManager.Instance.InputEvents.OnSubmitPressed += OnSubmit;
         }
 
         private void OnDisable()
         {
-            GameEventsManager.Instance.InputEvents.OnInteractPressed -= OnSubmit;
+            GameEventsManager.Instance.InputEvents.OnSubmitPressed -= OnSubmit;
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -38,12 +39,6 @@ namespace Interactables
             collectIcon.SetActive(false);
             _inRange = false;
         }
-
-        private void ShowCollectIcon()
-        {
-            
-        }
-
         private void CollectTrash()
         {
             if (!CheckCanCollect())
@@ -61,7 +56,7 @@ namespace Interactables
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("cannotCollectTrash");
         }
 
-        private void OnSubmit()
+        private void OnSubmit(InputEventContext context)
         {
             if (!_inRange) return;
             CollectTrash();
