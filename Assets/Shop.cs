@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
     private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject interactIcon;
     private bool _inShop;
     public bool shopAvailable;
 
@@ -32,15 +33,13 @@ public class Shop : MonoBehaviour
 
     private void InteractHandler()
     {
-        //Debug.Log("Attemtping to enter shop");
         if (!_playerInRange) return;
+        interactIcon.SetActive(false);
         if (!shopAvailable)
         {
-            //Debug.Log("Shop isn't avaiable attempting to display dialog");
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
             return;
         }
-        //Debug.Log("Entering Shop!");
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         
@@ -57,7 +56,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("In range!");
+            interactIcon.SetActive(true);
             _playerInRange = true;
         }
     }
@@ -66,6 +65,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            interactIcon.SetActive(false);
             _playerInRange = false;
         }
     }
