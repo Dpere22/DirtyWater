@@ -54,6 +54,7 @@ namespace Events
 
         public void SubmitPressed()
         {
+            if (GameEventsManager.Instance.DayEvents.IsTransitioning) return;
             OnSubmitPressed?.Invoke(InputEventContext);
         }
     }
