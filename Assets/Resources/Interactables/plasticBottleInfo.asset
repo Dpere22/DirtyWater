@@ -17,3 +17,4 @@ MonoBehaviour:
   plasticValue: 1
   woodValue: 0
   metalValue: 0
+  canCollect: 1

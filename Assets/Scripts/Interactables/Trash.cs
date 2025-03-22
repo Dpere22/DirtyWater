@@ -36,7 +36,7 @@ namespace Interactables
         }
         private void CollectTrash()
         {
-            if (!TrashManager.CheckCanCollect(garbageInfo.garbageId))
+            if (!GameEventsManager.Instance.TrashManager.CheckCanCollect(garbageInfo.garbageId))
             {
                 DisplayCannotCollect();
                 return;

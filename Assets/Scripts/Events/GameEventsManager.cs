@@ -12,6 +12,7 @@ namespace Events
         public PlayerEvents PlayerEvents;
         public DayEvents DayEvents;
         public ShopEvents ShopEvents;
+        public TrashManager TrashManager; //This code is a bit odd here but will work for now.
 
         private void Awake()
         {
@@ -26,6 +27,7 @@ namespace Events
             PlayerEvents = new PlayerEvents();
             DayEvents = new DayEvents();
             ShopEvents = new ShopEvents();
+            TrashManager = new TrashManager();
         }
     }
 }

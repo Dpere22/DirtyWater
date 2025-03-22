@@ -10,6 +10,7 @@ namespace Interactables
         [SerializeField] public int plasticValue;
         [SerializeField] public int woodValue;
         [SerializeField] public int metalValue;
+        [SerializeField] public bool canCollect;
 
     }
 }
