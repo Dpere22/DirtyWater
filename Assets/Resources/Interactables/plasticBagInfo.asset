@@ -17,3 +17,6 @@ MonoBehaviour:
   plasticValue: 5
   woodValue: 0
   metalValue: 0
+  canCollect: 0
+  description: A plastic bag full of old garbage. It's filled to the brim with plastic
+    garbage.

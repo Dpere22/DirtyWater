@@ -18,6 +18,8 @@ namespace Events
 
         public event Action<InputEventContext> OnSubmitPressed;
 
+        public event Action OnInventoryPressed;
+
         public void ChangeInputEventContext(InputEventContext newContext)
         {
             InputEventContext = newContext;
@@ -56,6 +58,11 @@ namespace Events
         {
             if (GameEventsManager.Instance.DayEvents.IsTransitioning) return;
             OnSubmitPressed?.Invoke(InputEventContext);
+        }
+
+        public void InventoryPressed()
+        {
+            OnInventoryPressed?.Invoke();
         }
     }
 }

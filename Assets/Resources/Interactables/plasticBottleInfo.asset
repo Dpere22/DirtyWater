@@ -18,3 +18,4 @@ MonoBehaviour:
   woodValue: 0
   metalValue: 0
   canCollect: 1
+  description: A lightweight plastic bottle. Used once, but remains forever.

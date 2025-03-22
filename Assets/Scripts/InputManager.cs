@@ -27,4 +27,10 @@ public class InputManager : MonoBehaviour
     {
         GameEventsManager.Instance.InputEvents.SubmitPressed();
     }
+
+    public void OnOpenInventory(InputValue value)
+    {
+        GameEventsManager.Instance.InputEvents.InventoryPressed();
+    }
+    
 }
