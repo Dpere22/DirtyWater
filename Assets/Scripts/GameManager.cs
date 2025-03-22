@@ -33,18 +33,11 @@ public class GameManager : MonoBehaviour
         PlayerManager.RecycleTrash();
         StartCoroutine(WaitForGame());
     }
-
-    private IEnumerator DayTransitionItems()
-    {
-        yield return new WaitForSeconds(1f);
-    }
-
     private IEnumerator WaitForGame()
     {
         yield return new WaitForSeconds(3f);
         player.transform.position = spawnPoint.position;
         GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
         GameEventsManager.Instance.DayEvents.DayStart();
-        Debug.Log("Starting the day!");
     }
 }

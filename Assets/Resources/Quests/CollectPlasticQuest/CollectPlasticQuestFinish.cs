@@ -7,7 +7,6 @@ namespace Resources.Quests.CollectPlasticQuest
     {
         public void Start()
         {
-            Debug.Log("Finishing the Quest!");
             GameEventsManager.Instance.ShopEvents.EnableShop();
             Destroy(gameObject);
         }

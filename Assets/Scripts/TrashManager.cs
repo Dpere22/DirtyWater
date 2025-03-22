@@ -1,56 +1,17 @@
-using System;
 using System.Collections.Generic;
 
 public static class TrashManager
 {
-
-
-    //TrashData (Type, Material, Value, Sprite, Weight)
-    public static Dictionary<string, List<string>> TrashData = new()
+    public static readonly Dictionary<string, bool> CanCollectInfo = new()
     {
-        {
-            "PlasticTrash",
-            new List<string>
-        {"Trash", "Plastic", "3", "0", "5"}
-        },
-        {
-            "WaterBottle",
-            new List<string>
-        {"Trash", "Plastic", "1", "3", "2"}
-        },
-        {
-            "RustyBarrel",
-            new List<string>
-        {"Trash", "Metal", "2", "1", "20"}
-        },
-        {
-            "RustyCan",
-            new List<string>
-        {"Trash", "Metal", "1", "2", "5"}
-        },
-        {
-            "WoodenCrate",
-            new List<string>
-        {"Trash", "Wood", "3", "4", "15"}
-        },
-        {
-            "WoodenPlank",
-            new List<string>
-        {"Trash", "Wood", "1", "5", "5"}
-        }
-    };
-    public static List<string> keys = new(TrashData.Keys);
-
-
-    public static Dictionary<string, List<List<string>>> TrashSpawnerData = new()
-    {
-
+        {"plasticBottle", true },
+        {"plasticBag", false},
+        {"metalBarrel", false},
     };
 
-    public static void CollectTrash(string trashName)
+    public static bool CheckCanCollect(string garbageId)
     {
-        PlayerManager.currentDayTrash.Add(trashName);
-        PlayerManager.currentWeight += int.Parse(TrashData[trashName][4]);
+        return CanCollectInfo[garbageId];
     }
 
 

@@ -1,4 +1,5 @@
 using Events;
+using Input;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -7,6 +8,7 @@ public class Shop : MonoBehaviour
     private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject interactIcon;
     private bool _inShop;
     public bool shopAvailable;
 
@@ -22,25 +24,23 @@ public class Shop : MonoBehaviour
     }
     private void Start()
     {
-        GameEventsManager.Instance.InputEvents.InteractAction += InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
     }
 
     private void OnDestroy()
     {
-        if(player) GameEventsManager.Instance.InputEvents.InteractAction -= InteractHandler;
+        if(player) GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
     }
 
-    private void InteractHandler()
+    private void InteractHandler(InputEventContext context)
     {
-        //Debug.Log("Attemtping to enter shop");
-        if (!_playerInRange) return;
+        if (!_playerInRange || !context.Equals(InputEventContext.Default)) return;
+        interactIcon.SetActive(false);
         if (!shopAvailable)
         {
-            //Debug.Log("Shop isn't avaiable attempting to display dialog");
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
             return;
         }
-        //Debug.Log("Entering Shop!");
         _inShop = !_inShop;
         shopUI.SetActive(_inShop);
         
@@ -57,7 +57,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("In range!");
+            interactIcon.SetActive(true);
             _playerInRange = true;
         }
     }
@@ -66,6 +66,7 @@ public class Shop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            interactIcon.SetActive(false);
             _playerInRange = false;
         }
     }

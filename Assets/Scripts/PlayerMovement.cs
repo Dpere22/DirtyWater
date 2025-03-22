@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Events;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    private bool _facingRight;
+    [FormerlySerializedAs("_facingRight")] public bool facingRight;
     private Vector2 _rayDirection = new(-0.15f, -0.25f);
     
 
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        
         _flip = WalkFlip;
         _move = Walk;
         _playerWalkRotation = transform.rotation;
@@ -98,11 +100,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnJump()
     {
-        //Debug.Log("Jumping with " + canJump);
         if (!canJump) return;
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
-        Vector2 direction = new Vector2(-4.0f, 4.0f);
+        Vector2 direction = new Vector2(4.0f, 4.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
         canJump = false;
     }
@@ -126,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerWalking()
     {
+        facingRight = true;
         sr.sprite = walkSprite;
         sr.flipY = false;
         transform.rotation = _playerWalkRotation;
@@ -174,8 +176,8 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movement.x)
         {
-            case > 0 when !_facingRight:
-            case < 0 when _facingRight:
+            case > 0 when !facingRight:
+            case < 0 when facingRight:
                 _flip();
                 break;
         }
@@ -195,19 +197,19 @@ public class PlayerMovement : MonoBehaviour
     private void WalkFlip()
     {
         // Toggle the facing direction
-        _facingRight = !_facingRight;
+        facingRight = !facingRight;
 
         // Flip the player's scale on the X-axis
-        float newYRotation = _facingRight ? 0f : 180f;
+        float newYRotation = facingRight ? 0f : 180f;
         playerTransform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         
-        _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
+        _rayDirection = facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
     }
 
     private void WaterFlip()
     {
-        _facingRight = !_facingRight;
+        facingRight = !facingRight;
         // Flip the player's scale on the X-axis
-        sr.flipY = !_facingRight;
+        sr.flipY = !facingRight;
     }
 }

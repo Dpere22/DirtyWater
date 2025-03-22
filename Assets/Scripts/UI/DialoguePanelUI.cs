@@ -1,92 +1,94 @@
-using System.Collections;
 using System.Collections.Generic;
 using Events;
-using UnityEngine;
-using TMPro;
 using Ink.Runtime;
-using UI;
+using TMPro;
+using UnityEngine;
 
-public class DialoguePanelUI : MonoBehaviour
+namespace UI
 {
-    [Header("Components")]
-    [SerializeField] private GameObject contentParent;
-    [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private DialogueChoiceButton[] choiceButtons;
-
-    private void Awake()
+    public class DialoguePanelUI : MonoBehaviour
     {
-        contentParent.SetActive(false);
-        ResetPanel();
-    }
+        [Header("Components")]
+        [SerializeField] private GameObject contentParent;
+        [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private DialogueChoiceButton[] choiceButtons;
 
-    private void OnEnable()
-    {
-        GameEventsManager.Instance.DialogueEvents.OnDialogueStarted += DialogueStarted;
-        GameEventsManager.Instance.DialogueEvents.OnDialogueFinished += DialogueFinished;
-        GameEventsManager.Instance.DialogueEvents.OnDisplayDialogue += DisplayDialogue;
-    }
-
-    private void OnDisable()
-    {
-        GameEventsManager.Instance.DialogueEvents.OnDialogueStarted -= DialogueStarted;
-        GameEventsManager.Instance.DialogueEvents.OnDialogueFinished -= DialogueFinished;
-        GameEventsManager.Instance.DialogueEvents.OnDisplayDialogue -= DisplayDialogue;
-    }
-
-    private void DialogueStarted()
-    {
-        contentParent.SetActive(true);
-    }
-
-    private void DialogueFinished()
-    {
-        contentParent.SetActive(false);
-
-        // reset anything for next time
-        ResetPanel();
-    }
-
-    private void DisplayDialogue(string dialogueLine ,List<Choice> dialogueChoices)
-    {
-        dialogueText.text = dialogueLine;
-
-        // defensive check - if there are more choices coming in than we can support, log an error
-        if (dialogueChoices.Count > choiceButtons.Length) 
+        private void Awake()
         {
-            Debug.LogError("More dialogue choices ("
-                + dialogueChoices.Count + ") came through than are supported ("
-                + choiceButtons.Length + ").");
+            contentParent.SetActive(false);
+            ResetPanel();
         }
-        //
-        // start with all of the choice buttons hidden
-        foreach (DialogueChoiceButton choiceButton in choiceButtons) 
+
+        private void OnEnable()
         {
-            choiceButton.gameObject.SetActive(false);
+            GameEventsManager.Instance.DialogueEvents.OnDialogueStarted += DialogueStarted;
+            GameEventsManager.Instance.DialogueEvents.OnDialogueFinished += DialogueFinished;
+            GameEventsManager.Instance.DialogueEvents.OnDisplayDialogue += DisplayDialogue;
+            GameEventsManager.Instance.DayEvents.OnDayEnd += DialogueFinished;
         }
-        
-        // enable and set info for buttons depending on ink choice information
-        int choiceButtonIndex = dialogueChoices.Count - 1;
-        for (int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
+
+        private void OnDisable()
         {
-            Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
-            DialogueChoiceButton choiceButton = choiceButtons[choiceButtonIndex];
-        
-            choiceButton.gameObject.SetActive(true);
-            choiceButton.SetChoiceText(dialogueChoice.text);
-            choiceButton.SetChoiceIndex(inkChoiceIndex);
-        
-            if (inkChoiceIndex == 0)
+            GameEventsManager.Instance.DialogueEvents.OnDialogueStarted -= DialogueStarted;
+            GameEventsManager.Instance.DialogueEvents.OnDialogueFinished -= DialogueFinished;
+            GameEventsManager.Instance.DialogueEvents.OnDisplayDialogue -= DisplayDialogue;
+        }
+
+        private void DialogueStarted()
+        {
+            contentParent.SetActive(true);
+        }
+
+        private void DialogueFinished()
+        {
+            contentParent.SetActive(false);
+
+            // reset anything for next time
+            ResetPanel();
+        }
+
+        private void DisplayDialogue(string dialogueLine ,List<Choice> dialogueChoices)
+        {
+            dialogueText.text = dialogueLine;
+
+            // defensive check - if there are more choices coming in than we can support, log an error
+            if (dialogueChoices.Count > choiceButtons.Length) 
             {
-                choiceButton.SelectButton();
-                GameEventsManager.Instance.DialogueEvents.UpdateChoiceIndex(inkChoiceIndex);
+                Debug.LogError("More dialogue choices ("
+                               + dialogueChoices.Count + ") came through than are supported ("
+                               + choiceButtons.Length + ").");
+            }
+            //
+            // start with all the choice buttons hidden
+            foreach (DialogueChoiceButton choiceButton in choiceButtons) 
+            {
+                choiceButton.gameObject.SetActive(false);
             }
         
-            choiceButtonIndex--;
+            // enable and set info for buttons depending on ink choice information
+            int choiceButtonIndex = dialogueChoices.Count - 1;
+            for (int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
+            {
+                Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
+                DialogueChoiceButton choiceButton = choiceButtons[choiceButtonIndex];
+        
+                choiceButton.gameObject.SetActive(true);
+                choiceButton.SetChoiceText(dialogueChoice.text);
+                choiceButton.SetChoiceIndex(inkChoiceIndex);
+        
+                if (inkChoiceIndex == 0)
+                {
+                    choiceButton.SelectButton();
+                    GameEventsManager.Instance.DialogueEvents.UpdateChoiceIndex(inkChoiceIndex);
+                }
+        
+                choiceButtonIndex--;
+            }
         }
-    }
 
-    private void ResetPanel()
-    {
-        dialogueText.text = "";
+        private void ResetPanel()
+        {
+            dialogueText.text = "";
+        }
     }
 }

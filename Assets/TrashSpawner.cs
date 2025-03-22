@@ -1,156 +1,75 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Events;
 
 
 public class TrashSpawner : MonoBehaviour
 {
-    //Empty Object for spawning
-    public GameObject objectToSpawn;
+    //Trash Objects this spawner should spawn
+    public List<TrashInfo> objectsToSpawn;
+    private readonly Dictionary<int, List<GameObject>> _currAmount = new(); //keeps track of all the currently spawned game objects
 
-    public float circleRadius = 1;
-    public float replenishRate = 3;
-    public float maxTrash = 1;
-    public string Name = "";
+    public float spawnRadius = 1f;
 
+    private void OnEnable()
+    {
+        GameEventsManager.Instance.DayEvents.OnDayStart += RespawnTrash;
+    }
 
-    public bool spawnsPlastic = false;
-    public bool spawnsWood = false;
-    public bool spawnsMetal = false;
+    private void OnDisable()
+    {
+        GameEventsManager.Instance.DayEvents.OnDayStart -= RespawnTrash;
+    }
 
-
-    public List<string> spawnKeys = new();
-
-
-    public static List<List<string>> currentTrashList = new();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        getSpawns();
-
-
-        if(TrashManager.TrashSpawnerData.ContainsKey(Name))
+        for (int i = 0; i < objectsToSpawn.Count; i++)
         {
-            //Gets list from dictionary if key exists
-            currentTrashList = TrashManager.TrashSpawnerData[Name];  
+            _currAmount[i] = new List<GameObject>();
         }
-        else
+        RespawnTrash();
+    }
+
+    void Update()
+    {
+        //Cleans up collected garbage, this is dangerous code but will work for now
+        foreach (var lst in _currAmount.Values)
         {
-            //Makes a list if no key exists
-            TrashManager.TrashSpawnerData[Name] = currentTrashList;
+            lst.RemoveAll(item => !item);
         }
-        
-
-        if(currentTrashList.Count > 0)
+    }
+    
+    void RespawnTrash()
+    {
+        for (int i = 0; i < objectsToSpawn.Count; i++)
         {
-            respawnTrash(currentTrashList);
-        }
-        
+            int amountToSpawn = Mathf.Abs(_currAmount[i].Count - objectsToSpawn[i].spawnRate);
 
-
-        for(int I = 0; I<replenishRate; I++)
-        {
-            spawnRandomTrash();
-        }
-
-    }
-
-
-
-    private void Update()
-    {
-        //update list in storage
-        TrashManager.TrashSpawnerData[Name] = currentTrashList;
-
-    }
-
-    public void spawnRandomTrash()
-    {
-        Vector2 randomPosition = Random.insideUnitCircle * circleRadius;
-
-        Vector2 spawnPoint = new Vector2(transform.position.x, transform.position.y) + randomPosition;
-
-        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
-
-        temp.transform.parent = this.transform;
-        
-    }
-
-    public void spawnSpecifcTrash(string Name, float X, float Y)
-    {
-
-        Vector2 spawnPoint = new Vector2(X, Y);
-
-        GameObject temp = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity) as GameObject;
-
-        temp.transform.parent = this.transform;
-
-        temp.GetComponent<Interactable>().SpecificSpawn(Name);
-
-    }
-
-    public void getInfo(string Name, string X, string Y)
-    {
-        List<string> temp = new()
-        {
-            Name,
-            X,
-            Y
-        };
-
-        currentTrashList.Add(temp);
-
-    }
-
-    public List<string> setSpawns()
-    {
-        return spawnKeys;
-    }
-
-    public void removeTrashFromList(string target)
-    {
-        for(int I = 0; I < currentTrashList.Count; I++)
-        {
-            if (currentTrashList[I][0] == target)
+            for (int j = 0; j < amountToSpawn; j++)
             {
-                currentTrashList.RemoveAt(I);
-                return;
+                Vector2 spawnPosition = GetRandomPointInCircle();
+                GameObject newTrash = Instantiate(objectsToSpawn[i].prefab, spawnPosition, Quaternion.identity);
+                _currAmount[i].Add(newTrash);
             }
         }
     }
 
-    private void getSpawns()
+    Vector2 GetRandomPointInCircle()
     {
-        if (spawnsPlastic)
-        {
-            spawnKeys.Add(TrashManager.keys[0]);
-            spawnKeys.Add(TrashManager.keys[1]);
-        }
+        float angle = Random.Range(0f, Mathf.PI * 2);
+        float radius = Random.Range(0f, spawnRadius);
+        float x = Mathf.Cos(angle) * radius;
+        float y = Mathf.Sin(angle) * radius;
 
-        if (spawnsWood)
-        {
-            spawnKeys.Add(TrashManager.keys[4]);
-            spawnKeys.Add(TrashManager.keys[5]);
-        }
-
-        if (spawnsMetal)
-        {
-            spawnKeys.Add(TrashManager.keys[2]);
-            spawnKeys.Add(TrashManager.keys[3]);
-        }
-
-
-
+        return (Vector2)transform.position + new Vector2(x, y);
     }
-
-    private void respawnTrash(List<List<string>> currentTrashList)
+    
+    /// <summary>
+    /// For visualizing the radius in the scene view
+    /// </summary>
+    void OnDrawGizmosSelected()
     {
-        foreach (List<string> list in currentTrashList)
-        {
-            spawnSpecifcTrash(list[0], float.Parse(list[1]), float.Parse(list[2]));
-        }
+        Gizmos.color = Color.green;  // Set color for the radius
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
-
-
 }
