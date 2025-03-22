@@ -18,3 +18,7 @@ I should talk to that man about it
 = cannotCollectTrash
 I don't have what I need to collect this yet!
 -> END
+
+= trashTooHeavy
+This item is to heavy, I need to unload at the net!
+-> END

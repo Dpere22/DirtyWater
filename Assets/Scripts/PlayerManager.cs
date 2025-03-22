@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public static class PlayerManager
 {
-    
-
-
     //Total trash collected overall
     public static Dictionary<String, int> inventory = new()
     {
@@ -33,12 +30,15 @@ public static class PlayerManager
     
 
     //Current player Trash inventory for the day
-    public static List<string> currentDayTrash = new()
+    public static Dictionary<string, int> currentDayTrash = new()
     {
+        {"Metal", 0},
+        {"Plastic", 0},
+        {"Wood", 0}
     };
 
 
-    public static List<string> currentDayDroppedOff = new()
+    public static Dictionary<string, int> currentDayDroppedOff = new()
     {
     };
 
@@ -50,39 +50,27 @@ public static class PlayerManager
     //Recycle Trash
     public static void RecycleTrash()
     {
-        foreach(string item in currentDayTrash)
+        foreach (var item in currentDayTrash.Keys)
         {
-            string value = TrashManager.TrashData[item][2];
-
-            inventory[TrashManager.TrashData[item][1]] += int.Parse(value);
-
-
+            inventory[item] = currentDayTrash[item];
         }
 
-        foreach (string item in currentDayDroppedOff)
-        {
-            string value = TrashManager.TrashData[item][2];
-
-            inventory[TrashManager.TrashData[item][1]] += int.Parse(value);
-
-
-        }
-
-        currentDayTrash = new();
-        currentDayDroppedOff = new();
+        ResetCurrentDayTrash();
     }
 
+    private static void ResetCurrentDayTrash()
+    {
+        currentDayTrash["Metal"] = 0;
+        currentDayTrash["Plastic"] = 0;
+        currentDayTrash["Wood"] = 0;
+    }
 
     public static void UnloadCurrentInventory()
     {
-        foreach (string item in currentDayTrash)
-        {
-            currentDayDroppedOff.Add(item);
-        }
-
-        currentDayTrash = new();
-
-
+        // foreach (string item in currentDayTrash)
+        // {
+        //     currentDayDroppedOff.Add(item);
+        // }
     }
 
 
@@ -97,7 +85,7 @@ public static class PlayerManager
         inventory["Metal"] = 0;
         inventory["Plastic"] = 0;
         inventory["Wood"] = 0;
-        currentDayTrash = new();
+        ResetCurrentDayTrash();
         currentWeight = 0;
         PauseManager.GamePaused = false;
     }

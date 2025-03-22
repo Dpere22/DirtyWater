@@ -6,18 +6,13 @@ namespace Interactables
 {
     [RequireComponent(typeof(CircleCollider2D))]
     
-    public abstract class Trash : MonoBehaviour
+    public class Trash : MonoBehaviour
     {
-        [SerializeField] private int weight;
         [SerializeField] private GameObject collectIcon;
-        private string _trashId;
+        [SerializeField] private GarbageInfoSO garbageInfo;
 
         private bool _inRange;
-
-        private void Start()
-        {
-            _trashId = SetTrashId();
-        }
+        
         private void OnEnable()
         {
             GameEventsManager.Instance.InputEvents.OnSubmitPressed += OnSubmit;
@@ -41,16 +36,39 @@ namespace Interactables
         }
         private void CollectTrash()
         {
-            if (!CheckCanCollect())
+            if (!TrashManager.CheckCanCollect(garbageInfo.garbageId))
             {
                 DisplayCannotCollect();
                 return;
             }
-            PlayerManager.currentWeight += weight;
+
+            if (!CheckCanHoldWeight())
+            {
+                DisplayTooHeavy();
+                return;
+            }
+            PlayerManager.currentWeight += garbageInfo.weight;
+            AddItemToCurrentDayInventory();
             if(gameObject)
                 Destroy(gameObject);
         }
 
+        private void AddItemToCurrentDayInventory()
+        {
+            PlayerManager.currentDayTrash["Plastic"] += garbageInfo.plasticValue;
+            PlayerManager.currentDayTrash["Metal"] += garbageInfo.metalValue;
+            PlayerManager.currentDayTrash["Wood"] += garbageInfo.woodValue;
+        }
+
+        private bool CheckCanHoldWeight()
+        {
+            return garbageInfo.weight + PlayerManager.currentWeight <= PlayerManager.MaxWeight;
+        }
+
+        private void DisplayTooHeavy()
+        {
+            GameEventsManager.Instance.DialogueEvents.EnterDialogue("trashTooHeavy");
+        }
         private void DisplayCannotCollect()
         {
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("cannotCollectTrash");
@@ -61,9 +79,5 @@ namespace Interactables
             if (!_inRange || !context.Equals(InputEventContext.Default)) return;
             CollectTrash();
         }
-
-        protected abstract string SetTrashId();
-
-        protected abstract bool CheckCanCollect();
     }
 }

@@ -6,6 +6,5 @@ public class Net : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         PlayerManager.currentWeight = 0;
-        PlayerManager.UnloadCurrentInventory();
     }
 }
