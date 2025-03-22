@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         player.transform.position = spawnPoint.position;
         GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
+        GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.DayEvents.DayStart();
     }
 }

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
     
     public bool canJump;
+    private bool _canMove = true;
     public bool isJumping;
     public bool atWaterSurface;
     public float groundCheckDistance = 0.5f;
@@ -84,14 +85,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestrictMovement()
     {
-        _previousMove = _move;
-        _move = () => { }; //don't do anything when move
         rb.linearVelocity = Vector2.zero;
+        _canMove = false;
     }
 
     public void EnableMovement()
     {
-        _move = _previousMove;
+        _canMove = true;
     }
     
     public void OnMove(Vector2 dir)
@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Swim()
     {
+        if (!_canMove) return;
         CheckFlip();
         if (atWaterSurface)
         {
@@ -160,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
+        if(!_canMove) return;
         if (isJumping) return;
         CheckFlip();
         bool isGrounded = CheckGroundAhead();

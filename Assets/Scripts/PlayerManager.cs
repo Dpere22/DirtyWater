@@ -37,11 +37,6 @@ public static class PlayerManager
         {"Wood", 0}
     };
 
-
-    public static Dictionary<string, int> currentDayDroppedOff = new()
-    {
-    };
-
     public static List<String> Questitems = new()
     {
 
@@ -64,16 +59,6 @@ public static class PlayerManager
         currentDayTrash["Plastic"] = 0;
         currentDayTrash["Wood"] = 0;
     }
-
-    public static void UnloadCurrentInventory()
-    {
-        // foreach (string item in currentDayTrash)
-        // {
-        //     currentDayDroppedOff.Add(item);
-        // }
-    }
-
-
 
     public static void ResetGame()
     {
