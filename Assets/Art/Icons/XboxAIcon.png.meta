@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e67013fbfc735b04db4c7a3347059d05
+guid: ea87cf658281af84dbe4abc223fc172a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8228099825024241449
-    second: Wood_Plank_0
+      213: -9098842565847086195
+    second: XboxAIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wood_Plank_0
+      name: XboxAIcon_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 4
-        width: 8
-        height: 17
+        x: 10
+        y: 13
+        width: 46
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92f060f4235103270800000000000000
-      internalID: 8228099825024241449
+      spriteID: d8b0b73e4ea6ab180800000000000000
+      internalID: -9098842565847086195
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Wood_Plank_0: 8228099825024241449
+      XboxAIcon_0: -9098842565847086195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

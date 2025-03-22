@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class EnterWater : MonoBehaviour
 {
-    [SerializeField] private GameObject jumpUI;
+    [SerializeField] private GameObject interactIcon;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         
-        jumpUI.SetActive(true);
+        interactIcon.SetActive(true);
         PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
         playerMovement.canJump = true;
         
@@ -17,7 +17,7 @@ public class EnterWater : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         
-        jumpUI.SetActive(false);
+        interactIcon.SetActive(false);
         PlayerMovement playerMovement = other.gameObject.GetComponentInParent<PlayerMovement>();
         playerMovement.canJump = false;
     }
