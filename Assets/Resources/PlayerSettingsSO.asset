@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6edb447a74f50443871c372fbbc4ec9, type: 3}
   m_Name: PlayerSettingsSO
   m_EditorClassIdentifier: 
-  maxTime: 0
-  maxWeight: 0
-  walkingSpeed: 0
-  swimmingSpeed: 0
+  maxTime: 15
+  maxWeight: 100
+  walkingSpeed: 5
+  swimmingSpeed: 5
