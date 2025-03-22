@@ -1,3 +1,4 @@
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,16 +12,16 @@ public class RecycleUI : MonoBehaviour
     void Start()
     {
         UpdateInventory();
-        PlayerManager.currentWeight = 0; //THIS IS BAD CODE YO FIX LATER ME!
+        GameEventsManager.Instance.PlayerManager.CurrentWeight = 0; //THIS IS BAD CODE YO FIX LATER ME!
     }
 
 
 
     void UpdateInventory()
     {
-        int metalCount = PlayerManager.inventory["Metal"];
-        int woodCount = PlayerManager.inventory["Wood"];
-        int plasticCount = PlayerManager.inventory["Plastic"];
+        int metalCount = GameEventsManager.Instance.PlayerManager.Inventory["Metal"];
+        int woodCount = GameEventsManager.Instance.PlayerManager.Inventory["Wood"];
+        int plasticCount = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"];
         text.text = $"Metal: {metalCount} \nWood: {woodCount} \nPlastic: {plasticCount}";
     }
 
@@ -38,7 +39,7 @@ public class RecycleUI : MonoBehaviour
     public void Recycle()
     {
 
-        PlayerManager.RecycleTrash();
+        GameEventsManager.Instance.PlayerManager.RecycleTrash();
         UpdateInventory();
 
         

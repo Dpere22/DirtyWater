@@ -145,12 +145,12 @@ public class PlayerMovement : MonoBehaviour
         CheckFlip();
         if (atWaterSurface)
         {
-            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * PlayerManager.speed : new Vector2(_movement.x, 0).normalized * PlayerManager.speed ;
+            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed : new Vector2(_movement.x, 0).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed ;
             playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
-            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * PlayerManager.speed;
+            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed;
         }
         if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         CheckFlip();
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
-            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * PlayerManager.walkingSpeed;
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * GameEventsManager.Instance.PlayerManager.WalkingSpeed;
         else
         {
             //Debug.Log("I can't move");  //For when player movement seems broken

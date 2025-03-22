@@ -1,78 +1,58 @@
 using System;
 using System.Collections.Generic;
 
-public static class PlayerManager
+public class PlayerManager
 {
     //Total trash collected overall
-    public static Dictionary<String, int> inventory = new()
+    public readonly Dictionary<String, int> Inventory = new()
+    {
+        {"Metal", 0},
+        {"Plastic", 0},
+        {"Wood", 0}
+    };
+    //Current player Trash inventory for the day
+    public readonly Dictionary<string, int> CurrentDayTrash = new()
     {
         {"Metal", 0},
         {"Plastic", 0},
         {"Wood", 0}
     };
 
-    private const float MaxTimeDefault = 15f;
-    private const int MaxWeightDefault = 100;
-    private const int SpeedDefault = 5;
-    private const int SpeedCostDefault = 20;
-    private const int WeightCostDefault = 20;
+    public float MaxTime;
+    public int MaxWeight;
 
+    public int CurrentWeight = 0;
+    public int WalkingSpeed;
+    public int SwimmingSpeed;
 
-    public static float MaxTime = MaxTimeDefault;
-    public static int MaxWeight = MaxWeightDefault;
-
-    public static int currentWeight = 0;
-    public static int walkingSpeed = 5;
-    public static int speed = SpeedDefault;
-
-    public static int speedCost = SpeedCostDefault;
-    public static int weightCost = WeightCostDefault;
+    public int WeightCost = 5;
+    public int SpeedCost = 20;
     
 
-    //Current player Trash inventory for the day
-    public static Dictionary<string, int> currentDayTrash = new()
+    public PlayerManager()
     {
-        {"Metal", 0},
-        {"Plastic", 0},
-        {"Wood", 0}
-    };
-
-    public static List<String> Questitems = new()
-    {
-
-    };
-
+        var playerSettings = UnityEngine.Resources.Load<PlayerSettingsSO>("PlayerSettingsSO");
+        MaxTime = playerSettings.maxTime;
+        MaxWeight = playerSettings.maxWeight;
+        WalkingSpeed = playerSettings.walkingSpeed;
+        SwimmingSpeed = playerSettings.swimmingSpeed;
+    }
     //Recycle Trash
-    public static void RecycleTrash()
+    public void RecycleTrash()
     {
-        foreach (var item in currentDayTrash.Keys)
+        foreach (var item in CurrentDayTrash.Keys)
         {
-            inventory[item] = currentDayTrash[item];
+            Inventory[item] = CurrentDayTrash[item];
         }
 
         ResetCurrentDayTrash();
     }
 
-    private static void ResetCurrentDayTrash()
+    private void ResetCurrentDayTrash()
     {
-        currentDayTrash["Metal"] = 0;
-        currentDayTrash["Plastic"] = 0;
-        currentDayTrash["Wood"] = 0;
-    }
-
-    public static void ResetGame()
-    {
-        MaxTime = MaxTimeDefault;
-        MaxWeight = MaxWeightDefault;
-        speed = SpeedDefault;
-        speedCost = SpeedCostDefault;
-        weightCost = WeightCostDefault;
-        inventory["Metal"] = 0;
-        inventory["Plastic"] = 0;
-        inventory["Wood"] = 0;
-        ResetCurrentDayTrash();
-        currentWeight = 0;
-        PauseManager.GamePaused = false;
+        CurrentDayTrash["Metal"] = 0;
+        CurrentDayTrash["Plastic"] = 0;
+        CurrentDayTrash["Wood"] = 0;
     }
 
 }

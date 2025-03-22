@@ -83,7 +83,6 @@ namespace UI
 
         public void MainMenuButton()
         {
-            PlayerManager.ResetGame();
             SceneManager.LoadScene("MainMenu");
         }
 

@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
     }
     public void StartDayTimer()
     {
-        timer.StartTimer(PlayerManager.MaxTime);
+        timer.StartTimer(GameEventsManager.Instance.PlayerManager.MaxTime);
     }
     
     private void OnDayEnd()
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
-        PlayerManager.RecycleTrash();
+        GameEventsManager.Instance.PlayerManager.RecycleTrash();
         StartCoroutine(WaitForGame());
     }
     private IEnumerator WaitForGame()

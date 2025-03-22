@@ -47,7 +47,7 @@ namespace Interactables
                 DisplayTooHeavy();
                 return;
             }
-            PlayerManager.currentWeight += garbageInfo.weight;
+            GameEventsManager.Instance.PlayerManager.CurrentWeight += garbageInfo.weight;
             AddItemToCurrentDayInventory();
             if(gameObject)
                 Destroy(gameObject);
@@ -55,14 +55,14 @@ namespace Interactables
 
         private void AddItemToCurrentDayInventory()
         {
-            PlayerManager.currentDayTrash["Plastic"] += garbageInfo.plasticValue;
-            PlayerManager.currentDayTrash["Metal"] += garbageInfo.metalValue;
-            PlayerManager.currentDayTrash["Wood"] += garbageInfo.woodValue;
+            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Plastic"] += garbageInfo.plasticValue;
+            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Metal"] += garbageInfo.metalValue;
+            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Wood"] += garbageInfo.woodValue;
         }
 
         private bool CheckCanHoldWeight()
         {
-            return garbageInfo.weight + PlayerManager.currentWeight <= PlayerManager.MaxWeight;
+            return garbageInfo.weight + GameEventsManager.Instance.PlayerManager.CurrentWeight <= GameEventsManager.Instance.PlayerManager.MaxWeight;
         }
 
         private void DisplayTooHeavy()

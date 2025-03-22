@@ -1,3 +1,4 @@
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class ShopController : MonoBehaviour
 
     private void InitSpeed()
     {
-        if (CheckAfford(PlayerManager.inventory["Plastic"], PlayerManager.speedCost))
+        if (CheckAfford(GameEventsManager.Instance.PlayerManager.Inventory["Plastic"], GameEventsManager.Instance.PlayerManager.SpeedCost))
         {
             speedButton.interactable = true;
             speedCost.color = Color.green;
@@ -29,8 +30,8 @@ public class ShopController : MonoBehaviour
             speedButton.interactable = false;
             speedCost.color = Color.red;
         }
-        speed.text = PlayerManager.speed.ToString();
-        speedCost.text = $"{PlayerManager.inventory["Plastic"]}/{PlayerManager.speedCost.ToString()} Plastic";
+        speed.text = GameEventsManager.Instance.PlayerManager.SwimmingSpeed.ToString();
+        speedCost.text = $"{GameEventsManager.Instance.PlayerManager.Inventory["Plastic"]}/{GameEventsManager.Instance.PlayerManager.SpeedCost.ToString()} Plastic";
     }
 
     /// <summary>
@@ -38,26 +39,26 @@ public class ShopController : MonoBehaviour
     /// </summary>
     public void UpgradeSpeed()
     {
-        if (PlayerManager.inventory["Plastic"] < PlayerManager.speedCost) return;
-        PlayerManager.speed += 1;
-        PlayerManager.inventory["Plastic"] -= PlayerManager.speedCost;
-        PlayerManager.speedCost += 20;
+        if (GameEventsManager.Instance.PlayerManager.Inventory["Plastic"] < GameEventsManager.Instance.PlayerManager.SpeedCost) return;
+        GameEventsManager.Instance.PlayerManager.SwimmingSpeed += 1;
+        GameEventsManager.Instance.PlayerManager.Inventory["Plastic"] -= GameEventsManager.Instance.PlayerManager.SpeedCost;
+        GameEventsManager.Instance.PlayerManager.SpeedCost += 20;
         InitSpeed();
 
     }
 
     public void UpgradeWeight()
     {
-        if (PlayerManager.inventory["Metal"] < PlayerManager.weightCost) return;
-        PlayerManager.MaxWeight += 10;
-        PlayerManager.inventory["Metal"] -= PlayerManager.weightCost;
-        PlayerManager.weightCost += 20;
+        if (GameEventsManager.Instance.PlayerManager.Inventory["Metal"] < GameEventsManager.Instance.PlayerManager.WeightCost) return;
+        GameEventsManager.Instance.PlayerManager.MaxWeight += 10;
+        GameEventsManager.Instance.PlayerManager.Inventory["Metal"] -= GameEventsManager.Instance.PlayerManager.WeightCost;
+        GameEventsManager.Instance.PlayerManager.WeightCost += 20;
         InitWeight();
     }
 
     private void InitWeight()
     {
-        if (CheckAfford(PlayerManager.inventory["Metal"], PlayerManager.weightCost))
+        if (CheckAfford(GameEventsManager.Instance.PlayerManager.Inventory["Metal"], GameEventsManager.Instance.PlayerManager.WeightCost))
         {
             weightButton.interactable = true;
             weightCost.color = Color.green;
@@ -67,8 +68,8 @@ public class ShopController : MonoBehaviour
             weightButton.interactable = false;
             weightCost.color = Color.red;
         }
-        weight.text = PlayerManager.MaxWeight.ToString();
-        weightCost.text = $"{PlayerManager.inventory["Metal"]}/{PlayerManager.weightCost.ToString()} Metal";
+        weight.text = GameEventsManager.Instance.PlayerManager.MaxWeight.ToString();
+        weightCost.text = $"{GameEventsManager.Instance.PlayerManager.Inventory["Metal"]}/{GameEventsManager.Instance.PlayerManager.WeightCost.ToString()} Metal";
     }
 
     private bool CheckAfford(int curr, int cost)

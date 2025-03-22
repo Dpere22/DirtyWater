@@ -1,3 +1,4 @@
+using Events;
 using TMPro;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ namespace UI
         // Update is called once per frame
         void Update()
         {
-            plasticCountText.text = PlayerManager.inventory["Plastic"].ToString();
-            woodCountText.text = PlayerManager.inventory["Wood"].ToString();
-            metalCountText.text = PlayerManager.inventory["Metal"].ToString();
+            plasticCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"].ToString();
+            woodCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Wood"].ToString();
+            metalCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Metal"].ToString();
         }
     }
 }

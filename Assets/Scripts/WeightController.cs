@@ -1,3 +1,4 @@
+using Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,15 +16,15 @@ public class WeightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!Mathf.Approximately(currWeightSlow, PlayerManager.currentWeight)){
-            currWeightSlow = Mathf.Lerp(currWeightSlow,PlayerManager.currentWeight, t);
+        if(!Mathf.Approximately(currWeightSlow, GameEventsManager.Instance.PlayerManager.CurrentWeight)){
+            currWeightSlow = Mathf.Lerp(currWeightSlow,GameEventsManager.Instance.PlayerManager.CurrentWeight, t);
             t +=  0.5f * Time.deltaTime;
         }
         else
         {
             t = 0;
         }
-        sliderVal = currWeightSlow / PlayerManager.MaxWeight;
+        sliderVal = currWeightSlow / GameEventsManager.Instance.PlayerManager.MaxWeight;
 
         fill.color = sliderVal > 0.75 ? Color.red : Color.green;
         

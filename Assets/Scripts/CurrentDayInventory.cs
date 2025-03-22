@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Events;
 
 public class CurrentDayInventory : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class CurrentDayInventory : MonoBehaviour
 
     public void RemoveTrash(string SpecificKey)
     {
-        PlayerManager.currentDayTrash.Remove(SpecificKey);
+        GameEventsManager.Instance.PlayerManager.CurrentDayTrash.Remove(SpecificKey);
     }
 
 

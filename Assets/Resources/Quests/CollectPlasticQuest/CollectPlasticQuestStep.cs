@@ -9,7 +9,7 @@ namespace Resources.Quests.CollectPlasticQuest
 
         private void Update()
         {
-            _plasticCollected = PlayerManager.inventory["Plastic"];
+            _plasticCollected = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"];
             if (_plasticCollected >= 1)
             {
                 FinishQuestStep();
