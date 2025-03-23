@@ -27,14 +27,14 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseTimer;
-        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeTimer;
+        GameEventsManager.Instance.PauseEvents.OnPause += PauseTimer;
+        GameEventsManager.Instance.PauseEvents.OnResume += ResumeTimer;
     }
 
     private void OnDestroy()
     {
-        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseTimer;
-        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeTimer;
+        GameEventsManager.Instance.PauseEvents.OnPause -= PauseTimer;
+        GameEventsManager.Instance.PauseEvents.OnResume -= ResumeTimer;
     }
 
     /// <summary>

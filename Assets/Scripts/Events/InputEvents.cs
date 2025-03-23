@@ -6,9 +6,6 @@ namespace Events
 {
     public class InputEvents
     {
-        public event Action PauseGameAction;
-        public event Action ResumeGameAction;
-
         public event Action<Vector2> MoveAction;
         public event Action JumpAction;
         
@@ -27,15 +24,13 @@ namespace Events
 
         public void PausePressed()
         {
-            if (PauseManager.GamePaused)
+            if (GameEventsManager.Instance.PauseEvents.IsPaused)
             {
-                PauseManager.ResumeGame();
-                ResumeGameAction?.Invoke();
+                GameEventsManager.Instance.PauseEvents.Resume();
             }
             else
             {
-                PauseManager.PauseGame();
-                PauseGameAction?.Invoke();
+                GameEventsManager.Instance.PauseEvents.Pause();
             }
         }
 

@@ -1,6 +1,8 @@
+using System.Collections;
 using Events;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -14,6 +16,7 @@ namespace UI
         [SerializeField] private GameObject pauseMenu;
 
         [SerializeField] private GameObject inventory;
+        [SerializeField] private GameObject pauseFirstButton;
         private bool _inventoryOpen;
 
 
@@ -32,18 +35,18 @@ namespace UI
         private void OnEnable()
         {
             timer.OnTimerStart += EnableTimerText;
+            GameEventsManager.Instance.PauseEvents.OnPause += PauseHandler;
+            GameEventsManager.Instance.PauseEvents.OnResume += ResumeHandler;
             GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
-            GameEventsManager.Instance.InputEvents.PauseGameAction += OnPause;
-            GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
             GameEventsManager.Instance.InputEvents.OnInventoryPressed += ToggleInventory;
         }
 
         private void OnDisable()
         {
             timer.OnTimerStart -= EnableTimerText;
+            GameEventsManager.Instance.PauseEvents.OnPause -= PauseHandler;
+            GameEventsManager.Instance.PauseEvents.OnResume -= ResumeHandler;
             GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
-            GameEventsManager.Instance.InputEvents.PauseGameAction -= OnPause;
-            GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
             GameEventsManager.Instance.InputEvents.OnInventoryPressed -= ToggleInventory;
         }
         private void EnableTimerText()
@@ -57,32 +60,33 @@ namespace UI
             _hasStarted = false;
         }
  
-        private void OnPause()
+        private void PauseHandler()
         {
             pauseMenu.SetActive(true);
+            StartCoroutine(SelectButtonAfterDelay());
         }
-
-
-        /// <summary>
-        /// For when ESC is pressed - thus the event is fired
-        /// </summary>
+        private IEnumerator SelectButtonAfterDelay()
+        {
+            yield return null;
+            EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        }
         private void ResumeHandler()
         {
             pauseMenu.SetActive(false);
         }
-    
-    
+        
         /// <summary>
-        /// For when the button is pressed instead of ESC
+        /// Used by the GUI button
         /// </summary>
-        public void OnResume()
+        public void ResumeButtonHandler()
         {
             pauseMenu.SetActive(false);
-            PauseManager.ResumeGame();
+            GameEventsManager.Instance.PauseEvents.Resume();
         }
 
         public void MainMenuButton()
         {
+            Debug.Log("MainMenuButtonClicked");
             SceneManager.LoadScene("MainMenu");
         }
 

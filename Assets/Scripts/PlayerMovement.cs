@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         _flip = WalkFlip;
         _move = Walk;
         _playerWalkRotation = transform.rotation;
-        GameEventsManager.Instance.InputEvents.PauseGameAction += PauseHandler;
-        GameEventsManager.Instance.InputEvents.ResumeGameAction += ResumeHandler;
+        GameEventsManager.Instance.PauseEvents.OnPause += PauseHandler;
+        GameEventsManager.Instance.PauseEvents.OnResume += ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
         GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement += RestrictMovement;
@@ -57,8 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEventsManager.Instance.InputEvents.PauseGameAction -= PauseHandler;
-        GameEventsManager.Instance.InputEvents.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.PauseEvents.OnPause -= PauseHandler;
+        GameEventsManager.Instance.PauseEvents.OnResume -= ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction -= OnMove;
         GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement -= RestrictMovement;
