@@ -31,13 +31,21 @@ public class GameManager : MonoBehaviour
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         GameEventsManager.Instance.PlayerManager.RecycleTrash();
+        StartCoroutine(WaitForAnim());
         StartCoroutine(WaitForGame());
+    }
+    
+    //This is not great code design, but for this small feature it should be ok
+    private IEnumerator WaitForAnim()
+    {
+        yield return new WaitForSeconds(1.2f);
+        player.transform.position = spawnPoint.position;
+        GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
     }
     private IEnumerator WaitForGame()
     {
         yield return new WaitForSeconds(3f);
-        player.transform.position = spawnPoint.position;
-        GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
+
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.DayEvents.DayStart();
     }
