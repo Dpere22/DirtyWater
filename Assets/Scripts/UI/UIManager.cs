@@ -86,7 +86,6 @@ namespace UI
 
         public void MainMenuButton()
         {
-            Debug.Log("MainMenuButtonClicked");
             SceneManager.LoadScene("MainMenu");
         }
 
