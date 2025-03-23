@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: ed82a26424599d94fb4e29414e9d0450
+guid: 90574b4f0644f6c4ebc07c5797ee8760
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2840336364714655594
-    second: QuestionMark_0
-  - first:
-      213: -718934261332416602
-    second: QuestionMark_1
+      213: 7853853404645724689
+    second: iconB_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: QuestionMark_0
+      name: iconB_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 7
-        width: 35
-        height: 53
+        x: 10
+        y: 13
+        width: 46
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6ff07dffd6ea6720800000000000000
-      internalID: 2840336364714655594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: QuestionMark_1
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 1
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a76c603915d506f0800000000000000
-      internalID: -718934261332416602
+      spriteID: 11296ed5f0e7efc60800000000000000
+      internalID: 7853853404645724689
       vertices: []
       indices: 
       edges: []
@@ -186,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      QuestionMark_0: 2840336364714655594
-      QuestionMark_1: -718934261332416602
+      iconB_0: 7853853404645724689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

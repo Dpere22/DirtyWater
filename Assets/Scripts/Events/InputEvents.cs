@@ -64,5 +64,11 @@ namespace Events
         {
             OnInventoryPressed?.Invoke();
         }
+
+        public event Action OnCancelPressed;
+        public void CancelPressed()
+        {
+            OnCancelPressed?.Invoke();
+        }
     }
 }
