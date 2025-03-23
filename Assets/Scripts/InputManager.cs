@@ -32,5 +32,10 @@ public class InputManager : MonoBehaviour
     {
         GameEventsManager.Instance.InputEvents.InventoryPressed();
     }
+
+    public void OnCancel(InputValue value)
+    {
+        GameEventsManager.Instance.InputEvents.CancelPressed();
+    }
     
 }

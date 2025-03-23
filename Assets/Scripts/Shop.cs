@@ -7,68 +7,70 @@ public class Shop : MonoBehaviour
 
     private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject interactIcon;
-    private bool _inShop;
     public bool shopAvailable;
-
+    private bool _inShop;
 
     private void OnEnable()
     {
         GameEventsManager.Instance.ShopEvents.OnEnableShopEvent += EnableShop;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnCancelPressed += CancelHandler;
     }
 
     private void OnDisable()
     {
         GameEventsManager.Instance.ShopEvents.OnEnableShopEvent -= EnableShop;
-    }
-    private void Start()
-    {
-        GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
-    }
-
-    private void OnDestroy()
-    {
-        if(player) GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
+        GameEventsManager.Instance.InputEvents.OnCancelPressed -= CancelHandler;
     }
 
     private void InteractHandler(InputEventContext context)
     {
-        if (!_playerInRange || !context.Equals(InputEventContext.Default)) return;
-        interactIcon.SetActive(false);
+        if (!_playerInRange || !context.Equals(InputEventContext.Default) || _inShop) return;
         if (!shopAvailable)
         {
             GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
             return;
         }
-        _inShop = !_inShop;
-        shopUI.SetActive(_inShop);
-        
-        if (!player) return;
-        
-        if (_inShop)
-            player.GetComponent<PlayerMovement>().RestrictMovement();
-        else
-            player.GetComponent<PlayerMovement>().EnableMovement();
+        EnterShop();
+    }
 
+    private void CancelHandler()
+    {
+        if (!_inShop) return;
+        ExitShop();
+    }
+
+
+    private void EnterShop()
+    {
+        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Dialogue);
+        GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
+        _inShop = true;
+        interactIcon.SetActive(false);
+        shopUI.SetActive(true);
+    }
+    private void ExitShop()
+    {
+        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
+        GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
+        _inShop = false;
+        shopUI.SetActive(false);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            interactIcon.SetActive(true);
-            _playerInRange = true;
-        }
+        if (!other.CompareTag("Player")) return;
+        interactIcon.SetActive(true);
+        _playerInRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            interactIcon.SetActive(false);
-            _playerInRange = false;
-        }
+        if (!other.CompareTag("Player")) return;
+        interactIcon.SetActive(false);
+        _playerInRange = false;
     }
 
     private void EnableShop()
