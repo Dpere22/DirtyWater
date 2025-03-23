@@ -1,12 +1,15 @@
+using System.Collections;
 using Events;
 using Input;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
 
     private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
+    [SerializeField] private GameObject firstButton;
     [SerializeField] private GameObject interactIcon;
     public bool shopAvailable;
     private bool _inShop;
@@ -41,15 +44,20 @@ public class Shop : MonoBehaviour
         if (!_inShop) return;
         ExitShop();
     }
-
-
     private void EnterShop()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(SelectButtonAfterDelay()); //necessary to avoid a button being clicked on this frame
         GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Dialogue);
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         _inShop = true;
         interactIcon.SetActive(false);
         shopUI.SetActive(true);
+    }
+    private IEnumerator SelectButtonAfterDelay()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(firstButton);
     }
     private void ExitShop()
     {
