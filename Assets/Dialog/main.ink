@@ -5,9 +5,12 @@ EXTERNAL FinishQuest(questId)
 
 VAR CollectPlasticQuestId = "CollectPlasticQuest"
 VAR CollectPlasticQuestState = "REQUIREMENTS_NOT_MET"
+VAR SaveTheOceanQuestId = "SaveTheOceanQuest"
+VAR SaveTheOceanQuestState = "REQUIREMENTS_NOT_MET"
 
 INCLUDE collect_plastic_start_npc.ink
 INCLUDE collect_plastic_finish_npc.ink
+INCLUDE save_the_ocean_start.ink
 
 
 = shopNotAvailable

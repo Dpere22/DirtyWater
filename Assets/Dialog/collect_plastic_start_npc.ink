@@ -26,5 +26,5 @@ How is collecting the plastic going?
 Oh? You collected that plastic! Give them to the shop and they will give you something special!
 -> END
 = finished
-Thanks for collecting that plastic!
+    -> saveTheOceanStart
 -> END

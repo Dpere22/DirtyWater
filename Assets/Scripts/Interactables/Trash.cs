@@ -48,6 +48,7 @@ namespace Interactables
                 return;
             }
             GameEventsManager.Instance.PlayerManager.CurrentWeight += garbageInfo.weight;
+            OceanHealth.AddHealth(garbageInfo.weight);
             AddItemToCurrentDayInventory();
             if(gameObject)
                 Destroy(gameObject);

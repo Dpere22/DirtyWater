@@ -1,9 +1,9 @@
 public static class OceanHealth
 {
-    private const float MaxHealth = 100;
-    private static float _currentHealth;
+    private const int MaxHealth = 100;
+    private static int _currentHealth;
 
-    public static float GetHealthRatio()
+    public static int GetHealthRatio()
     {
         return _currentHealth / MaxHealth;
     }
@@ -13,12 +13,12 @@ public static class OceanHealth
         _currentHealth += amount;
     }
 
-    public static float GetMaxHealth()
+    public static int GetMaxHealth()
     {
         return MaxHealth;
     }
 
-    public static float GetCurrentHealth()
+    public static int GetCurrentHealth()
     {
         return _currentHealth;
     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fbc1416cb31f74d8ba9e45685e9682, type: 3}
+  m_Name: SaveTheOceanQuest
+  m_EditorClassIdentifier: 
+  <ID>k__BackingField: SaveTheOceanQuest
+  displayName: Save The Ocean
+  questPrerequisites:
+  - {fileID: 11400000, guid: 7a22ab544dc50dd4e9ff4804614b7f00, type: 2}
+  questStepPrefabs:
+  - {fileID: 2842116305367096795, guid: 4629670c036405b45ad455406d6de2ba, type: 3}
+  rewardPrefab: {fileID: 5182626835585286150, guid: 200de9d80d2f9db48b62f3adfcf90c84, type: 3}
