@@ -1,0 +1,27 @@
+using System;
+
+public class DayEvents
+{
+    public bool IsTransitioning {get; private set;}
+    public event Action OnDayEnd;
+
+    public void DayEnd()
+    {
+        IsTransitioning = true;
+        OnDayEnd?.Invoke();
+    }
+
+    public event Action OnDayStart;
+    public void DayStart()
+    {
+        IsTransitioning = false;
+        OnDayStart?.Invoke();
+    }
+
+    public event Action OnEnterWater;
+
+    public void EnterWater()
+    {
+        OnEnterWater?.Invoke();
+    }
+}

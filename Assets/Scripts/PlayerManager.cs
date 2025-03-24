@@ -1,68 +1,58 @@
 using System;
 using System.Collections.Generic;
 
-public static class PlayerManager
+public class PlayerManager
 {
-    //TrashData
-    public static Dictionary<string, List<string>> TrashData = new()
-    {
-        {
-            "PlasticTrash",
-            new List<string>
-        {"Trash", "Plastic", "3", "0"}
-        },
-        {
-            "RustyBarrel",
-            new List<string>
-        {"Trash", "Metal", "2", "1"}
-        },
-        {
-            "RustyCan",
-            new List<string>
-        {"Trash", "Metal", "1", "2"}
-        },
-        {
-            "WaterBottle",
-            new List<string>
-        {"Trash", "Plastic", "1", "3"}
-        },
-        {
-            "WoodenCrate",
-            new List<string>
-        {"Trash", "Wood", "3", "4"}
-        },
-        {
-            "WoodenPlank",
-            new List<string>
-        {"Trash", "Wood", "1", "5"}
-        }
-    };
-    public static List<string> keys = new(TrashData.Keys);
-
-
     //Total trash collected overall
-    public static Dictionary<String, int> inventory = new()
+    public readonly Dictionary<String, int> Inventory = new()
+    {
+        {"Metal", 0},
+        {"Plastic", 0},
+        {"Wood", 0}
+    };
+    //Current player Trash inventory for the day
+    public readonly Dictionary<string, int> CurrentDayTrash = new()
     {
         {"Metal", 0},
         {"Plastic", 0},
         {"Wood", 0}
     };
 
-    public static float MaxTime = 30f;
+    public float MaxTime;
+    public int MaxWeight;
 
-    //Current player Trash inventory for the day
-    public static Dictionary<String, int> currentDayTrash = new()
+    public int CurrentWeight = 0;
+    public int WalkingSpeed;
+    public int SwimmingSpeed;
+
+    public int WeightCost = 5;
+    public int SpeedCost = 20;
+    
+
+    public PlayerManager()
     {
-        { "Metal", 0 },
-        { "Plastic", 0 },
-        { "Wood", 0 }
-    };
-
-
-    public static List<String> Questitems = new()
+        var playerSettings = UnityEngine.Resources.Load<PlayerSettingsSO>("PlayerSettingsSO");
+        MaxTime = playerSettings.maxTime;
+        MaxWeight = playerSettings.maxWeight;
+        WalkingSpeed = playerSettings.walkingSpeed;
+        SwimmingSpeed = playerSettings.swimmingSpeed;
+    }
+    //Recycle Trash
+    public void RecycleTrash()
     {
+        foreach (var item in CurrentDayTrash.Keys)
+        {
+            Inventory[item] = CurrentDayTrash[item];
+        }
 
-    };
+        ResetCurrentDayTrash();
+    }
 
+    private void ResetCurrentDayTrash()
+    {
+        CurrentDayTrash["Metal"] = 0;
+        CurrentDayTrash["Plastic"] = 0;
+        CurrentDayTrash["Wood"] = 0;
+    }
 
 }

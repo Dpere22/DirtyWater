@@ -1,128 +1,156 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
+using Events;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private BoxCollider2D col;
+    [SerializeField] private EdgeCollider2D col;
     [SerializeField] private CapsuleCollider2D capsule;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Sprite walkSprite;
     [SerializeField] private Sprite swim;
     [SerializeField] private Sprite normal;
     
+    
+    private Quaternion _playerWalkRotation;
     private Vector2 _movement;
     
     public bool canJump;
+    private bool _canMove = true;
     public bool isJumping;
     public bool atWaterSurface;
     public float groundCheckDistance = 0.5f;
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    private bool _facingRight = false;
-    private Vector2 _rayDirection = new(-0.5f, -0.5f);
-
-    public int speed;
+    [FormerlySerializedAs("_facingRight")] public bool facingRight;
+    private Vector2 _rayDirection = new(-0.15f, -0.25f);
+    
 
 
     private delegate void FlipOperation();
-    private FlipOperation flip;
+    private FlipOperation _flip;
     
     
     private delegate void MoveOperation();
-    private MoveOperation move;
-    private MoveOperation previousMove;
-
-    public Action InteractAction;
+    private MoveOperation _move;
+    private MoveOperation _previousMove;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        flip = WalkFlip;
-        move = Walk;
-        PauseManager.PauseGameAction += PauseHandler;
-        PauseManager.ResumeGameAction += ResumeHandler;
+        
+        _flip = WalkFlip;
+        _move = Walk;
+        _playerWalkRotation = transform.rotation;
+        GameEventsManager.Instance.PauseEvents.OnPause += PauseHandler;
+        GameEventsManager.Instance.PauseEvents.OnResume += ResumeHandler;
+        GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
+        GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
+        GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement += RestrictMovement;
+        GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement += EnableMovement;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim += SetPlayerSwimming;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk += SetPlayerWalking;
     }
 
     private void OnDestroy()
     {
-        PauseManager.PauseGameAction -= PauseHandler;
-        PauseManager.ResumeGameAction -= ResumeHandler;
+        GameEventsManager.Instance.PauseEvents.OnPause -= PauseHandler;
+        GameEventsManager.Instance.PauseEvents.OnResume -= ResumeHandler;
+        GameEventsManager.Instance.InputEvents.MoveAction -= OnMove;
+        GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
+        GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement -= RestrictMovement;
+        GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement -= EnableMovement;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
+        GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk -= SetPlayerWalking;
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (DialogManager.GetInstance().DialogIsPlaying) return;
-        move();
-    }
-
-    
-    // ------------------------------- CONTROLLER INPUT ----------------------------------------------
-    
-    /// <summary>
-    /// Used by Unity input system
-    /// </summary>
-    private void OnPause()
-    {
-        if(PauseManager.gamePaused)
-            PauseManager.ResumeGame();
-        else
-        {
-            PauseManager.PauseGame();
-        }
+        _move?.Invoke();
     }
 
     private void ResumeHandler()
     {
-        move = previousMove;
+        EnableMovement();
     }
 
     private void PauseHandler()
     {
-        previousMove = move;
-        move = () => { }; //don't do anything when move
+        RestrictMovement();
     }
 
-    /// <summary>
-    /// Works by using Unity's PlayerInput calls
-    /// </summary>
-    /// <param name="value"> value from controller </param>
-    public void OnMove(InputValue value)
+    public void RestrictMovement()
     {
-        _movement = value.Get<Vector2>();
+        rb.linearVelocity = Vector2.zero;
+        _canMove = false;
     }
-    public void OnJump(InputValue value)
+
+    public void EnableMovement()
+    {
+        _canMove = true;
+    }
+    
+    public void OnMove(Vector2 dir)
+    {
+        _movement = dir;
+    }
+    public void OnJump()
     {
         if (!canJump) return;
-        
+        rb.linearVelocity = Vector2.zero;
         isJumping = true;
-        Vector2 direction = new Vector2(-8.0f, 8.0f);
+        Vector2 direction = new Vector2(4.0f, 4.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
         canJump = false;
     }
-    public void OnInteract(InputValue value)
+
+    public void OnOpenInventory(InputValue value)
     {
-        InteractAction?.Invoke();
+        Debug.Log("Input Recieved");
     }
 
-    //------------------------------------------------------------------------------------------------------
+    private void SetPlayerSwimming()
+    {
+        isJumping = false;
+        sr.sprite = swim;
+        rb.linearVelocity = new Vector2(0, 0);
+        col.enabled = false;
+        capsule.enabled = true;
+        rb.gravityScale = 0f;
+        _flip = WaterFlip;
+        _move = Swim;
+    }
 
-    
+    private void SetPlayerWalking()
+    {
+        facingRight = true;
+        sr.sprite = walkSprite;
+        sr.flipY = false;
+        transform.rotation = _playerWalkRotation;
+        rb.linearVelocity = new Vector2(0, 0);
+        col.enabled = true;
+        capsule.enabled = false;
+        rb.gravityScale = 1.0f;
+        _flip = WalkFlip;
+        _move = Walk;
+    }
     
     private void Swim()
     {
+        if (!_canMove) return;
         CheckFlip();
         if (atWaterSurface)
         {
-            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * speed : new Vector2(_movement.x, 0).normalized * speed ;
+            rb.linearVelocity = _movement.y < 0 ? new Vector2(_movement.x, _movement.y).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed : new Vector2(_movement.x, 0).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed ;
             playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
-            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * speed;
+            rb.linearVelocity = new Vector2(_movement.x, _movement.y).normalized * GameEventsManager.Instance.PlayerManager.SwimmingSpeed;
         }
         if (_movement.magnitude > 0.1f) //if input change rotation, if not keep old rotation as to not reset to 0
         {
@@ -133,13 +161,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
+        if(!_canMove) return;
         if (isJumping) return;
         CheckFlip();
         bool isGrounded = CheckGroundAhead();
         if(isGrounded)
-            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * speed;
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * GameEventsManager.Instance.PlayerManager.WalkingSpeed;
         else
         {
+            //Debug.Log("I can't move");  //For when player movement seems broken
             rb.linearVelocity = new Vector2(0, 0);
         }
     }
@@ -148,22 +178,11 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movement.x)
         {
-            case > 0 when !_facingRight:
-            case < 0 when _facingRight:
-                flip();
+            case > 0 when !facingRight:
+            case < 0 when facingRight:
+                _flip();
                 break;
         }
-    }
-
-    public void StartSwimming()
-    {
-        sr.sprite = swim;
-        rb.linearVelocity = new Vector2(0, 0);
-        col.enabled = false;
-        capsule.enabled = true;
-        rb.gravityScale = 0f;
-        flip = WaterFlip;
-        move = Swim;
     }
     private bool CheckGroundAhead()
     {
@@ -180,19 +199,19 @@ public class PlayerMovement : MonoBehaviour
     private void WalkFlip()
     {
         // Toggle the facing direction
-        _facingRight = !_facingRight;
+        facingRight = !facingRight;
 
         // Flip the player's scale on the X-axis
-        float newYRotation = _facingRight ? 0f : 180f;
+        float newYRotation = facingRight ? 0f : 180f;
         playerTransform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         
-        _rayDirection = _facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
+        _rayDirection = facingRight ? new Vector2(0.5f, -0.5f) : new Vector2(-0.5f, -0.5f);
     }
 
     private void WaterFlip()
     {
-        _facingRight = !_facingRight;
+        facingRight = !facingRight;
         // Flip the player's scale on the X-axis
-        sr.flipY = !_facingRight;
+        sr.flipY = !facingRight;
     }
 }
