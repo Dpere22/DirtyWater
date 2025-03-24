@@ -11,6 +11,7 @@ namespace Interactables
         [SerializeField] public int woodValue;
         [SerializeField] public int metalValue;
         [SerializeField] public bool canCollect;
+        [SerializeField] public GameObject prefab;
         [TextArea(3,10)] [SerializeField] public string description;
     }
 }

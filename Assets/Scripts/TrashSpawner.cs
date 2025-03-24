@@ -1,16 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using Events;
+using Interactables;
 
 
 public class TrashSpawner : MonoBehaviour
 {
     //Trash Objects this spawner should spawn
     public List<TrashInfo> objectsToSpawn;
-    private readonly Dictionary<int, List<GameObject>> _currAmount = new(); //keeps track of all the currently spawned game objects
-
-    public float spawnRadius = 1f;
-
+    public List<SpawnPoint> spawnPointList;
+    private readonly List<TrashInfo> _weightedTrashList = new();
+    
     private void OnEnable()
     {
         GameEventsManager.Instance.DayEvents.OnDayStart += RespawnTrash;
@@ -21,55 +22,37 @@ public class TrashSpawner : MonoBehaviour
         GameEventsManager.Instance.DayEvents.OnDayStart -= RespawnTrash;
     }
 
-    void Start()
+    private void Start()
     {
-        for (int i = 0; i < objectsToSpawn.Count; i++)
-        {
-            _currAmount[i] = new List<GameObject>();
-        }
+        CreateWeightedList();
         RespawnTrash();
     }
 
-    void Update()
+    private void CreateWeightedList()
     {
-        //Cleans up collected garbage, this is dangerous code but will work for now
-        foreach (var lst in _currAmount.Values)
+        foreach (var trash in objectsToSpawn)
         {
-            lst.RemoveAll(item => !item);
-        }
-    }
-    
-    void RespawnTrash()
-    {
-        for (int i = 0; i < objectsToSpawn.Count; i++)
-        {
-            int amountToSpawn = Mathf.Abs(_currAmount[i].Count - objectsToSpawn[i].spawnRate);
-
-            for (int j = 0; j < amountToSpawn; j++)
+            for (int i = 0; i < trash.spawnRate; i++)
             {
-                Vector2 spawnPosition = GetRandomPointInCircle();
-                GameObject newTrash = Instantiate(objectsToSpawn[i].prefab, spawnPosition, Quaternion.identity);
-                _currAmount[i].Add(newTrash);
+                _weightedTrashList.Add(trash);
             }
         }
     }
-
-    Vector2 GetRandomPointInCircle()
-    {
-        float angle = Random.Range(0f, Mathf.PI * 2);
-        float radius = Random.Range(0f, spawnRadius);
-        float x = Mathf.Cos(angle) * radius;
-        float y = Mathf.Sin(angle) * radius;
-
-        return (Vector2)transform.position + new Vector2(x, y);
-    }
     
-    /// <summary>
-    /// For visualizing the radius in the scene view
-    /// </summary>
-    void OnDrawGizmosSelected()
+    private void RespawnTrash()
     {
-        Gizmos.color = Color.green;  // Set color for the radius
-        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        foreach (var sp in spawnPointList.Where(t => !t.IsOccupied))
+        {
+            sp.IsOccupied = true;
+            Vector2 spawnPos = sp.Transform.position;
+            GameObject go = Instantiate(GetRandomTrash(), spawnPos, Quaternion.identity);
+            sp.SetGameObject(go);
+        }
+    }
+
+    private GameObject GetRandomTrash()
+    {
+        int index = Random.Range(0, _weightedTrashList.Count-1);
+        return _weightedTrashList[index].info.prefab;
     }
 }
