@@ -40,5 +40,12 @@ namespace Events
                 OnQuestStateChange(quest);
             }
         }
+
+        public event Action OnFinishGame;
+
+        public void FinishGame()
+        {
+            OnFinishGame?.Invoke();
+        }
     }
 }

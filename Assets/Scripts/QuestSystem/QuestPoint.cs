@@ -19,6 +19,8 @@ namespace QuestSystem
         [SerializeField] private GameObject questManager;
         private QuestManager _questManager;
 
+        [SerializeField] private GameObject interactIcon;
+
         private bool _playerIsNear;
         private string _questId = "";
         private QuestState _currentQuestState;
@@ -105,6 +107,7 @@ namespace QuestSystem
             if (otherCollider.CompareTag("Player"))
             {
                 _playerIsNear = true;
+                interactIcon.SetActive(true);
             }
         }
 
@@ -113,6 +116,7 @@ namespace QuestSystem
             if (otherCollider.CompareTag("Player"))
             {
                 _playerIsNear = false;
+                interactIcon.SetActive(false);
             }
         }
     }

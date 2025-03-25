@@ -83,9 +83,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueKnotName: collectPlasticStart
-  questInfoForPoint: {fileID: 11400000, guid: 7a22ab544dc50dd4e9ff4804614b7f00, type: 2}
-  startPoint: 1
-  finishPoint: 0
+  questInfoForPoint: []
+  questManager: {fileID: 0}
+  interactIcon: {fileID: 0}
 --- !u!1001 &3862875413509448738
 PrefabInstance:
   m_ObjectHideFlags: 0

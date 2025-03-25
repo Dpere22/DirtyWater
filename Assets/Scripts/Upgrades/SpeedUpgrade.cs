@@ -1,3 +1,4 @@
+using Events;
 using UnityEngine;
 
 namespace Upgrades
@@ -6,12 +7,22 @@ namespace Upgrades
     {
         public override void DoUpgrade()
         {
-            Debug.Log("Upgrading Speed");
+            CheckRequirements();
+            if (!CanUpgrade)
+            {
+                Debug.Log("Cannot Upgrade!");
+                return;
+            }
+            Debug.Log("Upgrade Speed");
+            GameEventsManager.Instance.PlayerManager.SwimmingSpeed += 1;
+            ChargePlayer();
+            SetUpgradeCosts();
+            SetInfoText();
         }
 
-        public override void EnableUpgrade()
+        protected override void SetInfoText()
         {
-            throw new System.NotImplementedException();
+            infoText.text = GameEventsManager.Instance.PlayerManager.SwimmingSpeed.ToString();
         }
     }
 }
