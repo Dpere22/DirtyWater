@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Events;
 using Input;
 using UnityEngine;
@@ -11,14 +12,15 @@ namespace QuestSystem
         [SerializeField] private string dialogueKnotName;
 
         [Header("Quest")]
-        [SerializeField] private QuestInfoSO questInfoForPoint;
+        public List<QuestInfoSO> questInfoForPoint;
+        private Queue<QuestInfoSO> _questInfoQueue = new();
 
         [Header("Config")]
-        [SerializeField] private bool startPoint = true;
-        [SerializeField] private bool finishPoint = true;
+        [SerializeField] private GameObject questManager;
+        private QuestManager _questManager;
 
         private bool _playerIsNear;
-        private string _questId;
+        private string _questId = "";
         private QuestState _currentQuestState;
 
         private QuestIcon _questIcon;
@@ -34,8 +36,10 @@ namespace QuestSystem
         }
         private void Awake() 
         {
-            _questId = questInfoForPoint.ID;
+            _questInfoQueue = new Queue<QuestInfoSO>(questInfoForPoint);
+            _questId = _questInfoQueue.Dequeue().ID;
             _questIcon = GetComponentInChildren<QuestIcon>();
+            _questManager = questManager.GetComponent<QuestManager>();
         }
 
         private void OnEnable()
@@ -66,11 +70,11 @@ namespace QuestSystem
             else 
             {
                 // start or finish a quest
-                if (_currentQuestState.Equals(QuestState.CAN_START) && startPoint)
+                if (_currentQuestState.Equals(QuestState.CAN_START))
                 {
                     GameEventsManager.Instance.QuestEvents.StartQuest(_questId);
                 }
-                else if (_currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
+                else if (_currentQuestState.Equals(QuestState.CAN_FINISH))
                 {
                     GameEventsManager.Instance.QuestEvents.FinishQuest(_questId);
                 }
@@ -83,7 +87,16 @@ namespace QuestSystem
             if (quest.Info.ID.Equals(_questId))
             {
                 _currentQuestState = quest.State;
-                _questIcon.SetState(_currentQuestState, startPoint, finishPoint);
+                _questIcon.SetState(_currentQuestState);
+            }
+            
+            //working on this code.
+            if (quest.State == QuestState.FINISHED && _questInfoQueue.Count > 0)
+            {
+                _questId = _questInfoQueue.Dequeue().ID;
+                Quest q = _questManager.GetNewQuestById(_questId);
+                _currentQuestState = q.State;
+                _questIcon.SetState(_currentQuestState);
             }
         }
 

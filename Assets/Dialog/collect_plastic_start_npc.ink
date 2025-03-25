@@ -23,7 +23,8 @@ Will you collect 5 pieces of plastic and bring them to me?
 How is collecting the plastic going?
 -> END
 = canFinish
-Oh? You collected that plastic! Give them to the shop and they will give you something special!
+    ~FinishQuest(CollectPlasticQuestId)
+    OH? This is perfect thank you, now I can repair my shop
 -> END
 = finished
     -> saveTheOceanStart

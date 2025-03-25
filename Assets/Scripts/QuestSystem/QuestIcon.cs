@@ -10,7 +10,7 @@ namespace QuestSystem
         [SerializeField] private GameObject requirementsNotMetToFinishIcon;
         [SerializeField] private GameObject canFinishIcon;
 
-        public void SetState(QuestState newState, bool startPoint, bool finishPoint)
+        public void SetState(QuestState newState)
         {
             // set all to inactive
             requirementsNotMetToStartIcon.SetActive(false);
@@ -22,16 +22,16 @@ namespace QuestSystem
             switch (newState)
             {
                 case QuestState.REQUIREMENTS_NOT_MET:
-                    if (startPoint) { requirementsNotMetToStartIcon.SetActive(true); }
+                    requirementsNotMetToStartIcon.SetActive(true);
                     break;
                 case QuestState.CAN_START:
-                    if (startPoint) { canStartIcon.SetActive(true); }
+                    canStartIcon.SetActive(true);
                     break;
                 case QuestState.IN_PROGRESS:
-                    if (finishPoint) { requirementsNotMetToFinishIcon.SetActive(true); }
+                    { requirementsNotMetToFinishIcon.SetActive(true); }
                     break;
                 case QuestState.CAN_FINISH:
-                    if (finishPoint) { canFinishIcon.SetActive(true); }
+                    { canFinishIcon.SetActive(true); }
                     break;
                 case QuestState.FINISHED:
                     break;
