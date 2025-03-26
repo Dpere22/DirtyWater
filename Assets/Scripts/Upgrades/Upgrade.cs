@@ -16,8 +16,8 @@ namespace Upgrades
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
         protected bool CanUpgrade;
-
-        private void Start()
+        
+        private void OnEnable()
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
