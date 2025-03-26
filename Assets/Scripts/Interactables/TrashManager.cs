@@ -24,6 +24,11 @@ public class TrashManager
         return _canCollectInfo[garbageId];
     }
 
+    public void EnableCollect(string garbageId)
+    {
+        _canCollectInfo[garbageId] = true;
+    }
+
 
 
 
