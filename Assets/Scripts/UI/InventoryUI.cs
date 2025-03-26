@@ -11,8 +11,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI metalCountText;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-        // Update is called once per frame
-        void Update()
+        void OnEnable()
         {
             plasticCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"].ToString();
             woodCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Wood"].ToString();

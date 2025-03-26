@@ -1,3 +1,4 @@
+using Events;
 using UnityEngine;
 
 namespace Resources.Quests.SaveTheOceanQuest
@@ -6,7 +7,7 @@ namespace Resources.Quests.SaveTheOceanQuest
     {
         public void Start()
         {
-            Debug.Log("Finished Save The Ocean");
+            GameEventsManager.Instance.QuestEvents.FinishGame();
             Destroy(gameObject);
         }
     }

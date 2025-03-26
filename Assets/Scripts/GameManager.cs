@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private GameObject player;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject finishUI;
     void Start()
     {
         timer.OnTimerComplete += GameEventsManager.Instance.DayEvents.DayEnd;
@@ -16,11 +17,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.DayEvents.OnDayEnd += OnDayEnd;
+        GameEventsManager.Instance.QuestEvents.OnFinishGame += FinishGame;
     }
 
     private void OnDisable()
     {
         GameEventsManager.Instance.DayEvents.OnDayEnd -= OnDayEnd;
+        GameEventsManager.Instance.QuestEvents.OnFinishGame -= FinishGame;
     }
     public void StartDayTimer()
     {
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void OnDayEnd()
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
+        GameEventsManager.Instance.PlayerManager.CurrentWeight = 0; //bad code but for now ok
         GameEventsManager.Instance.PlayerManager.RecycleTrash();
         StartCoroutine(WaitForAnim());
         StartCoroutine(WaitForGame());
@@ -48,5 +52,12 @@ public class GameManager : MonoBehaviour
 
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.DayEvents.DayStart();
+    }
+
+    private void FinishGame()
+    {
+        GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
+        OceanHealth.ResetHealth(); //bad code but ok for now
+        finishUI.SetActive(true);
     }
 }

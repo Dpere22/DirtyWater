@@ -22,4 +22,9 @@ public static class OceanHealth
     {
         return _currentHealth;
     }
+
+    public static void ResetHealth()
+    {
+        _currentHealth = 0;
+    }
 }

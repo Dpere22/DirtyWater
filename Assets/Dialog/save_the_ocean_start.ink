@@ -13,15 +13,10 @@
 Lovely weather!
 -> END
 = canStart
-Notice the ocean health meter. Right now, the ocean is not healthy. 
-When you collect garbage from the sea, you progress the health.
-Please get the health to max, and then come and see me!
-* [Ok!]
-    ~StartQuest(SaveTheOceanQuestId)
-    Great!
+I shouldn't be saying this!
 - -> END
 = inProgress
-Thank you for all the work you do. The ocean still needs healing!
+The ocean still needs healing!
 -> END
 = canFinish
 Wow, the ocean is gorgeous.

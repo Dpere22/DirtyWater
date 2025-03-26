@@ -48,6 +48,11 @@ namespace QuestSystem
             quest.State = state;
             GameEventsManager.Instance.QuestEvents.QuestStateChange(quest);
         }
+
+        public Quest GetNewQuestById(string id)
+        {
+            return GetQuestById(id);
+        }
         
 
         private bool CheckRequirementsMet(Quest quest)

@@ -23,7 +23,14 @@ Will you collect 5 pieces of plastic and bring them to me?
 How is collecting the plastic going?
 -> END
 = canFinish
-Oh? You collected that plastic! Give them to the shop and they will give you something special!
+    ~ SaveTheOceanQuestState = "IN_PROGRESS"
+    OH? This is perfect thank you, now I can repair my shop
+    Here is net, it will let you pick up large bags of trash!
+    Notice the ocean health meter. Right now, the ocean is not healthy. 
+    When you collect garbage from the sea, you progress the health.
+    Please get the health to max, and then come and see me!
+    ~FinishQuest(CollectPlasticQuestId)
+    ~StartQuest(SaveTheOceanQuestId)
 -> END
 = finished
     -> saveTheOceanStart
