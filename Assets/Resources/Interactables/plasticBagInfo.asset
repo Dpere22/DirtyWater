@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: plasticBagInfo
   m_EditorClassIdentifier: 
   garbageId: plasticBag
-  weight: 10
+  weight: 5
   plasticValue: 5
   woodValue: 0
   metalValue: 0

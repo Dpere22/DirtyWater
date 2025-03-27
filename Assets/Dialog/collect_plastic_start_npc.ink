@@ -12,10 +12,13 @@
 Come back once you've leveled up a bit more.
 -> END
 = canStart
-Will you collect 5 pieces of plastic and bring them to me?
+Oh, I see you are a researcher.
+Welcome to our part of the ocean.
+Sadly, the ocean is a mess from waste.
+If you really want to help, will you bring me 5 plastic water bottles?
 * [Yes]
     ~StartQuest(CollectPlasticQuestId)
-    Great!
+    Great, bring me those bottles, and I will let you shop at my store!
 * [No]
     Awwwwwwwww
 - -> END
@@ -24,10 +27,12 @@ How is collecting the plastic going?
 -> END
 = canFinish
     ~ SaveTheOceanQuestState = "IN_PROGRESS"
-    OH? This is perfect thank you, now I can repair my shop
-    Here is net, it will let you pick up large bags of trash!
+    OH? You really do want to help!
+    In that case, here is a bag, it will let you pick up large pieces of trash 
+    Large trash is worth more materials
+    Also, as promissed, you may now shop at my store!
     Notice the ocean health meter. Right now, the ocean is not healthy. 
-    When you collect garbage from the sea, you progress the health.
+    When you collect trash from the sea, you progress the health.
     Please get the health to max, and then come and see me!
     ~FinishQuest(CollectPlasticQuestId)
     ~StartQuest(SaveTheOceanQuestId)

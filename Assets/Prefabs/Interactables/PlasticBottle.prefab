@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 146942630172880616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.157, z: 0}
-  m_LocalScale: {x: 0.2104, y: 0.2104, z: 0.2104}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalScale: {x: 2.9142, y: 2.9142, z: 1.9428}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2582041438048001301}
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5051988472047110493}
   - component: {fileID: 5516286191949949701}
   - component: {fileID: 6413216073149773057}
+  - component: {fileID: 4233547436666817385}
   m_Layer: 0
   m_Name: PlasticBottle
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5795534, y: 2.5795534, z: 2.5795534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2206466185792976561}
@@ -211,8 +212,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.12
+  m_Offset: {x: 0, y: -0.006925583}
+  m_Radius: 0.8196163
 --- !u!114 &6413216073149773057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +228,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectIcon: {fileID: 146942630172880616}
   garbageInfo: {fileID: 11400000, guid: 89161e09f88e2404ebdafbc678bf6fdc, type: 2}
+--- !u!210 &4233547436666817385
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143419689214467223}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

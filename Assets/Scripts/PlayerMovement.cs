@@ -22,12 +22,12 @@ public class PlayerMovement : MonoBehaviour
     private bool _canMove = true;
     public bool isJumping;
     public bool atWaterSurface;
-    public float groundCheckDistance = 0.5f;
+    public float groundCheckDistance = 1f;
     public LayerMask groundLayer;
     public Transform groundCheck;
 
     [FormerlySerializedAs("_facingRight")] public bool facingRight;
-    private Vector2 _rayDirection = new(-0.15f, -0.25f);
+    private Vector2 _rayDirection = new(0.15f, -0.15f);
     
 
 
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canJump) return;
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
-        Vector2 direction = new Vector2(4.0f, 4.0f);
+        Vector2 direction = new Vector2(10.0f, 5.0f);
         rb.AddForce(direction, ForceMode2D.Impulse);
         canJump = false;
     }
