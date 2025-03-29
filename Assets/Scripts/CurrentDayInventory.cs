@@ -40,10 +40,6 @@ public class CurrentDayInventory : MonoBehaviour
 
 
 
-    public void RemoveTrash(string SpecificKey)
-    {
-        GameEventsManager.Instance.PlayerManager.CurrentDayTrash.Remove(SpecificKey);
-    }
 
 
 

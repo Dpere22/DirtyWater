@@ -3,20 +3,24 @@ using System.Collections.Generic;
 
 public class PlayerManager
 {
-    //Total trash collected overall
-    public readonly Dictionary<String, int> Inventory = new()
-    {
-        {"Metal", 0},
-        {"Plastic", 0},
-        {"Wood", 0}
-    };
-    //Current player Trash inventory for the day
-    public readonly Dictionary<string, int> CurrentDayTrash = new()
-    {
-        {"Metal", 0},
-        {"Plastic", 0},
-        {"Wood", 0}
-    };
+
+    //Total Materials Collected
+    public int TotalPlastic = 0;
+    public int TotalWood = 0;
+    public int TotalMetal = 0;
+
+    //public int TotalRefinedMetal?
+
+
+
+
+
+    //Both Lists contains GarbageID, Plastic Value, Wood Value, Metal Value
+    //Trash that is dropped off at the drop zone
+    public List<List<string>> GarbageDroppedOff = new();
+
+    //Trash currently in the inventory
+    public List<List<string>> GarbageInInventory = new();
 
     public float MaxTime;
     public int MaxWeight;
@@ -37,22 +41,45 @@ public class PlayerManager
         WalkingSpeed = playerSettings.walkingSpeed;
         SwimmingSpeed = playerSettings.swimmingSpeed;
     }
+
+
+    public void DroppedOffTrash()
+    {
+        //Puts Inventory trash in drop off
+        foreach (List<string> item in GarbageInInventory)
+        {
+            GarbageDroppedOff.Add(item);
+
+        }
+
+        //Resets Inventory
+        GarbageInInventory = new();
+        CurrentWeight = 0;
+    }
+
     //Recycle Trash
     public void RecycleTrash()
     {
-        foreach (var item in CurrentDayTrash.Keys)
+        //Moves everything into one list
+        DroppedOffTrash();
+
+
+        foreach (List<string> item in GarbageDroppedOff)
         {
-            Inventory[item] = CurrentDayTrash[item];
+            TotalPlastic += int.Parse(item[1]);
+            TotalWood += int.Parse(item[2]);
+            TotalMetal += int.Parse(item[3]);
         }
+
+
 
         ResetCurrentDayTrash();
     }
 
     private void ResetCurrentDayTrash()
     {
-        CurrentDayTrash["Metal"] = 0;
-        CurrentDayTrash["Plastic"] = 0;
-        CurrentDayTrash["Wood"] = 0;
+        GarbageDroppedOff = new();
+        GarbageInInventory = new();
     }
 
 }

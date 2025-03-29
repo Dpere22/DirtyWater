@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     private void OnDayEnd()
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
-        GameEventsManager.Instance.PlayerManager.CurrentWeight = 0; //bad code but for now ok
         GameEventsManager.Instance.PlayerManager.RecycleTrash();
         StartCoroutine(WaitForAnim());
         StartCoroutine(WaitForGame());

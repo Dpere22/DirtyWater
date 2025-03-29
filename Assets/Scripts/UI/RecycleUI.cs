@@ -19,9 +19,9 @@ public class RecycleUI : MonoBehaviour
 
     void UpdateInventory()
     {
-        int metalCount = GameEventsManager.Instance.PlayerManager.Inventory["Metal"];
-        int woodCount = GameEventsManager.Instance.PlayerManager.Inventory["Wood"];
-        int plasticCount = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"];
+        int metalCount = GameEventsManager.Instance.PlayerManager.TotalMetal;
+        int woodCount = GameEventsManager.Instance.PlayerManager.TotalWood;
+        int plasticCount = GameEventsManager.Instance.PlayerManager.TotalPlastic;
         text.text = $"Metal: {metalCount} \nWood: {woodCount} \nPlastic: {plasticCount}";
     }
 

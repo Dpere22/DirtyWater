@@ -1,6 +1,7 @@
 using Events;
 using Input;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Interactables
 {
@@ -56,9 +57,9 @@ namespace Interactables
 
         private void AddItemToCurrentDayInventory()
         {
-            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Plastic"] += garbageInfo.plasticValue;
-            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Metal"] += garbageInfo.metalValue;
-            GameEventsManager.Instance.PlayerManager.CurrentDayTrash["Wood"] += garbageInfo.woodValue;
+            List<string> trashinfo = new List<string> {garbageInfo.garbageId, garbageInfo.plasticValue.ToString(), garbageInfo.woodValue.ToString(), garbageInfo.metalValue.ToString()};
+
+            GameEventsManager.Instance.PlayerManager.GarbageInInventory.Add(trashinfo);
         }
 
         private bool CheckCanHoldWeight()

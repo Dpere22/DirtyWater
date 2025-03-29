@@ -13,9 +13,9 @@ namespace UI
 
         void OnEnable()
         {
-            plasticCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"].ToString();
-            woodCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Wood"].ToString();
-            metalCountText.text = GameEventsManager.Instance.PlayerManager.Inventory["Metal"].ToString();
+            plasticCountText.text = GameEventsManager.Instance.PlayerManager.TotalPlastic.ToString();
+            woodCountText.text = GameEventsManager.Instance.PlayerManager.TotalWood.ToString();
+            metalCountText.text = GameEventsManager.Instance.PlayerManager.TotalMetal.ToString();
         }
     }
 }

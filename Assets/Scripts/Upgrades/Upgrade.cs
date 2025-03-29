@@ -31,9 +31,9 @@ namespace Upgrades
 
         private bool CheckRequirements()
         {
-            int currPlastic = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"];
-            int currWood = GameEventsManager.Instance.PlayerManager.Inventory["Wood"];
-            int currMetal = GameEventsManager.Instance.PlayerManager.Inventory["Metal"];
+            int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
+            int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
+            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
             if (currPlastic < _info.plasticCost || currWood < _info.woodCost || currMetal < _info.metalCost)
             {
                 return false;
@@ -65,9 +65,9 @@ namespace Upgrades
 
         private void SetUpgradeCosts()
         {
-            int currPlastic = GameEventsManager.Instance.PlayerManager.Inventory["Plastic"];
-            int currMetal = GameEventsManager.Instance.PlayerManager.Inventory["Metal"];
-            int currWood = GameEventsManager.Instance.PlayerManager.Inventory["Wood"];
+            int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
+            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
+            int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
             if (IsAtMax())
             {
                 plasticCostText.text = "";
@@ -87,9 +87,9 @@ namespace Upgrades
 
         private void ChargePlayer()
         {
-            GameEventsManager.Instance.PlayerManager.Inventory["Plastic"] -= _info.plasticCost;
-            GameEventsManager.Instance.PlayerManager.Inventory["Wood"] -= _info.woodCost;
-            GameEventsManager.Instance.PlayerManager.Inventory["Metal"] -= _info.metalCost;
+            GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.plasticCost;
+            GameEventsManager.Instance.PlayerManager.TotalWood -= _info.woodCost;
+            GameEventsManager.Instance.PlayerManager.TotalMetal -= _info.metalCost;
         }
     }
 }
