@@ -12,6 +12,12 @@ public class PlayerManager
     //public int TotalRefinedMetal?
 
 
+    public int WaterBottle = 10;
+    public int PlasticTrash = 10;
+    public int WoodenPlank = 10;
+    public int WoodenCrate = 10;
+
+
 
 
 
@@ -52,9 +58,7 @@ public class PlayerManager
 
         }
 
-        //Resets Inventory
-        GarbageInInventory = new();
-        CurrentWeight = 0;
+        resetCurrentInventory()
     }
 
     //Recycle Trash
@@ -80,6 +84,19 @@ public class PlayerManager
     {
         GarbageDroppedOff = new();
         GarbageInInventory = new();
+
     }
 
+    private void resetCurrentInventory()
+    {
+        //Resets Inventory
+        GarbageInInventory = new();
+        WaterBottle = 0;
+        PlasticTrash = 0;
+        WoodenPlank = 0;
+        WoodenCrate = 0;
+        CurrentWeight = 0;
+    }
+
+    
 }

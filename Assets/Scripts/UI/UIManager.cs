@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Events;
 using TMPro;
 using UnityEngine;
@@ -91,9 +92,34 @@ namespace UI
 
         private void ToggleInventory()
         {
+            updateInventoryUI();
             _inventoryOpen = !_inventoryOpen;
             inventory.SetActive(_inventoryOpen);
+            
         }
-    
+
+
+        public void updateInventoryUI()
+        {
+            foreach (List<string> item in GameEventsManager.Instance.PlayerManager.GarbageInInventory)
+            {
+                if (item[0] == "plasticBottle")
+                {
+                    GameEventsManager.Instance.PlayerManager.WaterBottle += 1;
+                }
+                if (item[0] == "plasticBag")
+                {
+                    GameEventsManager.Instance.PlayerManager.PlasticTrash += 1;
+                }
+                if (item[0] == "woodenCrate")
+                {
+                    GameEventsManager.Instance.PlayerManager.WoodenCrate += 1;
+                }
+                if (item[0] == "woodenPlank")
+                {
+                    GameEventsManager.Instance.PlayerManager.WoodenPlank += 1;
+                }
+            }
+        }
     }
 }
