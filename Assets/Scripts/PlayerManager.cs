@@ -12,10 +12,10 @@ public class PlayerManager
     //public int TotalRefinedMetal?
 
 
-    public int WaterBottle = 10;
-    public int PlasticTrash = 10;
-    public int WoodenPlank = 10;
-    public int WoodenCrate = 10;
+    public int WaterBottle = 0;
+    public int PlasticTrash = 0;
+    public int WoodenPlank = 0;
+    public int WoodenCrate = 0;
 
 
 

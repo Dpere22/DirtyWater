@@ -101,6 +101,12 @@ namespace UI
 
         public void updateInventoryUI()
         {
+            GameEventsManager.Instance.PlayerManager.WaterBottle = 0;
+            GameEventsManager.Instance.PlayerManager.PlasticTrash = 0;
+            GameEventsManager.Instance.PlayerManager.WoodenCrate = 0;
+            GameEventsManager.Instance.PlayerManager.WoodenPlank = 0;
+
+
             foreach (List<string> item in GameEventsManager.Instance.PlayerManager.GarbageInInventory)
             {
                 if (item[0] == "plasticBottle")
