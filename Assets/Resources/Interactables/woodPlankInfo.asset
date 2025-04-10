@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3bf8219f4e736f46ac76533bc2ac9f7, type: 3}
   m_Name: woodPlankInfo
   m_EditorClassIdentifier: 
-  garbageId: woodenPlank
+  garbageId: woodPlank
   weight: 5
   plasticValue: 0
   woodValue: 5
