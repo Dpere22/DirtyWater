@@ -58,7 +58,7 @@ public class PlayerManager
 
         }
 
-        resetCurrentInventory()
+        resetCurrentInventory();
     }
 
     //Recycle Trash
