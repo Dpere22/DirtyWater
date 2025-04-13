@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6edb447a74f50443871c372fbbc4ec9, type: 3}
-  m_Name: PlayerSettingsSO
+  m_Script: {fileID: 11500000, guid: 43ca79ae03925dd4dab203d17290c342, type: 3}
+  m_Name: TimeUpgrade
   m_EditorClassIdentifier: 
-  maxTime: 15
-  maxWeight: 15
-  walkingSpeed: 11
-  swimmingSpeed: 12
+  upgradeId: timeUpgrade
+  plasticCost: 0
+  woodCost: 5
+  metalCost: 0
+  plasticProgression: 0
+  woodProgression: 5
+  metalProgression: 0
+  maxAmount: 60
+  upgradeProgression: 5

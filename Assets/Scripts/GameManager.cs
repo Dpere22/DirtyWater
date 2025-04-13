@@ -1,6 +1,7 @@
 using System.Collections;
 using Events;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,6 +57,6 @@ public class GameManager : MonoBehaviour
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         OceanHealth.ResetHealth(); //bad code but ok for now
-        finishUI.SetActive(true);
+        SceneManager.LoadScene(2);
     }
 }
