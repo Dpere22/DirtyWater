@@ -256,8 +256,7 @@ MonoBehaviour:
   walkSprite: {fileID: 21300000, guid: bc79ee21c73d17d47ade8e3e5c3572e4, type: 3}
   swim: {fileID: 21300000, guid: 79510a597ae8a014490f8b390e54996f, type: 3}
   normal: {fileID: 21300000, guid: bc79ee21c73d17d47ade8e3e5c3572e4, type: 3}
-  animator: {fileID: 0}
-  canJump: 0
+  enterWaterPoint: {fileID: 0}
   isJumping: 0
   atWaterSurface: 0
   groundCheckDistance: 15
@@ -327,8 +326,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.47298676, y: -0.14042051}
-  m_Size: {x: 4.5105047, y: 1.3673295}
+  m_Offset: {x: 0.1385166, y: -0.59906125}
+  m_Size: {x: 5.7335787, y: 1.9249395}
   m_Direction: 1
 --- !u!68 &8713092785228911544
 EdgeCollider2D:
@@ -367,8 +366,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.78924096, y: -2.6495986}
-  - {x: 1.0294156, y: -2.6595595}
+  - {x: -0.78477204, y: -3.132258}
+  - {x: 1.0115399, y: -3.1466877}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -407,7 +406,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.20622826, y: -0.2177639}
+  m_Offset: {x: 0.20622826, y: -0.36747742}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -417,5 +416,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.4900627, y: 4.8802376}
+  m_Size: {x: 2.4900627, y: 5.1796646}
   m_EdgeRadius: 0
