@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Timer timer;
-    [SerializeField] private GameObject player;
-    [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject finishUI;
     void Start()
     {
@@ -43,7 +41,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitForAnim()
     {
         yield return new WaitForSeconds(1.2f);
-        player.transform.position = spawnPoint.position;
+        GameEventsManager.Instance.DayEvents.RespawnPlayer();
         GameEventsManager.Instance.PlayerEvents.SetPlayerWalking();
     }
     private IEnumerator WaitForGame()

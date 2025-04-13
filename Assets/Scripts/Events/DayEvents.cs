@@ -38,4 +38,11 @@ public class DayEvents
     {
         OnStartDayTimer?.Invoke();
     }
+
+    public event Action OnRespawnPlayer;
+
+    public void RespawnPlayer()
+    {
+        OnRespawnPlayer?.Invoke();
+    }
 }

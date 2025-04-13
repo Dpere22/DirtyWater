@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite normal;
     [SerializeField] private Transform enterWaterPoint;
     private Animator _animator;
+    private Vector2 _playerSpawn;
     
     private Quaternion _playerWalkRotation;
     private Vector2 _movement;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        _playerSpawn = rb.transform.position;
         _animator = GetComponentInChildren<Animator>();
         _flip = WalkFlip;
         _move = Walk;
@@ -58,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement += EnableMovement;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim += SetPlayerSwimming;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk += SetPlayerWalking;
+        GameEventsManager.Instance.DayEvents.OnRespawnPlayer += HandleRespawn;
     }
 
     private void OnDestroy()
@@ -70,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement -= EnableMovement;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk -= SetPlayerWalking;
+        GameEventsManager.Instance.DayEvents.OnRespawnPlayer -= HandleRespawn;
     }
 
     private void Update()
@@ -102,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
     private void EnableMovement()
     {
         _canMove = true;
+    }
+
+    private void HandleRespawn()
+    {
+        rb.transform.position = _playerSpawn;
     }
     
     public void OnMove(Vector2 dir)

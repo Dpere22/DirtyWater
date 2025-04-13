@@ -508,37 +508,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86757319}
   m_CullTransparentMesh: 1
---- !u!1 &87460993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 87460994}
-  m_Layer: 0
-  m_Name: PlayerRespawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &87460994
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87460993}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.86, y: 22.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &93827685
 GameObject:
   m_ObjectHideFlags: 0
@@ -12645,7 +12614,7 @@ PrefabInstance:
     - target: {fileID: 2150019873570875905, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 87460994}
+      objectReference: {fileID: 0}
     - target: {fileID: 2150019873570875905, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
       propertyPath: screenCover
       value: 
@@ -12720,7 +12689,6 @@ SceneRoots:
   - {fileID: 383808079}
   - {fileID: 3524080020616766066}
   - {fileID: 7716540532936781825}
-  - {fileID: 87460994}
   - {fileID: 1274122158}
   - {fileID: 404679428}
   - {fileID: 275752021}
