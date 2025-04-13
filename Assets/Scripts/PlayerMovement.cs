@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Events;
@@ -5,6 +6,8 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private static readonly int IsSwimming = Animator.StringToHash("isSwimming");
+    private static readonly int XVelocity = Animator.StringToHash("xVelocity");
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private EdgeCollider2D col;
     [SerializeField] private CapsuleCollider2D capsule;
@@ -13,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite walkSprite;
     [SerializeField] private Sprite swim;
     [SerializeField] private Sprite normal;
-    
+    [SerializeField] private Animator animator;
     
     private Quaternion _playerWalkRotation;
     private Vector2 _movement;
@@ -21,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canJump;
     private bool _canMove = true;
     public bool isJumping;
+    private bool _isSwimming;
     public bool atWaterSurface;
     public float groundCheckDistance = 1f;
     public LayerMask groundLayer;
@@ -41,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-        
+        animator = GetComponentInChildren<Animator>();
         _flip = WalkFlip;
         _move = Walk;
         _playerWalkRotation = transform.rotation;
@@ -66,11 +70,16 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk -= SetPlayerWalking;
     }
-    
+
+    private void Update()
+    {
+        animator.SetBool(IsSwimming, _isSwimming);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
         _move?.Invoke();
+        animator.SetFloat(XVelocity, Math.Abs(rb.linearVelocity.magnitude));
     }
 
     private void ResumeHandler()
@@ -115,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerSwimming()
     {
+        _isSwimming = true;
         isJumping = false;
         sr.sprite = swim;
         rb.linearVelocity = new Vector2(0, 0);
@@ -127,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerWalking()
     {
+        _isSwimming = false;
         facingRight = true;
         sr.sprite = walkSprite;
         sr.flipY = false;
