@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 149180283}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: 21.4, z: 0.010790227}
+  m_LocalPosition: {x: 22.1, y: 17.37, z: 0.010790227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -673,6 +673,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5657568, y: 5.717825}
   m_EdgeRadius: 0
+--- !u!1 &155654018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155654019}
+  m_Layer: 0
+  m_Name: EnterWaterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &155654019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155654018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 48.03, y: 9.12, z: 1.7118154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &174291847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3515,7 +3546,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 87.61159, y: -26.230314}
+  m_Offset: {x: 95.28972, y: -29.292686}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3525,7 +3556,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 213.83603, y: 1.1178551}
+  m_Size: {x: 198.47977, y: 1.561676}
   m_EdgeRadius: 0
 --- !u!4 &592371687
 Transform:
@@ -6599,17 +6630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58470b2bb323fa45bf7d8d04f72d986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1220310778 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2150019873570875905, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
-  m_PrefabInstance: {fileID: 7716540532936781825}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5429f23b5969f4e92455c82da807a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1220310780 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4235465270641071399, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
@@ -9226,99 +9246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1593013253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1593013256}
-  - component: {fileID: 1593013257}
-  - component: {fileID: 1593013258}
-  m_Layer: 0
-  m_Name: WaterTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1593013256
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593013253}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.3, y: 37.15, z: -0.013378349}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1593013257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593013253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 748bee08c52704946badfbb8affaa55f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1220310778}
-  waterCollider: {fileID: 1593013258}
---- !u!61 &1593013258
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593013253}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -3.8886585, y: -26.578238}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 52.52683, y: 1.9205589}
-  m_EdgeRadius: 0
 --- !u!1 &1601370231
 GameObject:
   m_ObjectHideFlags: 0
@@ -12153,6 +12080,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4856181226609162919, guid: c6a89f9277d81974fa516b006a212838, type: 3}
+      propertyPath: enterWaterPoint
+      value: 
+      objectReference: {fileID: 155654019}
+    - target: {fileID: 4856181226609162919, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: groundCheckDistance
       value: 15
       objectReference: {fileID: 0}
@@ -12778,7 +12709,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 770471380}
-  - {fileID: 1593013256}
   - {fileID: 149180286}
   - {fileID: 592371687}
   - {fileID: 1067794291}
@@ -12795,3 +12725,4 @@ SceneRoots:
   - {fileID: 404679428}
   - {fileID: 275752021}
   - {fileID: 1732978925}
+  - {fileID: 155654019}

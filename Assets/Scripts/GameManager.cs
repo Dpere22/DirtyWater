@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventsManager.Instance.DayEvents.OnDayEnd += OnDayEnd;
         GameEventsManager.Instance.QuestEvents.OnFinishGame += FinishGame;
+        GameEventsManager.Instance.DayEvents.OnStartDayTimer += StartDayTimer;
     }
 
     private void OnDisable()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Events;
@@ -16,12 +17,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite walkSprite;
     [SerializeField] private Sprite swim;
     [SerializeField] private Sprite normal;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Transform enterWaterPoint;
+    private Animator _animator;
     
     private Quaternion _playerWalkRotation;
     private Vector2 _movement;
-    
-    public bool canJump;
+
     private bool _canMove = true;
     public bool isJumping;
     private bool _isSwimming;
@@ -45,14 +46,14 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _flip = WalkFlip;
         _move = Walk;
         _playerWalkRotation = transform.rotation;
         GameEventsManager.Instance.PauseEvents.OnPause += PauseHandler;
         GameEventsManager.Instance.PauseEvents.OnResume += ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction += OnMove;
-        GameEventsManager.Instance.InputEvents.JumpAction += OnJump;
+        GameEventsManager.Instance.DayEvents.OnJumpIntoWater += JumpIntoWater;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement += RestrictMovement;
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement += EnableMovement;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim += SetPlayerSwimming;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PauseEvents.OnPause -= PauseHandler;
         GameEventsManager.Instance.PauseEvents.OnResume -= ResumeHandler;
         GameEventsManager.Instance.InputEvents.MoveAction -= OnMove;
-        GameEventsManager.Instance.InputEvents.JumpAction -= OnJump;
+        GameEventsManager.Instance.DayEvents.OnJumpIntoWater -= JumpIntoWater;
         GameEventsManager.Instance.PlayerEvents.OnDisablePlayerMovement -= RestrictMovement;
         GameEventsManager.Instance.PlayerEvents.OnEnablePlayerMovement -= EnableMovement;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
@@ -73,13 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(IsSwimming, _isSwimming);
+        _animator.SetBool(IsSwimming, _isSwimming);
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         _move?.Invoke();
-        animator.SetFloat(XVelocity, Math.Abs(rb.linearVelocity.magnitude));
+        _animator.SetFloat(XVelocity, Math.Abs(rb.linearVelocity.magnitude));
     }
 
     private void ResumeHandler()
@@ -92,13 +93,13 @@ public class PlayerMovement : MonoBehaviour
         RestrictMovement();
     }
 
-    public void RestrictMovement()
+    private void RestrictMovement()
     {
         rb.linearVelocity = Vector2.zero;
         _canMove = false;
     }
 
-    public void EnableMovement()
+    private void EnableMovement()
     {
         _canMove = true;
     }
@@ -107,14 +108,26 @@ public class PlayerMovement : MonoBehaviour
     {
         _movement = dir;
     }
-    public void OnJump()
+    private void JumpIntoWater()
     {
-        if (!canJump) return;
+        StartCoroutine(WaitForFadeOut());
+    }
+
+    IEnumerator WaitForFadeOut()
+    {
+        yield return new WaitForSeconds(1f);
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
-        Vector2 direction = new Vector2(10.0f, 5.0f);
-        rb.AddForce(direction, ForceMode2D.Impulse);
-        canJump = false;
+        rb.position = enterWaterPoint.position;
+        SetPlayerSwimming();
+        StartCoroutine(WaitOneFrame());
+    }
+
+    IEnumerator WaitOneFrame()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameEventsManager.Instance.DayEvents.StartDayTimer();
+        GameEventsManager.Instance.DayEvents.EnterWater();
     }
 
     public void OnOpenInventory(InputValue value)

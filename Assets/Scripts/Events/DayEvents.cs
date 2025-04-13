@@ -24,4 +24,18 @@ public class DayEvents
     {
         OnEnterWater?.Invoke();
     }
+
+    public event Action OnJumpIntoWater;
+
+    public void JumpIntoWater()
+    {
+        OnJumpIntoWater?.Invoke();
+    }
+
+    public event Action OnStartDayTimer;
+
+    public void StartDayTimer()
+    {
+        OnStartDayTimer?.Invoke();
+    }
 }
