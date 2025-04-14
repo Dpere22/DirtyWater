@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerSwimming()
     {
+        isWalking = false;
         _isSwimming = true;
         isJumping = false;
         sr.sprite = swim;
