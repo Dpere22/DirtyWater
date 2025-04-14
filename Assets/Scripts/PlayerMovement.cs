@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 1f;
     public LayerMask groundLayer;
     public Transform groundCheck;
+    public bool isWalking;
 
     [FormerlySerializedAs("_facingRight")] public bool facingRight;
     private Vector2 _rayDirection = new(0.15f, -0.15f);
@@ -199,12 +200,17 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping) return;
         CheckFlip();
         bool isGrounded = CheckGroundAhead();
-        if(isGrounded)
-            rb.linearVelocity = new Vector2(_movement.x, 0).normalized * GameEventsManager.Instance.PlayerManager.WalkingSpeed;
+        if (isGrounded && _movement.x != 0)
+        {
+            isWalking = true;
+            rb.linearVelocity = new Vector2(_movement.x, 0).normalized *
+                                GameEventsManager.Instance.PlayerManager.WalkingSpeed;
+        }
         else
         {
             //Debug.Log("I can't move");  //For when player movement seems broken
             rb.linearVelocity = new Vector2(0, 0);
+            isWalking = false;
         }
     }
 
