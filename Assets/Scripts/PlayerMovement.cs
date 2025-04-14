@@ -122,9 +122,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(WaitForFadeOut());
     }
 
-    IEnumerator WaitForFadeOut()
+    private IEnumerator WaitForFadeOut()
     {
         yield return new WaitForSeconds(1f);
+        GameEventsManager.Instance.SoundEvents.PlaySoundEffect("splash");
         rb.linearVelocity = Vector2.zero;
         isJumping = true;
         rb.position = enterWaterPoint.position;
