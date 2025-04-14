@@ -7,13 +7,13 @@ public class OceanSoundController : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.DayEvents.OnEnterWater += SetInWater;
-        GameEventsManager.Instance.DayEvents.OnDayStart += SetSurface;
+        GameEventsManager.Instance.DayEvents.OnDayEnd += SetSurface;
     }
 
     private void OnDisable()
     {
         GameEventsManager.Instance.DayEvents.OnEnterWater -= SetInWater;
-        GameEventsManager.Instance.DayEvents.OnDayStart -= SetSurface;
+        GameEventsManager.Instance.DayEvents.OnDayEnd -= SetSurface;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -23,7 +23,7 @@ public class OceanSoundController : MonoBehaviour
 
     private void SetInWater()
     {
-        _audioSource.pitch = 0.3f;
+        _audioSource.pitch = 0.4f;
     }
 
     private void SetSurface()
