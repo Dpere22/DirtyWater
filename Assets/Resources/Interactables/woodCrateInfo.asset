@@ -18,5 +18,5 @@ MonoBehaviour:
   woodValue: 10
   metalValue: 0
   canCollect: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 6281745405320894798, guid: 31aa18d7ab6536b4f908aff73dea8189, type: 3}
   description: A lost wood crate.

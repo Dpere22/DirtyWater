@@ -18,5 +18,5 @@ MonoBehaviour:
   woodValue: 5
   metalValue: 0
   canCollect: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 413692231460657845, guid: be09d97f89ef3e74dbf72d66ed41ab3e, type: 3}
   description: General purpose wood plank.

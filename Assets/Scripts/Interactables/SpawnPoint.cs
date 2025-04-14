@@ -7,11 +7,16 @@ namespace Interactables
         public Transform Transform;
         public bool IsOccupied;
         private GameObject _item;
-
         public SpawnPoint(Transform transform)
         {
             Transform = transform;
             IsOccupied = false;
+        }
+
+        private void Start()
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            sr.enabled = false;
         }
 
         private void Update()
