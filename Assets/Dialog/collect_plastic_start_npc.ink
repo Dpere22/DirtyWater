@@ -26,17 +26,15 @@ If you really want to help, will you bring me 5 plastic water bottles?
 How is collecting the plastic going?
 -> END
 = canFinish
-    ~ SaveTheOceanQuestState = "IN_PROGRESS"
+    ~ GetToolboxQuestState = "IN_PROGRESS"
     OH? You really do want to help!
     In that case, here is a bag, it will let you pick up large pieces of trash 
     Large trash is worth more materials
     Also, as promissed, you may now shop at my store!
-    Notice the ocean health meter. Right now, the ocean is not healthy. 
-    When you collect trash from the sea, you progress the health.
-    Please get the health to max, and then come and see me!
+    Now, go get my toolbox!
     ~FinishQuest(CollectPlasticQuestId)
-    ~StartQuest(SaveTheOceanQuestId)
+    ~StartQuest(GetToolboxQuestId)
 -> END
 = finished
-    -> saveTheOceanStart
+    -> getToolbox
 -> END

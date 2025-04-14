@@ -1055,7 +1055,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: f0c914f9d22e6b946a48cb17ad9c8af4, type: 3}
   m_Resource: {fileID: 8300000, guid: f0c914f9d22e6b946a48cb17ad9c8af4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.04
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4323,6 +4323,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &544817300
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 193.46536
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.9929237
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11317467
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053961926343556723, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: m_Name
+      value: Toolbox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
 --- !u!1 &573097392
 GameObject:
   m_ObjectHideFlags: 0
@@ -14836,7 +14893,7 @@ PrefabInstance:
       objectReference: {fileID: 393286060}
     - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
       propertyPath: questInfoForPoint.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
       propertyPath: 'questInfoForPoint.Array.data[0]'
@@ -14844,6 +14901,14 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7a22ab544dc50dd4e9ff4804614b7f00, type: 2}
     - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
       propertyPath: 'questInfoForPoint.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e34cec3a785430f42a3382ec67fbc541, type: 2}
+    - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
+      propertyPath: 'questInfoForPoint.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1256b2cc80d72b8408ad705465f53c25, type: 2}
+    - target: {fileID: 2308678090531167378, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
+      propertyPath: 'questInfoForPoint.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 0583832f0dd358345aed9cd54e4929b1, type: 2}
     - target: {fileID: 2786899063390574883, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
@@ -15461,3 +15526,4 @@ SceneRoots:
   - {fileID: 611150851}
   - {fileID: 921065117}
   - {fileID: 2135283884}
+  - {fileID: 544817300}

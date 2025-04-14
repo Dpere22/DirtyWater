@@ -1,5 +1,5 @@
-=== saveTheOceanStart ===
-{ SaveTheOceanQuestState :
+=== getToolbox ===
+{ GetToolboxQuestState :
     - "REQUIREMENTS_NOT_MET": -> requirementsNotMet
     - "CAN_START": -> canStart
     - "IN_PROGRESS": -> inProgress
@@ -16,14 +16,15 @@ Lovely weather!
 I shouldn't be saying this!
 - -> END
 = inProgress
-The ocean still needs healing!
+If only I had my toolbox
 -> END
 = canFinish
-~ SaveTheOceanQuestState = "IN_PROGRESS"
-Wow, the ocean is gorgeous.
-Thank you for everything!
-~FinishQuest(SaveTheOceanQuestId)
+~ CollectWoodQuestState = "IN_PROGRESS"
+Wow, my toolbox
+Now please go collect wood
+~FinishQuest(GetToolboxQuestId)
+~StartQuest(CollectWoodQuestId)
 -> END
 = finished
-Thanks!
+    -> collectWood
 -> END

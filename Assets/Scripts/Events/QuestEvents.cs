@@ -47,5 +47,13 @@ namespace Events
         {
             OnFinishGame?.Invoke();
         }
+
+        public event Action OnGetToolbox;
+
+        public void GetToolbox()
+        {
+            OnGetToolbox?.Invoke();
+        }
+        
     }
 }

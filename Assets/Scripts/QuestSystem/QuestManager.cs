@@ -99,7 +99,7 @@ namespace QuestSystem
 
             // move on to the next step
             quest.MoveToNextStep();
-
+            Debug.Log("attempting to advance" + quest.Info.ID);
             // if there are more steps, instantiate the next one
             if (quest.CurrentStepExists())
             {
@@ -108,6 +108,7 @@ namespace QuestSystem
             // if there are no more steps, then we've finished all of them for this quest
             else
             {
+                Debug.Log("changing quest to finished for" + quest.Info.ID);
                 ChangeQuestState(quest.Info.ID, QuestState.CAN_FINISH);
             }
         }

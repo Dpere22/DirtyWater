@@ -7,10 +7,16 @@ VAR CollectPlasticQuestId = "CollectPlasticQuest"
 VAR CollectPlasticQuestState = "REQUIREMENTS_NOT_MET"
 VAR SaveTheOceanQuestId = "SaveTheOceanQuest"
 VAR SaveTheOceanQuestState = "REQUIREMENTS_NOT_MET"
+VAR GetToolboxQuestState = "REQUIREMENTS_NOT_MET"
+VAR GetToolboxQuestId = "GetToolboxQuest"
+VAR CollectWoodQuestId = "CollectWoodQuest"
+VAR CollectWoodQuestState = "REQUIREMENTS_NOT_MET"
 
 INCLUDE collect_plastic_start_npc.ink
 INCLUDE collect_plastic_finish_npc.ink
 INCLUDE save_the_ocean_start.ink
+INCLUDE get_toolbox.ink
+INCLUDE collect_wood.ink
 
 
 = shopNotAvailable
@@ -25,3 +31,8 @@ I don't have what I need to collect this yet!
 = trashTooHeavy
 This item is to heavy, I need to unload at the net!
 -> END
+
+= player_collect_toolbox
+This must be Scuttle's toolbox!
+-> END
+
