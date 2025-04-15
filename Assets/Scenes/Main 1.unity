@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 31164095}
   - component: {fileID: 31164096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaterEndCollider
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2254,7 +2254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282103235}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaterColliders
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2276,6 +2276,7 @@ Transform:
   m_Children:
   - {fileID: 2037172050}
   - {fileID: 31164095}
+  - {fileID: 592371687}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285648372
@@ -4093,7 +4094,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.768019, y: 16.766909, z: -10}
+  m_LocalPosition: {x: -20.465137, y: 16.756529, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4507,7 +4508,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 95.28972, y: -29.292686}
+  m_Offset: {x: 100.262436, y: -29.458649}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4517,7 +4518,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 198.47977, y: 1.561676}
+  m_Size: {x: 209.12112, y: 1.8936005}
   m_EdgeRadius: 0
 --- !u!4 &592371687
 Transform:
@@ -4527,12 +4528,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592371684}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.25, y: 43.67, z: -0.034463733}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.4572906, y: 32.748524, z: -1.8357693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 282103235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &592371688
 MonoBehaviour:
@@ -5841,7 +5842,7 @@ Transform:
   m_GameObject: {fileID: 770471376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.7, y: 17.43, z: -10}
+  m_LocalPosition: {x: -20.46, y: 17.43, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13924,7 +13925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037172050}
   - component: {fileID: 2037172051}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PierCollider
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -14963,7 +14964,7 @@ PrefabInstance:
       objectReference: {fileID: 155654019}
     - target: {fileID: 8377941335239265280, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.7
+      value: -20.46
       objectReference: {fileID: 0}
     - target: {fileID: 8377941335239265280, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15658,7 +15659,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 770471380}
   - {fileID: 149180286}
-  - {fileID: 592371687}
   - {fileID: 1067794291}
   - {fileID: 897202859}
   - {fileID: 2135241159340159978}
