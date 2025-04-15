@@ -13,13 +13,12 @@
 Lovely weather!
 -> END
 = canStart
-I shouldn't be saying this!
+I shouldn't be saying this ocean!
 - -> END
 = inProgress
 The ocean still needs healing!
 -> END
 = canFinish
-~ SaveTheOceanQuestState = "IN_PROGRESS"
 Wow, the ocean is gorgeous.
 Thank you for everything!
 ~FinishQuest(SaveTheOceanQuestId)

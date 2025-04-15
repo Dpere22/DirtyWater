@@ -11,12 +11,15 @@ VAR GetToolboxQuestState = "REQUIREMENTS_NOT_MET"
 VAR GetToolboxQuestId = "GetToolboxQuest"
 VAR CollectWoodQuestId = "CollectWoodQuest"
 VAR CollectWoodQuestState = "REQUIREMENTS_NOT_MET"
+VAR ChestQuestId = "ChestQuest"
+VAR ChestQuestState = "REQUIREMENTS_NOT_MET"
 
 INCLUDE collect_plastic_start_npc.ink
 INCLUDE collect_plastic_finish_npc.ink
 INCLUDE save_the_ocean_start.ink
 INCLUDE get_toolbox.ink
 INCLUDE collect_wood.ink
+INCLUDE get_chest.ink
 
 
 = shopNotAvailable
@@ -36,3 +39,6 @@ This item is to heavy, I need to unload at the net!
 This must be Scuttle's toolbox!
 -> END
 
+= player_collect_chest
+This is the chest Sally was talking about!
+-> END

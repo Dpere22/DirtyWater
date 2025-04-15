@@ -54,6 +54,13 @@ namespace Events
         {
             OnGetToolbox?.Invoke();
         }
-        
+
+        public event Action OnGetChest;
+
+        public void GetChest()
+        {
+            OnGetChest?.Invoke();
+        }
+
     }
 }

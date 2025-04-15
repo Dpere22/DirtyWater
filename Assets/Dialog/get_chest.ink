@@ -1,5 +1,5 @@
-=== collectWood ===
-{ CollectWoodQuestState :
+=== getChest ===
+{ ChestQuestState :
     - "REQUIREMENTS_NOT_MET": -> requirementsNotMet
     - "CAN_START": -> canStart
     - "IN_PROGRESS": -> inProgress
@@ -10,21 +10,21 @@
 
 = requirementsNotMet
 //Not possible, but dialogue just in case
-Lovely weather wood!
+Lovely weather!
 -> END
 = canStart
-I shouldn't be saying this wood!
+I shouldn't be saying this chest!
 - -> END
 = inProgress
-Please go get me the wood
+Mr. I wish I had my locket
 -> END
 = canFinish
-~ChestQuestState = "IN_PROGRESS"
-Nice you got the wood,
-now go get the girl necklace
-~FinishQuest(CollectWoodQuestId)
-~StartQuest(ChestQuestId)
+~ SaveTheOceanQuestState = "IN_PROGRESS"
+Wow, the chest
+Now please go save the ocean
+~FinishQuest(ChestQuestId)
+~StartQuest(SaveTheOceanQuestId)
 -> END
 = finished
-    -> getChest
+    -> saveTheOceanStart
 -> END
