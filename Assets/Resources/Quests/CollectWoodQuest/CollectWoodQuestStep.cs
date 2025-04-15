@@ -13,7 +13,6 @@ namespace Resources.Quests.CollectWoodQuest
             _woodCollected = GameEventsManager.Instance.PlayerManager.TotalWood;
             if (_woodCollected >= 1)
             {
-                Debug.Log("Finishing Quest");
                 FinishQuestStep();
             }
         }

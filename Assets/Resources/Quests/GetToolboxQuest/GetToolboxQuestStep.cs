@@ -14,6 +14,11 @@ namespace Resources.Quests.GetToolboxQuest
         {
             GameEventsManager.Instance.QuestEvents.OnGetToolbox -= FinishQuest;
         }
+
+        private void Start()
+        {
+            GameEventsManager.Instance.QuestEvents.ActivateToolbox();
+        }
         private void FinishQuest()
         {
             FinishQuestStep();

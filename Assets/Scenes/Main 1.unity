@@ -1317,6 +1317,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 637872357}
     - target: {fileID: 9017903392600322826, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 2047221827}
+    - target: {fileID: 9017903392600322826, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1469372708}
@@ -7782,6 +7786,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9017903392600322826, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 938103472}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

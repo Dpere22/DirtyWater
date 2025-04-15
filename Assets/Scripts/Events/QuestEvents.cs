@@ -62,5 +62,19 @@ namespace Events
             OnGetChest?.Invoke();
         }
 
+        public event Action OnActivateToolbox;
+
+        public void ActivateToolbox()
+        {
+            OnActivateToolbox?.Invoke();
+        }
+
+        public event Action OnActivateChest;
+
+        public void ActivateChest()
+        {
+            OnActivateChest?.Invoke();
+        }
+
     }
 }

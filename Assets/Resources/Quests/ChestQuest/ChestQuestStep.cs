@@ -15,6 +15,11 @@ namespace Resources.Quests.ChestQuest
             GameEventsManager.Instance.QuestEvents.OnGetChest -= HandleGetChest;
         }
 
+        private void Start()
+        {
+            GameEventsManager.Instance.QuestEvents.ActivateChest();
+        }
+
         private void HandleGetChest()
         {
             FinishQuestStep();

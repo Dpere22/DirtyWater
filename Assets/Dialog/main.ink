@@ -42,3 +42,20 @@ This must be Scuttle's toolbox!
 = player_collect_chest
 This is the chest Sally was talking about!
 -> END
+
+= player_cannot_collect_toolbox
+I don't really want to take a random toolbox back up with me.
+-> END
+
+= player_cannot_open_chest
+This chest is way too heavy to lift. I need a key.
+-> END
+
+= player_already_open_chest
+This chest is empty!
+-> END
+
+
+
+
+
