@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Trash
+  - Ground
+  - PlayerDropOffCrate
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - Water
   - UI
   - UIHigher
-  - 
-  - 
-  - 
-  - 
+  - Camera
+  - Player
+  - WaterSurface
+  - DropOffCrateKill
   - 
   - 
   - 

@@ -1,22 +1,29 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactables
 {
     public class SpawnPoint : MonoBehaviour
     {
         public Transform Transform;
-        public bool IsOccupied;
+        [FormerlySerializedAs("IsOccupied")] public bool isOccupied;
         private GameObject _item;
-
         public SpawnPoint(Transform transform)
         {
             Transform = transform;
-            IsOccupied = false;
+            isOccupied = false;
+        }
+
+        private void Start()
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr == null) return; //safety check
+            sr.enabled = false;
         }
 
         private void Update()
         {
-            if (!_item) IsOccupied = false;
+            if (!_item) isOccupied = false;
         }
 
         public void SetGameObject(GameObject gO)

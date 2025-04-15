@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 
 public class PlayerManager
 {
 
+    public bool Swimming = false; //not the best place for this but ok for one off
     //Total Materials Collected
     public int TotalPlastic = 0;
     public int TotalWood = 0;
@@ -19,6 +19,8 @@ public class PlayerManager
 
 
 
+    public int DropOffCrates = 2;
+    public int MaxDropOffCrates = 2;
 
 
     //Both Lists contains GarbageID, Plastic Value, Wood Value, Metal Value

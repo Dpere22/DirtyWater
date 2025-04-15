@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fbc1416cb31f74d8ba9e45685e9682, type: 3}
+  m_Name: CollectWoodQuest
+  m_EditorClassIdentifier: 
+  <ID>k__BackingField: CollectWoodQuest
+  displayName: Collect Wood
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 7444226972902847812, guid: 7f4965757f59a264d97d39bd0f1798ec, type: 3}
+  rewardPrefab: {fileID: 4324914637660286596, guid: 8f22c38166afe834e998afb1fcf689c8, type: 3}

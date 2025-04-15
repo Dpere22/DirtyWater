@@ -41,9 +41,9 @@ public class TrashSpawner : MonoBehaviour
     
     private void RespawnTrash()
     {
-        foreach (var sp in spawnPointList.Where(t => !t.IsOccupied))
+        foreach (var sp in spawnPointList.Where(t => !t.isOccupied))
         {
-            sp.IsOccupied = true;
+            sp.isOccupied = true;
             Vector2 spawnPos = sp.Transform.position;
             GameObject go = Instantiate(GetRandomTrash(), spawnPos, Quaternion.identity);
             sp.SetGameObject(go);

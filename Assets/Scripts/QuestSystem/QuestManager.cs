@@ -99,7 +99,6 @@ namespace QuestSystem
 
             // move on to the next step
             quest.MoveToNextStep();
-
             // if there are more steps, instantiate the next one
             if (quest.CurrentStepExists())
             {

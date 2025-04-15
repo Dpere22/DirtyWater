@@ -15,6 +15,7 @@ namespace Events
         public PauseEvents PauseEvents;
         public TrashManager TrashManager; //This code is a bit odd here but will work for now.
         public PlayerManager PlayerManager; //same here
+        public SoundEvents SoundEvents;
 
         private void Awake()
         {
@@ -32,6 +33,7 @@ namespace Events
             PauseEvents = new PauseEvents();
             TrashManager = new TrashManager();
             PlayerManager = new PlayerManager();
+            SoundEvents = new SoundEvents();
         }
     }
 }

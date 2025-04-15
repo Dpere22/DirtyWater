@@ -22,12 +22,12 @@ public class WaterSurface : MonoBehaviour
 
     private void PlayerEnteredWater()
     {
-        waterSurfaceCollider.enabled = true;
+        //waterSurfaceCollider.enabled = true;
     }
 
     private void DisableWaterSurfaceCollider()
     {
-        waterSurfaceCollider.enabled = false;
+        //waterSurfaceCollider.enabled = false;
     }
 
 }

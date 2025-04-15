@@ -13,7 +13,7 @@
 Lovely weather!
 -> END
 = canStart
-I shouldn't be saying this!
+I shouldn't be saying this ocean!
 - -> END
 = inProgress
 The ocean still needs healing!

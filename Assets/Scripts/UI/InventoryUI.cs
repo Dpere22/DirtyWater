@@ -9,7 +9,6 @@ namespace UI
         [SerializeField] private TextMeshProUGUI plasticCountText;
         [SerializeField] private TextMeshProUGUI woodCountText;
         [SerializeField] private TextMeshProUGUI metalCountText;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
         [SerializeField] private TextMeshProUGUI PlasticBottle;
@@ -28,6 +27,5 @@ namespace UI
             WoodenCrate.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenCrate.ToString();
             WoodenPlank.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenPlank.ToString();
         }
-
-            }
+    }
 }

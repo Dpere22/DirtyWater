@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3bf8219f4e736f46ac76533bc2ac9f7, type: 3}
   m_Name: woodPlankInfo
   m_EditorClassIdentifier: 
-  garbageId: woodPlank
+  garbageId: woodenPlank
   weight: 5
   plasticValue: 0
   woodValue: 5
   metalValue: 0
   canCollect: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 413692231460657845, guid: be09d97f89ef3e74dbf72d66ed41ab3e, type: 3}
   description: General purpose wood plank.

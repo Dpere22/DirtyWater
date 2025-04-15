@@ -47,5 +47,34 @@ namespace Events
         {
             OnFinishGame?.Invoke();
         }
+
+        public event Action OnGetToolbox;
+
+        public void GetToolbox()
+        {
+            OnGetToolbox?.Invoke();
+        }
+
+        public event Action OnGetChest;
+
+        public void GetChest()
+        {
+            OnGetChest?.Invoke();
+        }
+
+        public event Action OnActivateToolbox;
+
+        public void ActivateToolbox()
+        {
+            OnActivateToolbox?.Invoke();
+        }
+
+        public event Action OnActivateChest;
+
+        public void ActivateChest()
+        {
+            OnActivateChest?.Invoke();
+        }
+
     }
 }

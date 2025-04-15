@@ -2526,8 +2526,8 @@
     "m_ObjectId": "1e91fe2a143346b7936a187720a8a8eb",
     "m_Title": "Sine Wave for Vertex Displacement",
     "m_Position": {
-        "x": -337.3333740234375,
-        "y": -1630.6666259765625
+        "x": -337.0,
+        "y": -1630.5
     }
 }
 
@@ -3660,8 +3660,8 @@
     "m_ObjectId": "3f25e70752bd4ad1990dd8b9642dd67a",
     "m_Title": "Line",
     "m_Position": {
-        "x": -505.3333740234375,
-        "y": -676.666748046875
+        "x": -505.0,
+        "y": -676.5
     }
 }
 
@@ -5595,8 +5595,8 @@
     "m_ObjectId": "7a2937e0ecbb486abcbdabece4c93f12",
     "m_Title": "Caustics",
     "m_Position": {
-        "x": 1207.333251953125,
-        "y": 1034.6661376953125
+        "x": 1208.0,
+        "y": 1034.5
     }
 }
 
@@ -6893,8 +6893,8 @@
     "m_ObjectId": "ae822a0d923a4c9998f2ed17bf7cb8e9",
     "m_Title": "Distortion",
     "m_Position": {
-        "x": -2634.666748046875,
-        "y": 1016.6666259765625
+        "x": -2634.0,
+        "y": 1016.5
     }
 }
 

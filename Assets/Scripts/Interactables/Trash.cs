@@ -48,11 +48,25 @@ namespace Interactables
                 DisplayTooHeavy();
                 return;
             }
+            PlayCollectSound();
             GameEventsManager.Instance.PlayerManager.CurrentWeight += garbageInfo.weight;
             OceanHealth.AddHealth(garbageInfo.weight);
             AddItemToCurrentDayInventory();
             if(gameObject)
                 Destroy(gameObject);
+        }
+
+        private void PlayCollectSound()
+        {
+            int choice = Random.Range(0, 2);
+            if (choice == 1)
+            {
+                GameEventsManager.Instance.SoundEvents.PlaySoundEffect("bubble_pop");
+            }
+            else
+            {
+                GameEventsManager.Instance.SoundEvents.PlaySoundEffect("bubble_pop2");
+            }
         }
 
         private void AddItemToCurrentDayInventory()
