@@ -18,6 +18,8 @@ namespace UI
 
         [SerializeField] private GameObject inventory;
         [SerializeField] private GameObject pauseFirstButton;
+        [SerializeField] private GameObject playerDropOffCrates;
+        [SerializeField] private TextMeshProUGUI crateCountText;
         private bool _inventoryOpen;
 
 
@@ -26,6 +28,20 @@ namespace UI
         private void Update()
         {
             if (_hasStarted) UpdateTimeText();
+            UpdateCrateCountText();
+        }
+
+        private void UpdateCrateCountText()
+        {
+            if (GameEventsManager.Instance.PlayerManager.DropOffCrates == 0 || !GameEventsManager.Instance.PlayerManager.Swimming)
+            {
+                playerDropOffCrates.SetActive(false);
+            }
+            else
+            {
+                playerDropOffCrates.SetActive(true);
+                crateCountText.text = GameEventsManager.Instance.PlayerManager.DropOffCrates.ToString();
+            }
         }
 
         private void UpdateTimeText()

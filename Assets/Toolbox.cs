@@ -30,6 +30,7 @@ public class Toolbox : MonoBehaviour
     private void CollectToolbox(InputEventContext context)
     {
         if (!_inRange) return;
+        GameEventsManager.Instance.SoundEvents.PlaySoundEffect("bubble_pop");
         GameEventsManager.Instance.QuestEvents.GetToolbox();
         GameEventsManager.Instance.DialogueEvents.EnterDialogue("player_collect_toolbox");
         Destroy(gameObject);

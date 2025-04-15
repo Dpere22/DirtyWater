@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite swim;
     [SerializeField] private Sprite normal;
     [SerializeField] private Transform enterWaterPoint;
+    [SerializeField] private GameObject dropOffCrate;
     private Animator _animator;
     private Vector2 _playerSpawn;
     
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim += SetPlayerSwimming;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk += SetPlayerWalking;
         GameEventsManager.Instance.DayEvents.OnRespawnPlayer += HandleRespawn;
+        GameEventsManager.Instance.InputEvents.OnInteractPressed += HandleDropOffCrate;
     }
 
     private void OnDestroy()
@@ -75,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetSwim -= SetPlayerSwimming;
         GameEventsManager.Instance.PlayerEvents.OnPlayerSetWalk -= SetPlayerWalking;
         GameEventsManager.Instance.DayEvents.OnRespawnPlayer -= HandleRespawn;
+        GameEventsManager.Instance.InputEvents.OnInteractPressed += HandleDropOffCrate;
     }
 
     private void Update()
@@ -112,6 +115,17 @@ public class PlayerMovement : MonoBehaviour
     private void HandleRespawn()
     {
         rb.transform.position = _playerSpawn;
+        GameEventsManager.Instance.PlayerManager.DropOffCrates = GameEventsManager.Instance.PlayerManager.MaxDropOffCrates;
+    }
+
+    private void HandleDropOffCrate()
+    {
+        if (GameEventsManager.Instance.PlayerManager.DropOffCrates > 0 && GameEventsManager.Instance.PlayerManager.Swimming)
+        {
+            GameEventsManager.Instance.PlayerManager.DropOffCrates--;
+            Instantiate(dropOffCrate, transform.position, Quaternion.identity);
+        }
+            
     }
     
     public void OnMove(Vector2 dir)
@@ -148,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerSwimming()
     {
+        GameEventsManager.Instance.PlayerManager.Swimming = true;
         isWalking = false;
         _isSwimming = true;
         isJumping = false;
@@ -162,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerWalking()
     {
+        GameEventsManager.Instance.PlayerManager.Swimming = false;
         _isSwimming = false;
         facingRight = true;
         sr.sprite = walkSprite;

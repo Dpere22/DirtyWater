@@ -30,6 +30,7 @@ public class Chest : MonoBehaviour
     private void HandleSubmit(InputEventContext context)
     {
         if (!_inRange) return;
+        GameEventsManager.Instance.SoundEvents.PlaySoundEffect("key");
         GameEventsManager.Instance.DialogueEvents.EnterDialogue("player_collect_chest");
         GameEventsManager.Instance.QuestEvents.GetChest();
         Destroy(gameObject);
