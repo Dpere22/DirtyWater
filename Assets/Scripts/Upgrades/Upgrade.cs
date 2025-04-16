@@ -17,15 +17,24 @@ namespace Upgrades
         [SerializeField] protected TextMeshProUGUI descriptionText;
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
-        public string id;
         
         private void OnEnable()
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
-            id = upgradeInfo.upgradeId;
+            if (!CheckAvailable()) return;
             if(descriptionText) descriptionText.text = upgradeInfo.description;
             ResetVisual();
+        }
+
+        private bool CheckAvailable()
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(_info.Enabled);
+            }
+            return _info.Enabled;
+
         }
 
         private void Update()
