@@ -17,7 +17,7 @@ MonoBehaviour:
   plasticValue: 5
   woodValue: 0
   metalValue: 0
-  canCollect: 0
+  canCollect: 1
   prefab: {fileID: 4655280941963092474, guid: 6122987506305d443a5f865b944e40bd, type: 3}
   description: A plastic bag full of old garbage. It's filled to the brim with plastic
     garbage.
