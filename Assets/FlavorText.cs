@@ -32,6 +32,7 @@ public class FlavorText : MonoBehaviour
 
     private void InteractText(InputEventContext context)
     {
+        if (context != InputEventContext.Default) return;
         if (!_inRange) return;
         if (filename == "") return;
         GameEventsManager.Instance.DialogueEvents.EnterDialogue(filename);
