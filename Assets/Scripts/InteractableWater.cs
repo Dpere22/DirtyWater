@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+//
 // using UnityEditor;
 // using UnityEngine.UIElements;
 // using UnityEditor.UIElements;
@@ -103,19 +103,19 @@ public class InteractableWater : MonoBehaviour
 
     private void Update()
     {
-        //Inefficient, should eventually change!
-        if (OceanHealth.GetHealthRatio() < 0.75f)
-        {
-            mat.SetColor(LineColor, dirtyBodyColor);
-            mat.SetColor(BodyColor, dirtyBodyColor);
-            mat.SetColor(CausticColor, dirtyCausticsColor);
-        }
-        else
-        {
-            mat.SetColor(LineColor, healthyBodyColor);
-            mat.SetColor(BodyColor, healthyBodyColor);
-            mat.SetColor(CausticColor, healthyCausticsColor);
-        }
+        // //Inefficient, should eventually change!
+        // if (OceanHealth.GetHealthRatio() < 0.75f)
+        // {
+        //     mat.SetColor(LineColor, dirtyBodyColor);
+        //     mat.SetColor(BodyColor, dirtyBodyColor);
+        //     mat.SetColor(CausticColor, dirtyCausticsColor);
+        // }
+        // else
+        // {
+        //     mat.SetColor(LineColor, healthyBodyColor);
+        //     mat.SetColor(BodyColor, healthyBodyColor);
+        //     mat.SetColor(CausticColor, healthyCausticsColor);
+        // }
         
     }
 
