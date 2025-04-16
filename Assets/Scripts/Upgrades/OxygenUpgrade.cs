@@ -7,7 +7,10 @@ namespace Upgrades
     {
         protected override Action DoUpgrade()
         {
-            return () => GameEventsManager.Instance.PlayerManager.MaxTime += upgradeInfo.upgradeProgression;
+            return () =>
+            {
+                GameEventsManager.Instance.PlayerManager.MaxTime += upgradeInfo.upgradeProgression;
+            };
         }
 
         protected override string SetInfoText()
