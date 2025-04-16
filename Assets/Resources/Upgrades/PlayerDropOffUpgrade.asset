@@ -21,4 +21,4 @@ MonoBehaviour:
   metalProgression: 0
   maxAmount: 2
   upgradeProgression: 1
-  description: player dropoff desc.
+  description: Get crates to drop off your collected trash from anywhere!

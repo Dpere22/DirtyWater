@@ -21,4 +21,4 @@ MonoBehaviour:
   metalProgression: 0
   maxAmount: 50
   upgradeProgression: 5
-  description: More Weight!
+  description: Increase the amount you can hold before needing to drop off

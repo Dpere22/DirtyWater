@@ -1228,6 +1228,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Weight
       objectReference: {fileID: 0}
+    - target: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6646686509967618751, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_Name
       value: Weight
@@ -1298,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -219
+      value: -284
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1471,6 +1475,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533a60bc78e1f5e49b3a0eab2c70600f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &181780034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+  m_PrefabInstance: {fileID: 3662334667806727650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &184806711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3025479462401378494, guid: ebefef7ae56a52544b20975dfc69dc33, type: 3}
@@ -1512,6 +1527,17 @@ RectTransform:
   m_AnchoredPosition: {x: 2.8099976, y: 0}
   m_SizeDelta: {x: -5.6200027, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &208531804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+  m_PrefabInstance: {fileID: 550682637}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216571190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,9 +4616,13 @@ PrefabInstance:
       propertyPath: m_text
       value: Crates
       objectReference: {fileID: 0}
+    - target: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6646686509967618751, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_Name
-      value: ShopUpgrade
+      value: CrateUpgrade
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_Pivot.x
@@ -4660,7 +4690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -367
+      value: -543
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4726,6 +4756,7 @@ MonoBehaviour:
   metalCostText: {fileID: 550682642}
   upgradeInfo: {fileID: 11400000, guid: 5ab6f35e2163b694abd3d3bd0cd032f7, type: 2}
   infoText: {fileID: 550682641}
+  descriptionText: {fileID: 208531804}
 --- !u!114 &550682641 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2130783007342470783, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
@@ -6790,6 +6821,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900459317}
   m_CullTransparentMesh: 1
+--- !u!114 &901735999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+  m_PrefabInstance: {fileID: 1080081364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &906724898
 GameObject:
   m_ObjectHideFlags: 0
@@ -7989,6 +8031,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Oxygen
       objectReference: {fileID: 0}
+    - target: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6646686509967618751, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_Name
       value: Oxygen
@@ -8059,7 +8105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -294
+      value: -417
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8965,6 +9011,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e58470b2bb323fa45bf7d8d04f72d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1202271657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+  m_PrefabInstance: {fileID: 174291847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1220310780 stripped
@@ -11017,6 +11074,7 @@ MonoBehaviour:
   metalCostText: {fileID: 363293515}
   upgradeInfo: {fileID: 11400000, guid: 8f3ec8d379f156c46a592a99b9a471e6, type: 2}
   infoText: {fileID: 769129099}
+  descriptionText: {fileID: 1202271657}
 --- !u!1001 &1480073286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12887,6 +12945,7 @@ MonoBehaviour:
   metalCostText: {fileID: 1928176326}
   upgradeInfo: {fileID: 11400000, guid: 9fcceb8a104f37641a2190427828d5f0, type: 2}
   infoText: {fileID: 6950540}
+  descriptionText: {fileID: 901735999}
 --- !u!114 &1771887770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3458361395922566750, guid: ad886c8246a794f49ab0c6d281f2f453, type: 3}
@@ -13857,6 +13916,7 @@ MonoBehaviour:
   metalCostText: {fileID: 1124367253}
   upgradeInfo: {fileID: 11400000, guid: a6da1fc36b68f7747a660dcf22d68c28, type: 2}
   infoText: {fileID: 525729833}
+  descriptionText: {fileID: 181780034}
 --- !u!1001 &1954584582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16005,7 +16065,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2398879586434768778, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_text
-      value: Speed
+      value: Fin Power
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476316089239646990, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6646686509967618751, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_Name

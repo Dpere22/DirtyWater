@@ -14,6 +14,7 @@ namespace Upgrades
         [SerializeField] protected TextMeshProUGUI metalCostText;
         [SerializeField] protected UpgradeInfoSO upgradeInfo;
         [SerializeField] protected TextMeshProUGUI infoText;
+        [SerializeField] protected TextMeshProUGUI descriptionText;
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
         
@@ -21,6 +22,7 @@ namespace Upgrades
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
+            if(descriptionText) descriptionText.text = upgradeInfo.description;
             ResetVisual();
         }
 

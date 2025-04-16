@@ -21,4 +21,4 @@ MonoBehaviour:
   metalProgression: 0
   maxAmount: 60
   upgradeProgression: 5
-  description: More time!
+  description: Increase the amount of oxygen in your tank allowing for longer days
