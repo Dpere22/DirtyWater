@@ -13,7 +13,8 @@
 Lovely weather wood!
 -> END
 = canStart
-I shouldn't be saying this wood!
+starting wood
+~StartQuest(CollectWoodQuestId)
 - -> END
 = inProgress
 Please go get me the wood
@@ -23,7 +24,7 @@ Please go get me the wood
 Nice you got the wood,
 now go get the girl necklace
 ~FinishQuest(CollectWoodQuestId)
-~StartQuest(ChestQuestId)
+~EnableQuest(ChestQuestId)
 -> END
 = finished
     -> getChest

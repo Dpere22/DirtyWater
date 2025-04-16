@@ -22,6 +22,13 @@ namespace Events
                 OnAdvanceQuest(id);
             }
         }
+        
+        public event Action<string> OnEnableQuest;
+
+        public void EnableQuest(string id)
+        {
+            OnEnableQuest?.Invoke(id);
+        }
 
         public event Action<string> OnFinishQuest;
         public void FinishQuest(string id)

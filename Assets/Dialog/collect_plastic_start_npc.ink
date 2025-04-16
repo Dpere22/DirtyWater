@@ -12,28 +12,23 @@
 Come back once you've leveled up a bit more.
 -> END
 = canStart
-Oh, I see you are a researcher.
-Welcome to our part of the ocean.
-Sadly, the ocean is a mess from waste.
-If you really want to help, will you bring me 5 plastic water bottles?
-* [Yes]
-    ~StartQuest(CollectPlasticQuestId)
-    Great, bring me those bottles, and I will let you shop at my store!
-* [No]
-    Awwwwwwwww
+Scuttle: Hey kid! Help an old man out, would ya?
+Scuttle: See these waters? Bit too dirty for Shelly to be swimming in, I reckon.
+Scuttle: If you can pick up 5 pieces of plastic, I'd feel more comfortable with her getting closer to the water
+Shelly: Waves! Waves!
+Scuttle: Not yet, kiddo.
+Scuttle: Anyways, I'd really appreaciate it. Be seeing ya.
+~StartQuest(CollectPlasticQuestId)
 - -> END
 = inProgress
-How is collecting the plastic going?
+Ha! You've got a ways to go, kid. Keep pick'n up plastic bottles.
 -> END
 = canFinish
-    ~ GetToolboxQuestState = "IN_PROGRESS"
-    OH? You really do want to help!
-    In that case, here is a bag, it will let you pick up large pieces of trash 
-    Large trash is worth more materials
-    Also, as promissed, you may now shop at my store!
-    Now, go get my toolbox!
+    Scuttle: Well I'll be. I'd say the water is already looking a bit better! Still a mess, but I can rest a bit easier now. Thanks.
+    Shelly: Grandpa! I wanna go in the water nowwwwww
+    Scuttle: Alright kiddo, let's get you in those waves!
     ~FinishQuest(CollectPlasticQuestId)
-    ~StartQuest(GetToolboxQuestId)
+    ~EnableQuest(GetToolboxQuestId)
 -> END
 = finished
     -> getToolbox

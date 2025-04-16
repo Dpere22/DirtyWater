@@ -1,6 +1,7 @@
 EXTERNAL StartQuest(questId)
 EXTERNAL AdvanceQuest(questId)
 EXTERNAL FinishQuest(questId)
+EXTERNAL EnableQuest(questId)
 
 
 VAR CollectPlasticQuestId = "CollectPlasticQuest"
@@ -15,7 +16,6 @@ VAR ChestQuestId = "ChestQuest"
 VAR ChestQuestState = "REQUIREMENTS_NOT_MET"
 
 INCLUDE collect_plastic_start_npc.ink
-INCLUDE collect_plastic_finish_npc.ink
 INCLUDE save_the_ocean_start.ink
 INCLUDE get_toolbox.ink
 INCLUDE collect_wood.ink

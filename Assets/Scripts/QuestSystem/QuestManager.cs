@@ -18,6 +18,7 @@ namespace QuestSystem
             GameEventsManager.Instance.QuestEvents.OnStartQuest += StartQuest;
             GameEventsManager.Instance.QuestEvents.OnAdvanceQuest += AdvanceQuest;
             GameEventsManager.Instance.QuestEvents.OnFinishQuest += FinishQuest;
+            GameEventsManager.Instance.QuestEvents.OnEnableQuest += EnableQuest;
         }
 
         private void OnDisable()
@@ -25,6 +26,7 @@ namespace QuestSystem
             GameEventsManager.Instance.QuestEvents.OnStartQuest -= StartQuest;
             GameEventsManager.Instance.QuestEvents.OnAdvanceQuest -= AdvanceQuest;
             GameEventsManager.Instance.QuestEvents.OnFinishQuest -= FinishQuest;
+            GameEventsManager.Instance.QuestEvents.OnEnableQuest -= EnableQuest;
         }
 
         private void Start()
@@ -91,6 +93,12 @@ namespace QuestSystem
             Quest quest = GetQuestById(id);
             quest.InstantiateCurrentQuestStep(transform); //where the quest step code gets started
             ChangeQuestState(quest.Info.ID, QuestState.IN_PROGRESS);
+        }
+
+        private void EnableQuest(string id)
+        {
+            Quest quest = GetQuestById(id);
+            ChangeQuestState(quest.Info.ID, QuestState.CAN_START);
         }
 
         private void AdvanceQuest(string id)

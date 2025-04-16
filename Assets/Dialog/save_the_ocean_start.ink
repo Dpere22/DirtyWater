@@ -13,7 +13,8 @@
 Lovely weather!
 -> END
 = canStart
-I shouldn't be saying this ocean!
+starting ocean
+~StartQuest(SaveTheOceanQuestId)
 - -> END
 = inProgress
 The ocean still needs healing!

@@ -13,7 +13,8 @@
 Lovely weather!
 -> END
 = canStart
-I shouldn't be saying this chest!
+starting chest
+~StartQuest(ChestQuestId)
 - -> END
 = inProgress
 Mr. I wish I had my locket
@@ -23,7 +24,7 @@ Mr. I wish I had my locket
 Wow, the chest
 Now please go save the ocean
 ~FinishQuest(ChestQuestId)
-~StartQuest(SaveTheOceanQuestId)
+~EnableQuest(SaveTheOceanQuestId)
 -> END
 = finished
     -> saveTheOceanStart
