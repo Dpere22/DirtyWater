@@ -13,16 +13,15 @@
 Lovely weather wood!
 -> END
 = canStart
-starting wood
+SCUTTLE: The shop is ready for ya, kid! Now you just gotta get the proper materials to get started! Go out and grab 20 wood.
 ~StartQuest(CollectWoodQuestId)
 - -> END
 = inProgress
-Please go get me the wood
+SCUTTLE: I “wood’ help you, but we need more before we can upgrade anything… I’m sorry, but puns make me happy.
 -> END
 = canFinish
 ~ChestQuestState = "IN_PROGRESS"
-Nice you got the wood,
-now go get the girl necklace
+SCUTTLE: Good work! Now let's fix up this junk!
 ~FinishQuest(CollectWoodQuestId)
 ~EnableQuest(ChestQuestId)
 -> END
