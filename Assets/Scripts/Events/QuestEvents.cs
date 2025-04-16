@@ -83,5 +83,12 @@ namespace Events
             OnActivateChest?.Invoke();
         }
 
+        public event Action OnUpgradeShop;
+
+        public void UpgradeShop()
+        {
+            OnUpgradeShop?.Invoke();
+        }
+
     }
 }

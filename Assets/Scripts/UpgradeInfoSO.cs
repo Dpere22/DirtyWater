@@ -13,4 +13,5 @@ public class UpgradeInfoSO : ScriptableObject
     [SerializeField] public int maxAmount;
     [SerializeField] public int upgradeProgression;
     [SerializeField] [TextArea] public string description;
+    [SerializeField] public bool enabled;
 }

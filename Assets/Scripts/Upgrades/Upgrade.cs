@@ -17,11 +17,13 @@ namespace Upgrades
         [SerializeField] protected TextMeshProUGUI descriptionText;
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
+        public string id;
         
         private void OnEnable()
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
+            id = upgradeInfo.upgradeId;
             if(descriptionText) descriptionText.text = upgradeInfo.description;
             ResetVisual();
         }
@@ -36,7 +38,7 @@ namespace Upgrades
             int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
             int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
-            if (currPlastic < _info.plasticCost || currWood < _info.woodCost || currMetal < _info.metalCost)
+            if (currPlastic < _info.PlasticCost || currWood < _info.WoodCost || currMetal < _info.MetalCost)
             {
                 return false;
             }
@@ -78,20 +80,20 @@ namespace Upgrades
             }
             else
             {
-                plasticCostText.text = _info.plasticCost != 0 ? $"{currPlastic} / {_info.plasticCost}" : "";
-                metalCostText.text = _info.metalCost != 0 ? $"{currMetal} / {_info.metalCost}" : "";
-                woodCostText.text = _info.woodCost != 0 ? $"{currWood} / {_info.woodCost}" : "";
-                plasticCostText.color = currPlastic < _info.plasticCost ? Color.red : Color.green;
-                metalCostText.color = currMetal < _info.metalCost ? Color.red : Color.green;
-                woodCostText.color = currWood < _info.woodCost ? Color.red : Color.green;
+                plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
+                metalCostText.text = _info.MetalCost != 0 ? $"{currMetal} / {_info.MetalCost}" : "";
+                woodCostText.text = _info.WoodCost != 0 ? $"{currWood} / {_info.WoodCost}" : "";
+                plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : Color.green;
+                metalCostText.color = currMetal < _info.MetalCost ? Color.red : Color.green;
+                woodCostText.color = currWood < _info.WoodCost ? Color.red : Color.green;
             }
         }
 
         private void ChargePlayer()
         {
-            GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.plasticCost;
-            GameEventsManager.Instance.PlayerManager.TotalWood -= _info.woodCost;
-            GameEventsManager.Instance.PlayerManager.TotalMetal -= _info.metalCost;
+            GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.PlasticCost;
+            GameEventsManager.Instance.PlayerManager.TotalWood -= _info.WoodCost;
+            GameEventsManager.Instance.PlayerManager.TotalMetal -= _info.MetalCost;
         }
     }
 }

@@ -22,3 +22,4 @@ MonoBehaviour:
   maxAmount: 24
   upgradeProgression: 3
   description: Reinforce your swimming fins to move faster
+  enabled: 1

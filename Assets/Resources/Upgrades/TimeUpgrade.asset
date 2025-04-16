@@ -22,3 +22,4 @@ MonoBehaviour:
   maxAmount: 60
   upgradeProgression: 5
   description: Increase the amount of oxygen in your tank allowing for longer days
+  enabled: 0

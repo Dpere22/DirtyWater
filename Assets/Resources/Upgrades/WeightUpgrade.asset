@@ -22,3 +22,4 @@ MonoBehaviour:
   maxAmount: 50
   upgradeProgression: 5
   description: Increase the amount you can hold before needing to drop off
+  enabled: 1
