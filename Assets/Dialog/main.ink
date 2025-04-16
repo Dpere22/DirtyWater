@@ -55,6 +55,10 @@ This chest is way too heavy to lift. I need a key.
 This chest is empty!
 -> END
 
+= sponge_flavor_text
+I'm Ready I'm Ready
+-> END
+
 
 
 
