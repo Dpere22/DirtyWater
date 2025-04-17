@@ -1053,10 +1053,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f0c914f9d22e6b946a48cb17ad9c8af4, type: 3}
-  m_Resource: {fileID: 8300000, guid: f0c914f9d22e6b946a48cb17ad9c8af4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7d991cd0c299b9e41a8f229a8295aa33, type: 3}
+  m_Resource: {fileID: 8300000, guid: 7d991cd0c299b9e41a8f229a8295aa33, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1311,7 +1311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 295.2
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3629,7 +3629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 575, y: -350}
+  m_AnchoredPosition: {x: 512, y: -348}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392219955
@@ -4635,7 +4635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 295.2
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8041,7 +8041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 295.2
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -12147,15 +12147,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.644548, g: 0.629895, b: 0.8962264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 6415338285332550311, guid: 69a1fbe02e7d43744800498a7e4b1f5d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15882,7 +15882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 295.2
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 7185447814748102638, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
       propertyPath: m_AnchoredPosition.y

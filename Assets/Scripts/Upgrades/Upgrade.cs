@@ -85,8 +85,9 @@ namespace Upgrades
             {
                 plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
                 woodCostText.text = _info.WoodCost != 0 ? $"{currWood} / {_info.WoodCost}" : "";
-                plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : Color.green;
-                woodCostText.color = currWood < _info.WoodCost ? Color.red : Color.green;
+                plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : new Color(0f, 0.7f, 0f);
+                woodCostText.color = currWood < _info.WoodCost ? Color.red : new Color(0f, 0.7f, 0f);
+                
             }
         }
 

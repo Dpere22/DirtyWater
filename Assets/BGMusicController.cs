@@ -19,7 +19,6 @@ public class BGMusicController : MonoBehaviour
         StartCoroutine(FadeOutCoroutine(time));
     }
 
-
     private IEnumerator FadeOutCoroutine(float duration)
     {
         AudioSource audioSource = GetComponent<AudioSource>();

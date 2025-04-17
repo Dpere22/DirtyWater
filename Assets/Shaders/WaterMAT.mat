@@ -63,7 +63,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Body_Transparency: 0.483
+    - _Body_Transparency: 0.7
     - _CausticOffsetSpeed: 1
     - _CausticPower: 9.5
     - _CausticScale: 10
@@ -79,7 +79,7 @@ Material:
     - _WaveSize: 0.263
     - _WaveSpeed: 4
     m_Colors:
-    - _BodyColor: {r: 0.19607843, g: 0.34834152, b: 0.63529414, a: 0.5294118}
+    - _BodyColor: {r: 0.17230324, g: 0.3050271, b: 0.55345905, a: 1}
     - _CausticColor: {r: 0.41918826, g: 0.8490566, b: 0.6900068, a: 0.7372549}
     - _CausticScrollDir: {r: 0.045, g: 0, b: 0, a: 0}
     - _CausticTiling: {r: 22.5, g: 20.53, b: 0, a: 0}
