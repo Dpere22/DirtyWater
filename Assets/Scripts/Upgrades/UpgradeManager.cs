@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 
 namespace Upgrades
@@ -7,6 +8,16 @@ namespace Upgrades
     {
         private readonly Dictionary<string, UpgradeInfo> _upgrades = new();
 
+
+        private void OnEnable()
+        {
+            GameEventsManager.Instance.QuestEvents.OnUpgradeShop += UpgradeShop;
+        }
+
+        private void OnDisable()
+        {
+            GameEventsManager.Instance.QuestEvents.OnUpgradeShop -= UpgradeShop;
+        }
         private void Start()
         {
             LoadUpgrades();
@@ -24,6 +35,12 @@ namespace Upgrades
         public UpgradeInfo GetUpgradeById(string upgradeId)
         {
             return _upgrades[upgradeId];
+        }
+
+        private void UpgradeShop()
+        {
+            _upgrades["playerDropOffUpgrade"].Enabled = true;
+            _upgrades["weightUpgrade"].Enabled = true;
         }
     }
 }

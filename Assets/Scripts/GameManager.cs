@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timer.OnTimerComplete += GameEventsManager.Instance.DayEvents.DayEnd;
+        GameEventsManager.Instance.DayEvents.FadeInUI();
     }
 
     private void OnEnable()
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
         GameEventsManager.Instance.DayEvents.OnDayEnd -= OnDayEnd;
         GameEventsManager.Instance.QuestEvents.OnFinishGame -= FinishGame;
     }
-    public void StartDayTimer()
+
+    private void StartDayTimer()
     {
         timer.StartTimer(GameEventsManager.Instance.PlayerManager.MaxTime);
     }
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator WaitForGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.DayEvents.DayStart();
@@ -56,6 +58,14 @@ public class GameManager : MonoBehaviour
     private void FinishGame()
     {
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
+        GameEventsManager.Instance.DayEvents.FadeOutUI();
+        GameEventsManager.Instance.SoundEvents.FadeOutMusic(1f);
+        StartCoroutine(WaitForAnim2());
+    }
+
+    private IEnumerator WaitForAnim2()
+    {
+        yield return new WaitForSeconds(1.2f);
         OceanHealth.ResetHealth(); //bad code but ok for now
         SceneManager.LoadScene(2);
     }

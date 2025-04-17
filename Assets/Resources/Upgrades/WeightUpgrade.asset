@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: WeightUpgrade
   m_EditorClassIdentifier: 
   upgradeId: weightUpgrade
-  plasticCost: 10
-  woodCost: 0
-  metalCost: 0
-  plasticProgression: 1
+  plasticCost: 0
+  woodCost: 5
+  plasticProgression: 0
   woodProgression: 0
-  metalProgression: 0
   maxAmount: 50
   upgradeProgression: 5
-  description: More Weight!
+  description: Increase the amount you can hold before needing to drop off
+  enabled: 0

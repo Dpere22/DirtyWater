@@ -1,6 +1,5 @@
 using System;
 using Events;
-using UnityEngine;
 
 namespace Upgrades
 {

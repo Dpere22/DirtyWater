@@ -19,8 +19,8 @@ public class PlayerManager
 
 
 
-    public int DropOffCrates = 2;
-    public int MaxDropOffCrates = 2;
+    public int DropOffCrates = 0;
+    public int MaxDropOffCrates = 0;
 
 
     //Both Lists contains GarbageID, Plastic Value, Wood Value, Metal Value

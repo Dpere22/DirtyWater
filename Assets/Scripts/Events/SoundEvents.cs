@@ -8,4 +8,11 @@ public class SoundEvents
     {
         OnPlaySoundEffect?.Invoke(soundName);
     }
+
+    public event Action<float> OnFadeOutMusic;
+
+    public void FadeOutMusic(float time)
+    {
+        OnFadeOutMusic?.Invoke(time);
+    }
 }

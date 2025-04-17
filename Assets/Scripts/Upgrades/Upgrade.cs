@@ -2,18 +2,16 @@ using System;
 using Events;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Upgrades
 {
     public abstract class Upgrade : MonoBehaviour
     {
-        [SerializeField] protected Button button;
         [SerializeField] protected TextMeshProUGUI plasticCostText;
         [SerializeField] protected TextMeshProUGUI woodCostText;
-        [SerializeField] protected TextMeshProUGUI metalCostText;
         [SerializeField] protected UpgradeInfoSO upgradeInfo;
         [SerializeField] protected TextMeshProUGUI infoText;
+        [SerializeField] protected TextMeshProUGUI descriptionText;
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
         
@@ -21,7 +19,19 @@ namespace Upgrades
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
+            if (!CheckAvailable()) return;
+            if(descriptionText) descriptionText.text = upgradeInfo.description;
             ResetVisual();
+        }
+
+        private bool CheckAvailable()
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(_info.Enabled);
+            }
+            return _info.Enabled;
+
         }
 
         private void Update()
@@ -33,8 +43,7 @@ namespace Upgrades
         {
             int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
-            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
-            if (currPlastic < _info.plasticCost || currWood < _info.woodCost || currMetal < _info.metalCost)
+            if (currPlastic < _info.PlasticCost || currWood < _info.WoodCost)
             {
                 return false;
             }
@@ -66,30 +75,26 @@ namespace Upgrades
         private void SetUpgradeCosts()
         {
             int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
-            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
             if (IsAtMax())
             {
                 plasticCostText.text = "";
-                metalCostText.text = "";
                 woodCostText.text = "";
             }
             else
             {
-                plasticCostText.text = _info.plasticCost != 0 ? $"{currPlastic} / {_info.plasticCost}" : "";
-                metalCostText.text = _info.metalCost != 0 ? $"{currMetal} / {_info.metalCost}" : "";
-                woodCostText.text = _info.woodCost != 0 ? $"{currWood} / {_info.woodCost}" : "";
-                plasticCostText.color = currPlastic < _info.plasticCost ? Color.red : Color.green;
-                metalCostText.color = currMetal < _info.metalCost ? Color.red : Color.green;
-                woodCostText.color = currWood < _info.woodCost ? Color.red : Color.green;
+                plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
+                woodCostText.text = _info.WoodCost != 0 ? $"{currWood} / {_info.WoodCost}" : "";
+                plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : new Color(0f, 0.7f, 0f);
+                woodCostText.color = currWood < _info.WoodCost ? Color.red : new Color(0f, 0.7f, 0f);
+                
             }
         }
 
         private void ChargePlayer()
         {
-            GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.plasticCost;
-            GameEventsManager.Instance.PlayerManager.TotalWood -= _info.woodCost;
-            GameEventsManager.Instance.PlayerManager.TotalMetal -= _info.metalCost;
+            GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.PlasticCost;
+            GameEventsManager.Instance.PlayerManager.TotalWood -= _info.WoodCost;
         }
     }
 }

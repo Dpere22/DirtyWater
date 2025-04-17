@@ -1,24 +1,21 @@
-using UnityEngine;
 
 public class UpgradeInfo
 {
-    public int plasticCost;
-    public int woodCost;
-    public int metalCost;
-    private readonly UpgradeInfoSO _upgradeInfo;
+    public int PlasticCost;
+    public int WoodCost;
+    public bool Enabled;
 
     public UpgradeInfo(UpgradeInfoSO upgradeInfo)
     {
-        _upgradeInfo = upgradeInfo;
-        plasticCost = upgradeInfo.plasticCost;
-        woodCost = upgradeInfo.woodCost;
-        metalCost = upgradeInfo.metalCost;
+        PlasticCost = upgradeInfo.plasticCost;
+        WoodCost = upgradeInfo.woodCost;
+        Enabled = upgradeInfo.enabled;
     }
-
-    public void DoUpgrade()
-    {
-        plasticCost += _upgradeInfo.plasticProgression;
-        woodCost += _upgradeInfo.woodProgression;
-        metalCost += _upgradeInfo.metalProgression;
-    }
+    //
+    // public void DoUpgrade()
+    // {
+    //     plasticCost += _upgradeInfo.plasticProgression;
+    //     woodCost += _upgradeInfo.woodProgression;
+    //     metalCost += _upgradeInfo.metalProgression;
+    // }
 }

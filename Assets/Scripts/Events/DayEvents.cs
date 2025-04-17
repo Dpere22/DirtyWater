@@ -45,4 +45,18 @@ public class DayEvents
     {
         OnRespawnPlayer?.Invoke();
     }
+
+    public event Action OnFadeOutUI;
+
+    public void FadeOutUI()
+    {
+        OnFadeOutUI?.Invoke();
+    }
+
+    public event Action OnFadeInUI;
+
+    public void FadeInUI()
+    {
+        OnFadeInUI?.Invoke();
+    }
 }

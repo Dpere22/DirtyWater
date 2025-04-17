@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: TimeUpgrade
   m_EditorClassIdentifier: 
   upgradeId: timeUpgrade
-  plasticCost: 0
-  woodCost: 5
-  metalCost: 0
+  plasticCost: 10
+  woodCost: 0
   plasticProgression: 0
   woodProgression: 5
-  metalProgression: 0
   maxAmount: 60
   upgradeProgression: 5
-  description: More time!
+  description: Increase the amount of oxygen in your tank allowing for longer days
+  enabled: 1

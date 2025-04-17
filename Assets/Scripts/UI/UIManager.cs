@@ -35,12 +35,16 @@ namespace UI
         {
             if (GameEventsManager.Instance.PlayerManager.DropOffCrates == 0 || !GameEventsManager.Instance.PlayerManager.Swimming)
             {
-                playerDropOffCrates.SetActive(false);
+                if(playerDropOffCrates)
+                    playerDropOffCrates.SetActive(false);
             }
             else
             {
-                playerDropOffCrates.SetActive(true);
-                crateCountText.text = GameEventsManager.Instance.PlayerManager.DropOffCrates.ToString();
+                if (playerDropOffCrates)
+                {
+                    playerDropOffCrates.SetActive(true);
+                    crateCountText.text = GameEventsManager.Instance.PlayerManager.DropOffCrates.ToString();
+                }
             }
         }
 

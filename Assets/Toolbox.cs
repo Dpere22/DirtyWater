@@ -37,6 +37,7 @@ public class Toolbox : MonoBehaviour
 
     private void CollectToolbox(InputEventContext context)
     {
+        if (context != InputEventContext.Default) return;
         if (!_inRange) return;
         if (!_questActive)
         {

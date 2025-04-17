@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject firstButton;
+    public event Action OnMainMenuClicked;
 
     private void Start()
     {
@@ -12,7 +14,8 @@ public class MainMenuManager : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        OnMainMenuClicked?.Invoke();
+        //SceneManager.LoadScene(1);
     }
 
     public void EndGame()
