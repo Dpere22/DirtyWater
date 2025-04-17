@@ -2191,6 +2191,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1493088575425244536, guid: 9dc8bf1275067154b829b283dcd3bc28, type: 3}
+      propertyPath: filename
+      value: cans_flavor_text
+      objectReference: {fileID: 0}
     - target: {fileID: 2051740669071028553, guid: 9dc8bf1275067154b829b283dcd3bc28, type: 3}
       propertyPath: m_LocalScale.x
       value: -1.8767543
