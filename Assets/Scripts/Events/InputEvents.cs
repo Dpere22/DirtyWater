@@ -24,6 +24,8 @@ namespace Events
 
         public void PausePressed()
         {
+            if (InputEventContext == InputEventContext.Shop)
+                return;
             if (GameEventsManager.Instance.PauseEvents.IsPaused)
             {
                 GameEventsManager.Instance.PauseEvents.Resume();
