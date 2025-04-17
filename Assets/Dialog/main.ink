@@ -60,11 +60,11 @@ I'm Ready I'm Ready
 -> END
 
 = cans_flavor_text
-One of these shouldn't be here
+it looks just like coral! it's almost like the real thing...almost.
 -> END
 
 = fish_flavor_text
-What a weird fish
+what's this little guy doing here? What a handsome lad.
 -> END
 
 = barrels_flavor_text
@@ -72,7 +72,7 @@ Humans have no right to decorate the ocean
 -> END
 
 = broken_wood_flavor_text
-Somebody's forgotten mess
+wonder what this used to be... hopefully nothing important
 -> END
 
 
