@@ -2,16 +2,13 @@ using System;
 using Events;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Upgrades
 {
     public abstract class Upgrade : MonoBehaviour
     {
-        [SerializeField] protected Button button;
         [SerializeField] protected TextMeshProUGUI plasticCostText;
         [SerializeField] protected TextMeshProUGUI woodCostText;
-        [SerializeField] protected TextMeshProUGUI metalCostText;
         [SerializeField] protected UpgradeInfoSO upgradeInfo;
         [SerializeField] protected TextMeshProUGUI infoText;
         [SerializeField] protected TextMeshProUGUI descriptionText;
@@ -46,8 +43,7 @@ namespace Upgrades
         {
             int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
-            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
-            if (currPlastic < _info.PlasticCost || currWood < _info.WoodCost || currMetal < _info.MetalCost)
+            if (currPlastic < _info.PlasticCost || currWood < _info.WoodCost)
             {
                 return false;
             }
@@ -79,21 +75,17 @@ namespace Upgrades
         private void SetUpgradeCosts()
         {
             int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
-            int currMetal = GameEventsManager.Instance.PlayerManager.TotalMetal;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
             if (IsAtMax())
             {
                 plasticCostText.text = "";
-                metalCostText.text = "";
                 woodCostText.text = "";
             }
             else
             {
                 plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
-                metalCostText.text = _info.MetalCost != 0 ? $"{currMetal} / {_info.MetalCost}" : "";
                 woodCostText.text = _info.WoodCost != 0 ? $"{currWood} / {_info.WoodCost}" : "";
                 plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : Color.green;
-                metalCostText.color = currMetal < _info.MetalCost ? Color.red : Color.green;
                 woodCostText.color = currWood < _info.WoodCost ? Color.red : Color.green;
             }
         }
@@ -102,7 +94,6 @@ namespace Upgrades
         {
             GameEventsManager.Instance.PlayerManager.TotalPlastic -= _info.PlasticCost;
             GameEventsManager.Instance.PlayerManager.TotalWood -= _info.WoodCost;
-            GameEventsManager.Instance.PlayerManager.TotalMetal -= _info.MetalCost;
         }
     }
 }

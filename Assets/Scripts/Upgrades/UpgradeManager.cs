@@ -40,7 +40,7 @@ namespace Upgrades
         private void UpgradeShop()
         {
             _upgrades["playerDropOffUpgrade"].Enabled = true;
-            _upgrades["timeUpgrade"].Enabled = true;
+            _upgrades["weightUpgrade"].Enabled = true;
         }
     }
 }

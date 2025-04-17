@@ -15,4 +15,4 @@ MonoBehaviour:
   maxTime: 15
   maxWeight: 15
   walkingSpeed: 11
-  swimmingSpeed: 25
+  swimmingSpeed: 14
