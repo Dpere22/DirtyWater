@@ -52,4 +52,11 @@ public class DayEvents
     {
         OnFadeOutUI?.Invoke();
     }
+
+    public event Action OnFadeInUI;
+
+    public void FadeInUI()
+    {
+        OnFadeInUI?.Invoke();
+    }
 }

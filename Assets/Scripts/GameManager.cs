@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timer.OnTimerComplete += GameEventsManager.Instance.DayEvents.DayEnd;
+        GameEventsManager.Instance.DayEvents.FadeInUI();
     }
 
     private void OnEnable()

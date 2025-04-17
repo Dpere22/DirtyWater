@@ -14,6 +14,7 @@ public class ScreenCoverUI : MonoBehaviour
         GameEventsManager.Instance.DayEvents.OnJumpIntoWater += FadeIn;
         GameEventsManager.Instance.DayEvents.OnEnterWater += FadeOut;
         GameEventsManager.Instance.DayEvents.OnFadeOutUI += FadeIn;
+        GameEventsManager.Instance.DayEvents.OnFadeInUI += FadeOut;
     }
 
     private void OnDisable()
@@ -23,6 +24,7 @@ public class ScreenCoverUI : MonoBehaviour
         GameEventsManager.Instance.DayEvents.OnJumpIntoWater += FadeIn;
         GameEventsManager.Instance.DayEvents.OnEnterWater += FadeOut;
         GameEventsManager.Instance.DayEvents.OnFadeOutUI -= FadeIn;
+        GameEventsManager.Instance.DayEvents.OnFadeInUI -= FadeOut;
     }
     
     
