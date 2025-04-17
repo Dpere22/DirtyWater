@@ -1871,7 +1871,7 @@ MonoBehaviour:
   shopUI: {fileID: 1687346111}
   firstButton: {fileID: 637872355}
   interactIcon: {fileID: 2143544639}
-  shopAvailable: 0
+  shopAvailable: 1
 --- !u!4 &232776366
 Transform:
   m_ObjectHideFlags: 0

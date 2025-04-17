@@ -48,7 +48,7 @@ public class Shop : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(SelectButtonAfterDelay()); //necessary to avoid a button being clicked on this frame
-        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Dialogue);
+        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Shop);
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         _inShop = true;
         interactIcon.SetActive(false);
@@ -61,6 +61,7 @@ public class Shop : MonoBehaviour
     }
     private void ExitShop()
     {
+        Debug.Log("Exiting Shop");
         GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         _inShop = false;

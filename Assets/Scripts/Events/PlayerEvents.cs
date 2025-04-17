@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Events
 {
@@ -15,6 +16,7 @@ namespace Events
 
         public void EnablePlayerMovement()
         {
+            Debug.Log("Enabling Movement");
             OnEnablePlayerMovement?.Invoke();
         }
 

@@ -3,6 +3,7 @@ namespace Input
     public enum InputEventContext
     {
         Default,
-        Dialogue
+        Dialogue,
+        Shop
     }
 }
