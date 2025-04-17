@@ -59,6 +59,22 @@ This chest is empty!
 I'm Ready I'm Ready
 -> END
 
+= cans_flavor_text
+One of these shouldn't be here
+-> END
+
+= fish_flavor_text
+What a weird fish
+-> END
+
+= barrels_flavor_text
+Humans have no right to decorate the ocean
+-> END
+
+= broken_wood_flavor_text
+Somebody's forgotten mess
+-> END
+
 
 
 
