@@ -793,6 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2142926388}
   animator: {fileID: 861204282}
+  audioSource: {fileID: 1774690913}
 --- !u!95 &861204282
 Animator:
   serializedVersion: 7
