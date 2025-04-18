@@ -20,6 +20,7 @@ namespace UI
         [SerializeField] private GameObject pauseFirstButton;
         [SerializeField] private GameObject playerDropOffCrates;
         [SerializeField] private TextMeshProUGUI crateCountText;
+        [SerializeField] private GameObject infoMenu;
         private bool _inventoryOpen;
 
 
@@ -60,6 +61,8 @@ namespace UI
             GameEventsManager.Instance.PauseEvents.OnResume += ResumeHandler;
             GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
             GameEventsManager.Instance.InputEvents.OnInventoryPressed += ToggleInventory;
+            GameEventsManager.Instance.InputEvents.OnInfoBoard += EnableInfoBoard;
+            GameEventsManager.Instance.InputEvents.OnInfoBoardClosed += DisableInfoBoard;
         }
 
         private void OnDisable()
@@ -69,6 +72,18 @@ namespace UI
             GameEventsManager.Instance.PauseEvents.OnResume -= ResumeHandler;
             GameEventsManager.Instance.DayEvents.OnDayEnd += DisableTimerText;
             GameEventsManager.Instance.InputEvents.OnInventoryPressed -= ToggleInventory;
+            GameEventsManager.Instance.InputEvents.OnInfoBoard -= EnableInfoBoard;
+            GameEventsManager.Instance.InputEvents.OnInfoBoardClosed -= DisableInfoBoard;
+        }
+
+        private void EnableInfoBoard()
+        {
+            infoMenu.SetActive(true);
+        }
+
+        private void DisableInfoBoard()
+        {
+            infoMenu.SetActive(false);
         }
         private void EnableTimerText()
         {
@@ -112,14 +127,14 @@ namespace UI
 
         private void ToggleInventory()
         {
-            updateInventoryUI();
+            UpdateInventoryUI();
             _inventoryOpen = !_inventoryOpen;
             inventory.SetActive(_inventoryOpen);
             
         }
 
 
-        public void updateInventoryUI()
+        private void UpdateInventoryUI()
         {
             GameEventsManager.Instance.PlayerManager.WaterBottle = 0;
             GameEventsManager.Instance.PlayerManager.PlasticTrash = 0;

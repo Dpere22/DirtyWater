@@ -76,5 +76,19 @@ namespace Events
         {
             OnCancelPressed?.Invoke();
         }
+
+        public event Action OnInfoBoard;
+
+        public void InfoBoardOpened()
+        {
+            OnInfoBoard?.Invoke();
+        }
+
+        public event Action OnInfoBoardClosed;
+
+        public void InfoBoardClosed()
+        {
+            OnInfoBoardClosed?.Invoke();
+        }
     }
 }
