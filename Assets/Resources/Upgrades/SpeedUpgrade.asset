@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpeedUpgrade
   m_EditorClassIdentifier: 
   upgradeId: speedUpgrade
-  plasticCost: 0
-  woodCost: 10
+  plasticCost: 10
+  woodCost: 0
   plasticProgression: 5
   woodProgression: 0
   maxAmount: 24
