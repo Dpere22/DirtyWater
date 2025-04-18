@@ -7454,6 +7454,7 @@ GameObject:
   - component: {fileID: 929260600}
   - component: {fileID: 929260602}
   - component: {fileID: 929260601}
+  - component: {fileID: 929260603}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -7518,6 +7519,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929260599}
   m_CullTransparentMesh: 1
+--- !u!114 &929260603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929260599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5173a64a2d0fc9d45aca45b4e3f2cfb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 929260601}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
 --- !u!1001 &933511329
 PrefabInstance:
   m_ObjectHideFlags: 0

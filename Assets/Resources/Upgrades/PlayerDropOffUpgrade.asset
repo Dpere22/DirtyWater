@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeId: playerDropOffUpgrade
   plasticCost: 0
-  woodCost: 20
-  metalCost: 0
+  woodCost: 15
   plasticProgression: 0
   woodProgression: 5
-  metalProgression: 0
   maxAmount: 2
   upgradeProgression: 1
   description: Get crates to drop off your collected trash from anywhere!
+  enabled: 0
