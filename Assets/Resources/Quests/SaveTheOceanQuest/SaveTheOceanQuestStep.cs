@@ -6,7 +6,7 @@ namespace Resources.Quests.SaveTheOceanQuest
     {
         private void Update()
         {
-            if (OceanHealth.GetCurrentHealth() >= 300)
+            if (OceanHealth.GetCurrentHealth() >= 400)
             {
                 FinishQuestStep();
             }

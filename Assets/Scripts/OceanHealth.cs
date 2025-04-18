@@ -1,6 +1,6 @@
 public static class OceanHealth
 {
-    private const int MaxHealth = 300;
+    private const int MaxHealth = 400;
     private static int _currentHealth;
 
     public static int GetHealthRatio()

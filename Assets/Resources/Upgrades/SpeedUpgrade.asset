@@ -17,7 +17,7 @@ MonoBehaviour:
   woodCost: 0
   plasticProgression: 5
   woodProgression: 0
-  maxAmount: 24
-  upgradeProgression: 3
+  maxAmount: 22
+  upgradeProgression: 2
   description: Reinforce your swimming fins to move faster
   enabled: 1
