@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnterWater : MonoBehaviour
 {
-    [SerializeField] private GameObject interactIcon;
     private bool _inRange;
     private bool _hasJumped;
 
@@ -24,7 +23,6 @@ public class EnterWater : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         
-        interactIcon.SetActive(true);
         _inRange = true;
 
     }
@@ -33,7 +31,6 @@ public class EnterWater : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         
-        interactIcon.SetActive(false);
         _inRange = false;
     }
 

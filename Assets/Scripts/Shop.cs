@@ -10,7 +10,6 @@ public class Shop : MonoBehaviour
     private bool _playerInRange;
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject firstButton;
-    [SerializeField] private GameObject interactIcon;
     public bool shopAvailable;
     private bool _inShop;
 
@@ -51,7 +50,6 @@ public class Shop : MonoBehaviour
         GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Shop);
         GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
         _inShop = true;
-        interactIcon.SetActive(false);
         shopUI.SetActive(true);
     }
     private IEnumerator SelectButtonAfterDelay()
@@ -70,14 +68,12 @@ public class Shop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        interactIcon.SetActive(true);
         _playerInRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        interactIcon.SetActive(false);
         _playerInRange = false;
     }
 

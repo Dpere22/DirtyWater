@@ -18,7 +18,6 @@ namespace Input
         private void OnControlsChanged(PlayerInput pInput)
         {
             ControllerInfo.ControllerName = pInput.currentControlScheme;
-            Debug.Log(ControllerInfo.ControllerName);
         }
         private void OnPause()
         {

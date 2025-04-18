@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 149180286}
   - component: {fileID: 149180284}
   - component: {fileID: 149180287}
+  - component: {fileID: 149180288}
   m_Layer: 0
   m_Name: AllowJumpTrigger
   m_TagString: Untagged
@@ -931,7 +932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35cdccd5ffff9a4d98233ad61dfb199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 1848160746}
 --- !u!4 &149180286
 Transform:
   m_ObjectHideFlags: 0
@@ -994,6 +994,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5657568, y: 5.717825}
   m_EdgeRadius: 0
+--- !u!114 &149180288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149180283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7b3c5d4239088448fc53943063be77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1848160746}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
+  sr: {fileID: 1848160747}
 --- !u!1 &155654018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,6 +1824,7 @@ GameObject:
   - component: {fileID: 232776366}
   - component: {fileID: 232776364}
   - component: {fileID: 232776363}
+  - component: {fileID: 232776367}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -1875,7 +1892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopUI: {fileID: 1687346111}
   firstButton: {fileID: 637872355}
-  interactIcon: {fileID: 2143544639}
   shopAvailable: 1
 --- !u!4 &232776366
 Transform:
@@ -1893,6 +1909,22 @@ Transform:
   - {fileID: 2143544640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232776367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232776362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7b3c5d4239088448fc53943063be77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2143544639}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
+  sr: {fileID: 2143544641}
 --- !u!1 &245179468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,6 +2583,7 @@ GameObject:
   - component: {fileID: 289687717}
   - component: {fileID: 289687718}
   - component: {fileID: 289687719}
+  - component: {fileID: 289687720}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2640,7 +2673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f525aba0d981a458a630e61db62e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 1959913954}
 --- !u!70 &289687718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2700,6 +2732,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &289687720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289687713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7b3c5d4239088448fc53943063be77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1959913954}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
+  sr: {fileID: 1959913956}
+--- !u!1 &298630024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392569842888977425, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
+  m_PrefabInstance: {fileID: 2813129762854790385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &300338321 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9185693520159546439, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
@@ -3668,6 +3721,7 @@ GameObject:
   - component: {fileID: 392219954}
   - component: {fileID: 392219956}
   - component: {fileID: 392219955}
+  - component: {fileID: 392219957}
   m_Layer: 5
   m_Name: ExitIcon
   m_TagString: Untagged
@@ -3732,6 +3786,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392219953}
   m_CullTransparentMesh: 1
+--- !u!114 &392219957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392219953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057be7da18f3ce4ab34c51897e68420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 392219955}
+  controllerIcon: {fileID: 21300000, guid: 90574b4f0644f6c4ebc07c5797ee8760, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 842d5384a0a7d124aa4457f5ddcd4309, type: 3}
 --- !u!1 &393286060 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 996814998736137900, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
@@ -4546,7 +4615,7 @@ PrefabInstance:
     - target: {fileID: 525665222879138003, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
       propertyPath: keyboardIcon
       value: 
-      objectReference: {fileID: -5354132887745660483, guid: 17795e6b81f450c458fbbb34a435911b, type: 3}
+      objectReference: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
     - target: {fileID: 525665222879138003, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
       propertyPath: controllerIcon
       value: 
@@ -10777,8 +10846,9 @@ GameObject:
   - component: {fileID: 1357201928}
   - component: {fileID: 1357201930}
   - component: {fileID: 1357201929}
+  - component: {fileID: 1357201931}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10841,6 +10911,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357201927}
   m_CullTransparentMesh: 1
+--- !u!114 &1357201931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357201927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5173a64a2d0fc9d45aca45b4e3f2cfb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1357201929}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 4f46f9f8bcbe360429fb10e9717f95ba, type: 3}
 --- !u!1 &1361689521
 GameObject:
   m_ObjectHideFlags: 0
@@ -13025,6 +13110,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7587870149931358214, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
   m_PrefabInstance: {fileID: 2813129762854790385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1750615475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298630024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7b3c5d4239088448fc53943063be77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 176174117}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
+  sr: {fileID: 176174119}
 --- !u!1 &1767004135
 GameObject:
   m_ObjectHideFlags: 0
@@ -16285,7 +16386,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7587870149931358214, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 176174118}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6392569842888977425, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1750615475}
   m_SourcePrefab: {fileID: 100100000, guid: 70704385d4e8f2746b0e4e8341a3bee1, type: 3}
 --- !u!1001 &3524080020616766066
 PrefabInstance:
@@ -16523,7 +16627,7 @@ PrefabInstance:
     - target: {fileID: 6627069482327467302, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
       propertyPath: keyboardIcon
       value: 
-      objectReference: {fileID: -5354132887745660483, guid: 17795e6b81f450c458fbbb34a435911b, type: 3}
+      objectReference: {fileID: 21300000, guid: 2801fba07f9c5a542afa69edd8c48f7d, type: 3}
     - target: {fileID: 6627069482327467302, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
       propertyPath: controllerIcon
       value: 

@@ -9,7 +9,6 @@ namespace Interactables
     
     public class Trash : MonoBehaviour
     {
-        [SerializeField] private GameObject collectIcon;
         [SerializeField] private GarbageInfoSO garbageInfo;
 
         private bool _inRange;
@@ -26,13 +25,11 @@ namespace Interactables
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            collectIcon.SetActive(true);
             _inRange = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            collectIcon.SetActive(false);
             _inRange = false;
         }
         private void CollectTrash()

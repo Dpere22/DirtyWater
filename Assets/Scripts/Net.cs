@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Net : MonoBehaviour
 {
-    [SerializeField] private GameObject icon;
     private bool _inRange;
 
     private void OnEnable()
@@ -20,14 +19,12 @@ public class Net : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        icon.SetActive(true);
         _inRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        icon.SetActive(false);
         _inRange = false;
     }
 
