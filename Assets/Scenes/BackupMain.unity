@@ -3737,6 +3737,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 996814998736137900, guid: a11b5ae8680fc4743a6ad2bec24ab965, type: 3}
   m_PrefabInstance: {fileID: 7716540532936781825}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &393407604 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8485613765665739746, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
+  m_PrefabInstance: {fileID: 4887830851894950636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &401610587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4534,6 +4539,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 525665222879138003, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 622509290}
+    - target: {fileID: 525665222879138003, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: keyboardIcon
+      value: 
+      objectReference: {fileID: -5354132887745660483, guid: 17795e6b81f450c458fbbb34a435911b, type: 3}
+    - target: {fileID: 525665222879138003, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+      propertyPath: controllerIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
     - target: {fileID: 851188851088353420, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 155.85
@@ -5451,6 +5468,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &622509290 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5964233139126710687, guid: d518b1e4c79dab54aa6978226274c5c8, type: 3}
+  m_PrefabInstance: {fileID: 544817300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &637872355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7269334575207962218, guid: 018db517b142b354e9b66e4f3c782ab0, type: 3}
@@ -16080,6 +16102,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4148885426593555364, guid: c6a89f9277d81974fa516b006a212838, type: 3}
+      propertyPath: controller
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
     - target: {fileID: 4856181226609162919, guid: c6a89f9277d81974fa516b006a212838, type: 3}
       propertyPath: dropOffCrate
       value: 
@@ -16490,6 +16516,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6627069482327467302, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 393407604}
+    - target: {fileID: 6627069482327467302, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
+      propertyPath: keyboardIcon
+      value: 
+      objectReference: {fileID: -5354132887745660483, guid: 17795e6b81f450c458fbbb34a435911b, type: 3}
+    - target: {fileID: 6627069482327467302, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
+      propertyPath: controllerIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
     - target: {fileID: 6685005256418003175, guid: 067969ee816ef9648b3538cddc477df9, type: 3}
       propertyPath: m_Name
       value: Chest

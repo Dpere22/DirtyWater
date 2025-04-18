@@ -36,6 +36,15 @@ namespace Events
             }
         }
 
+
+        public event Action<string> OnControlsChanged;
+
+        public void ChangeControls(string cont)
+        {
+            //for notifying when keyboard or controller is used
+            OnControlsChanged?.Invoke(cont);
+        }
+        
         public void MovePressed(Vector2 dir)
         {
             MoveAction?.Invoke(dir);

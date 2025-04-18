@@ -1,3 +1,4 @@
+using System;
 using Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +7,19 @@ namespace Input
 {
     public class InputManager : MonoBehaviour
     {
+        private PlayerInput playerInput;
+        
+        private void Start()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerInput.onControlsChanged += OnControlsChanged;
+        }
+
+        private void OnControlsChanged(PlayerInput pInput)
+        {
+            ControllerInfo.ControllerName = pInput.currentControlScheme;
+            Debug.Log(ControllerInfo.ControllerName);
+        }
         private void OnPause()
         {
             GameEventsManager.Instance.InputEvents.PausePressed();

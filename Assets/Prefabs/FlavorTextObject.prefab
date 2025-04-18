@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 8958652385283876286}
+  controllerIcon: {fileID: 21300000, guid: ea87cf658281af84dbe4abc223fc172a, type: 3}
+  keyboardIcon: {fileID: -5354132887745660483, guid: 17795e6b81f450c458fbbb34a435911b, type: 3}
+  sr: {fileID: 4562910840624797114}
 --- !u!114 &1493088575425244536
 MonoBehaviour:
   m_ObjectHideFlags: 0

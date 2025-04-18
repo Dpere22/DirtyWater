@@ -61,7 +61,6 @@ public class Shop : MonoBehaviour
     }
     private void ExitShop()
     {
-        Debug.Log("Exiting Shop");
         GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         _inShop = false;
