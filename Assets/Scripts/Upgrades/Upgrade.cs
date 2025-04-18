@@ -12,6 +12,8 @@ namespace Upgrades
         [SerializeField] protected UpgradeInfoSO upgradeInfo;
         [SerializeField] protected TextMeshProUGUI infoText;
         [SerializeField] protected TextMeshProUGUI descriptionText;
+        [SerializeField] private GameObject allWoodText;
+        [SerializeField] private GameObject allPlasticText;
         private UpgradeInfo _info;
         private UpgradeManager _upgradeManager;
         
@@ -20,6 +22,8 @@ namespace Upgrades
             _upgradeManager = FindFirstObjectByType<UpgradeManager>(); //semi bad code
             _info = _upgradeManager.GetUpgradeById(upgradeInfo.upgradeId);
             if (!CheckAvailable()) return;
+            if(_info.PlasticCost == 0) allPlasticText.SetActive(false);
+            if(_info.WoodCost == 0) allWoodText.SetActive(false);
             if(descriptionText) descriptionText.text = upgradeInfo.description;
             ResetVisual();
         }
@@ -74,20 +78,30 @@ namespace Upgrades
 
         private void SetUpgradeCosts()
         {
-            int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
+            if (allPlasticText)
+            {
+                int currPlastic = GameEventsManager.Instance.PlayerManager.TotalPlastic;
+                if (IsAtMax())
+                {
+                    plasticCostText.text = "";
+                }
+                else
+                {
+                    plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
+                    plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : new Color(0f, 0.7f, 0f);
+
+                }
+            }
+            if (!allWoodText) return;
             int currWood = GameEventsManager.Instance.PlayerManager.TotalWood;
             if (IsAtMax())
             {
-                plasticCostText.text = "";
                 woodCostText.text = "";
             }
             else
             {
-                plasticCostText.text = _info.PlasticCost != 0 ? $"{currPlastic} / {_info.PlasticCost}" : "";
                 woodCostText.text = _info.WoodCost != 0 ? $"{currWood} / {_info.WoodCost}" : "";
-                plasticCostText.color = currPlastic < _info.PlasticCost ? Color.red : new Color(0f, 0.7f, 0f);
                 woodCostText.color = currWood < _info.WoodCost ? Color.red : new Color(0f, 0.7f, 0f);
-                
             }
         }
 
