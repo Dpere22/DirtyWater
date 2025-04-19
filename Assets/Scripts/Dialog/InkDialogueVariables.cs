@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 using Ink.Runtime;
-using UnityEngine;
 
 namespace Dialog
 {
     public class InkDialogueVariables
     {
-        private Dictionary<string, Ink.Runtime.Object> variables;
+        private readonly Dictionary<string, Object> _variables;
 
         public InkDialogueVariables(Story story) 
         {
             // initialize the dictionary using the global variables in the story
-            variables = new Dictionary<string, Ink.Runtime.Object>();
+            _variables = new Dictionary<string, Object>();
             foreach (string name in story.variablesState)
             {
-                Ink.Runtime.Object value = story.variablesState.GetVariableWithName(name);
-                variables.Add(name, value);
+                Object value = story.variablesState.GetVariableWithName(name);
+                _variables.Add(name, value);
                 //Debug.Log("Initialized global dialogue variable: " + name + " = " + value);
             }
         }
@@ -32,20 +31,20 @@ namespace Dialog
             story.variablesState.variableChangedEvent -= UpdateVariableState;
         }
 
-        public void UpdateVariableState(string name, Ink.Runtime.Object value)
+        public void UpdateVariableState(string name, Object value)
         {
             // only maintain variables that were initialized from the globals ink file
-            if (!variables.ContainsKey(name)) 
+            if (!_variables.ContainsKey(name)) 
             { 
                 return; 
             }
-            variables[name] = value;
+            _variables[name] = value;
             //Debug.Log("Updated dialogue variable: " + name + " = " + value);
         }
 
         private void SyncVariablesToStory(Story story)
         {
-            foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
+            foreach (KeyValuePair<string, Object> variable in _variables)
             {
                 story.variablesState.SetGlobal(variable.Key, variable.Value);
             }

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class SamCreditsController : MonoBehaviour
+namespace UI
 {
-    void Start()
+    public class SamCreditsController : MonoBehaviour
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector2 velocity = new Vector2(3, 0);
-        rb.linearVelocity = velocity;
+        void Start()
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            Vector2 velocity = new Vector2(3, 0);
+            rb.linearVelocity = velocity;
+        }
     }
 }

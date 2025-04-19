@@ -1,32 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OceanHealthUI : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Slider healthSlider;
-
-    private float t;
-
-    private float currHealthSlow;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class OceanHealthUI : MonoBehaviour
     {
-        healthSlider.value = OceanHealth.GetHealthRatio();
-        currHealthSlow = OceanHealth.GetCurrentHealth();
-    }
+        [SerializeField] private Slider healthSlider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(!Mathf.Approximately(currHealthSlow, OceanHealth.GetCurrentHealth())){
-            currHealthSlow = Mathf.Lerp(currHealthSlow,OceanHealth.GetCurrentHealth(), t);
-            t +=  0.5f * Time.deltaTime;
-        }
-        else
+        private float _t;
+
+        private float _currHealthSlow;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            t = 0;
+            healthSlider.value = OceanHealth.GetHealthRatio();
+            _currHealthSlow = OceanHealth.GetCurrentHealth();
         }
 
-        healthSlider.value = currHealthSlow / OceanHealth.GetMaxHealth();
+        // Update is called once per frame
+        void Update()
+        {
+            if(!Mathf.Approximately(_currHealthSlow, OceanHealth.GetCurrentHealth())){
+                _currHealthSlow = Mathf.Lerp(_currHealthSlow,OceanHealth.GetCurrentHealth(), _t);
+                _t +=  0.5f * Time.deltaTime;
+            }
+            else
+            {
+                _t = 0;
+            }
+
+            healthSlider.value = _currHealthSlow / OceanHealth.GetMaxHealth();
+        }
     }
 }

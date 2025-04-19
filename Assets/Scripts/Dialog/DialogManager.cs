@@ -58,9 +58,9 @@ namespace Dialog
             );
         }
 
-        private void UpdateInkDialogueVariable(string name, Ink.Runtime.Object value) 
+        private void UpdateInkDialogueVariable(string inkName, Ink.Runtime.Object value) 
         {
-            _inkDialogueVariables.UpdateVariableState(name, value);
+            _inkDialogueVariables.UpdateVariableState(inkName, value);
         }
 
         private void UpdateChoiceIndex(int choiceIndex) 

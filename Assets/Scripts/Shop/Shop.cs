@@ -4,81 +4,84 @@ using Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Shop : MonoBehaviour
+namespace Shop
 {
-
-    private bool _playerInRange;
-    [SerializeField] private GameObject shopUI;
-    [SerializeField] private GameObject firstButton;
-    public bool shopAvailable;
-    private bool _inShop;
-
-    private void OnEnable()
+    public class Shop : MonoBehaviour
     {
-        GameEventsManager.Instance.ShopEvents.OnEnableShopEvent += EnableShop;
-        GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
-        GameEventsManager.Instance.InputEvents.OnCancelPressed += CancelHandler;
-    }
 
-    private void OnDisable()
-    {
-        GameEventsManager.Instance.ShopEvents.OnEnableShopEvent -= EnableShop;
-        GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
-        GameEventsManager.Instance.InputEvents.OnCancelPressed -= CancelHandler;
-    }
+        private bool _playerInRange;
+        [SerializeField] private GameObject shopUI;
+        [SerializeField] private GameObject firstButton;
+        public bool shopAvailable;
+        private bool _inShop;
 
-    private void InteractHandler(InputEventContext context)
-    {
-        if (!_playerInRange || !context.Equals(InputEventContext.Default) || _inShop) return;
-        if (!shopAvailable)
+        private void OnEnable()
         {
-            GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
-            return;
+            GameEventsManager.Instance.ShopEvents.OnEnableShopEvent += EnableShop;
+            GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
+            GameEventsManager.Instance.InputEvents.OnCancelPressed += CancelHandler;
         }
-        EnterShop();
-    }
 
-    private void CancelHandler()
-    {
-        if (!_inShop) return;
-        ExitShop();
-    }
-    private void EnterShop()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        StartCoroutine(SelectButtonAfterDelay()); //necessary to avoid a button being clicked on this frame
-        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Shop);
-        GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
-        _inShop = true;
-        shopUI.SetActive(true);
-    }
-    private IEnumerator SelectButtonAfterDelay()
-    {
-        yield return null;
-        EventSystem.current.SetSelectedGameObject(firstButton);
-    }
-    private void ExitShop()
-    {
-        GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
-        GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
-        _inShop = false;
-        shopUI.SetActive(false);
-    }
+        private void OnDisable()
+        {
+            GameEventsManager.Instance.ShopEvents.OnEnableShopEvent -= EnableShop;
+            GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
+            GameEventsManager.Instance.InputEvents.OnCancelPressed -= CancelHandler;
+        }
+
+        private void InteractHandler(InputEventContext context)
+        {
+            if (!_playerInRange || !context.Equals(InputEventContext.Default) || _inShop) return;
+            if (!shopAvailable)
+            {
+                GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
+                return;
+            }
+            EnterShop();
+        }
+
+        private void CancelHandler()
+        {
+            if (!_inShop) return;
+            ExitShop();
+        }
+        private void EnterShop()
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            StartCoroutine(SelectButtonAfterDelay()); //necessary to avoid a button being clicked on this frame
+            GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Shop);
+            GameEventsManager.Instance.PlayerEvents.DisablePlayerMovement();
+            _inShop = true;
+            shopUI.SetActive(true);
+        }
+        private IEnumerator SelectButtonAfterDelay()
+        {
+            yield return null;
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
+        private void ExitShop()
+        {
+            GameEventsManager.Instance.InputEvents.ChangeInputEventContext(InputEventContext.Default);
+            GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
+            _inShop = false;
+            shopUI.SetActive(false);
+        }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-        _playerInRange = true;
-    }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+            _playerInRange = true;
+        }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-        _playerInRange = false;
-    }
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+            _playerInRange = false;
+        }
 
-    private void EnableShop()
-    {
-        shopAvailable = true;
+        private void EnableShop()
+        {
+            shopAvailable = true;
+        }
     }
 }

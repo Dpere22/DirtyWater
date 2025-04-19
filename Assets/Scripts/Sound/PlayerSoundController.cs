@@ -1,30 +1,34 @@
+using Player;
 using UnityEngine;
 
-public class PlayerSoundController : MonoBehaviour
+namespace Sound
 {
-    [SerializeField] private GameObject player;
-    private AudioSource _audioSource;
-    private PlayerMovement _playerMovement;
-    private bool _started;
-    private void Start()
+    public class PlayerSoundController : MonoBehaviour
     {
-        _playerMovement = player.GetComponent<PlayerMovement>();
-        _audioSource = GetComponent<AudioSource>();
-    }
-    
-    private void Update()
-    {
-        if (_playerMovement.isWalking && !_started)
+        [SerializeField] private GameObject player;
+        private AudioSource _audioSource;
+        private PlayerMovement _playerMovement;
+        private bool _started;
+        private void Start()
         {
-            float timeStamp = Random.Range(0f, _audioSource.clip.length);
-            _audioSource.time = timeStamp;
-            _audioSource.Play();
-            _started = true;
+            _playerMovement = player.GetComponent<PlayerMovement>();
+            _audioSource = GetComponent<AudioSource>();
         }
-        else if (!_playerMovement.isWalking)
+    
+        private void Update()
         {
-            _started = false;
-            _audioSource.Stop();
+            if (_playerMovement.isWalking && !_started)
+            {
+                float timeStamp = Random.Range(0f, _audioSource.clip.length);
+                _audioSource.time = timeStamp;
+                _audioSource.Play();
+                _started = true;
+            }
+            else if (!_playerMovement.isWalking)
+            {
+                _started = false;
+                _audioSource.Stop();
+            }
         }
     }
 }

@@ -1,3 +1,5 @@
+using Interactables;
+using Player;
 using UnityEngine;
 
 namespace Events

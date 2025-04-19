@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CrateUIIcon : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Image image;
-    [SerializeField] private Sprite controllerIcon;
-    [SerializeField] private Sprite keyboardIcon;
-
-    private void Update()
+    public class CrateUIIcon : MonoBehaviour
     {
-        image.sprite = ControllerInfo.ControllerName.Equals("Keyboard&Mouse") ? keyboardIcon : controllerIcon;
+        [SerializeField] private Image image;
+        [SerializeField] private Sprite controllerIcon;
+        [SerializeField] private Sprite keyboardIcon;
+
+        private void Update()
+        {
+            image.sprite = ControllerInfo.ControllerName.Equals("Keyboard&Mouse") ? keyboardIcon : controllerIcon;
+        }
     }
 }

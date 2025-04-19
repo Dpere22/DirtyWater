@@ -1,6 +1,7 @@
 using Events;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -11,10 +12,10 @@ namespace UI
         [SerializeField] private TextMeshProUGUI metalCountText;
 
 
-        [SerializeField] private TextMeshProUGUI PlasticBottle;
-        [SerializeField] private TextMeshProUGUI PlasticTrash;
-        [SerializeField] private TextMeshProUGUI WoodenPlank;
-        [SerializeField] private TextMeshProUGUI WoodenCrate;
+        [FormerlySerializedAs("PlasticBottle")] [SerializeField] private TextMeshProUGUI plasticBottle;
+        [FormerlySerializedAs("PlasticTrash")] [SerializeField] private TextMeshProUGUI plasticTrash;
+        [FormerlySerializedAs("WoodenPlank")] [SerializeField] private TextMeshProUGUI woodenPlank;
+        [FormerlySerializedAs("WoodenCrate")] [SerializeField] private TextMeshProUGUI woodenCrate;
 
         void OnEnable()
         {
@@ -22,10 +23,10 @@ namespace UI
             woodCountText.text = GameEventsManager.Instance.PlayerManager.TotalWood.ToString();
             metalCountText.text = GameEventsManager.Instance.PlayerManager.TotalMetal.ToString();
 
-            PlasticBottle.text = "x" + GameEventsManager.Instance.PlayerManager.WaterBottle.ToString();
-            PlasticTrash.text = "x" + GameEventsManager.Instance.PlayerManager.PlasticTrash.ToString();
-            WoodenCrate.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenCrate.ToString();
-            WoodenPlank.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenPlank.ToString();
+            plasticBottle.text = "x" + GameEventsManager.Instance.PlayerManager.WaterBottle.ToString();
+            plasticTrash.text = "x" + GameEventsManager.Instance.PlayerManager.PlasticTrash.ToString();
+            woodenCrate.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenCrate.ToString();
+            woodenPlank.text = "x" + GameEventsManager.Instance.PlayerManager.WoodenPlank.ToString();
         }
     }
 }

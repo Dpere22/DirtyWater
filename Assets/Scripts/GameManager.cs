@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitForGame()
     {
         yield return new WaitForSeconds(2f);
-
         GameEventsManager.Instance.PlayerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.DayEvents.DayStart();
     }

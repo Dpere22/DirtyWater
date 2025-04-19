@@ -1,39 +1,42 @@
 using UnityEngine;
 
-public class CursorManager : MonoBehaviour
+namespace UI
 {
-    private static CursorManager _instance;
-
-    void Awake()
+    public class CursorManager : MonoBehaviour
     {
-        if (_instance == null)
+        private static CursorManager _instance;
+
+        void Awake()
         {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);   // Keep it across scenes
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);   // Keep it across scenes
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
-    void Start()
-    {
-        HideCursor();
-    }
-
-    void Update()
-    {
-        // Ensure cursor stays hidden
-        if (Cursor.visible || Cursor.lockState != CursorLockMode.Locked)
+        void Start()
         {
             HideCursor();
         }
-    }
 
-    private void HideCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        void Update()
+        {
+            // Ensure cursor stays hidden
+            if (Cursor.visible || Cursor.lockState != CursorLockMode.Locked)
+            {
+                HideCursor();
+            }
+        }
+
+        private void HideCursor()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

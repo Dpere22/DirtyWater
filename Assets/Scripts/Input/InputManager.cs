@@ -1,4 +1,3 @@
-using System;
 using Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,12 +6,12 @@ namespace Input
 {
     public class InputManager : MonoBehaviour
     {
-        private PlayerInput playerInput;
+        private PlayerInput _playerInput;
         
         private void Start()
         {
-            playerInput = GetComponent<PlayerInput>();
-            playerInput.onControlsChanged += OnControlsChanged;
+            _playerInput = GetComponent<PlayerInput>();
+            _playerInput.onControlsChanged += OnControlsChanged;
         }
 
         private void OnControlsChanged(PlayerInput pInput)

@@ -100,25 +100,6 @@ public class InteractableWater : MonoBehaviour
         }
         mesh.vertices = _vertices;
     }
-
-    private void Update()
-    {
-        // //Inefficient, should eventually change!
-        // if (OceanHealth.GetHealthRatio() < 0.75f)
-        // {
-        //     mat.SetColor(LineColor, dirtyBodyColor);
-        //     mat.SetColor(BodyColor, dirtyBodyColor);
-        //     mat.SetColor(CausticColor, dirtyCausticsColor);
-        // }
-        // else
-        // {
-        //     mat.SetColor(LineColor, healthyBodyColor);
-        //     mat.SetColor(BodyColor, healthyBodyColor);
-        //     mat.SetColor(CausticColor, healthyCausticsColor);
-        // }
-        
-    }
-
     public void Splash(Collider2D collision, float force)
     {
         float radius = collision.bounds.extents.x * playerCollisionRadiusMult;

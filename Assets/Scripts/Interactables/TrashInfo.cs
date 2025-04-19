@@ -1,9 +1,9 @@
-using Interactables;
-using UnityEngine;
-
-[System.Serializable]
-public struct TrashInfo
+namespace Interactables
 {
-    public GarbageInfoSO info;
-    public int spawnRate;
+    [System.Serializable]
+    public struct TrashInfo
+    {
+        public GarbageInfoSO info;
+        public int spawnRate;
+    }
 }

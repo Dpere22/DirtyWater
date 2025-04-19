@@ -17,7 +17,7 @@ MonoBehaviour:
   woodCost: 0
   plasticProgression: 0
   woodProgression: 5
-  maxAmount: 45
+  maxAmount: 40
   upgradeProgression: 5
   description: Increase the amount of oxygen in your tank allowing for longer days
   enabled: 1
