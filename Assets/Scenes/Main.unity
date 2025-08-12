@@ -17739,7 +17739,7 @@ GameObject:
   - component: {fileID: 1976737605}
   - component: {fileID: 1976737604}
   m_Layer: 0
-  m_Name: 1
+  m_Name: WaterBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
