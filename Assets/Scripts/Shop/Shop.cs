@@ -12,14 +12,17 @@ namespace Shop
         private bool _playerInRange;
         [SerializeField] private GameObject shopUI;
         [SerializeField] private GameObject firstButton;
+        [SerializeField] private GameObject newUpgradesIcon;
         public bool shopAvailable;
         private bool _inShop;
+        private bool _checkedNewUpgrades = true;
 
         private void OnEnable()
         {
             GameEventsManager.Instance.ShopEvents.OnEnableShopEvent += EnableShop;
             GameEventsManager.Instance.InputEvents.OnSubmitPressed += InteractHandler;
             GameEventsManager.Instance.InputEvents.OnCancelPressed += CancelHandler;
+            GameEventsManager.Instance.QuestEvents.OnFinishQuest += HandleQuestFinished;
         }
 
         private void OnDisable()
@@ -27,11 +30,30 @@ namespace Shop
             GameEventsManager.Instance.ShopEvents.OnEnableShopEvent -= EnableShop;
             GameEventsManager.Instance.InputEvents.OnSubmitPressed -= InteractHandler;
             GameEventsManager.Instance.InputEvents.OnCancelPressed -= CancelHandler;
+            GameEventsManager.Instance.QuestEvents.OnFinishQuest -= HandleQuestFinished;
+        }
+
+        private void HandleQuestFinished(string questId)
+        {
+            if (questId is "GetToolboxQuest" or "CollectWoodQuest")
+            {
+                DisplayNewUpgradesIcon();
+            }
+        }
+        private void DisplayNewUpgradesIcon()
+        {
+            _checkedNewUpgrades = false;
+            newUpgradesIcon.SetActive(true);
         }
 
         private void InteractHandler(InputEventContext context)
         {
             if (!_playerInRange || !context.Equals(InputEventContext.Default) || _inShop) return;
+            if (!_checkedNewUpgrades)
+            {
+                _checkedNewUpgrades = true;
+                newUpgradesIcon.SetActive(false);
+            }
             if (!shopAvailable)
             {
                 GameEventsManager.Instance.DialogueEvents.EnterDialogue("shopNotAvailable");
