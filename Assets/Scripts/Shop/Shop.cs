@@ -35,7 +35,7 @@ namespace Shop
 
         private void HandleQuestFinished(string questId)
         {
-            if (questId is "GetToolboxQuest" or "ChestQuest")
+            if (questId is "GetToolboxQuest" or "CollectWoodQuest")
             {
                 DisplayNewUpgradesIcon();
             }
